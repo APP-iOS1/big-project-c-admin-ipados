@@ -20,6 +20,10 @@
 		03A62892295AA98600167DB5 /* AddSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A62891295AA98600167DB5 /* AddSession.swift */; };
 		03A62894295AA9C400167DB5 /* SessionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A62893295AA9C400167DB5 /* SessionDetailView.swift */; };
 		A5878534295ACDDA004F1BF2 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5878533295ACDDA004F1BF2 /* LoginViewModel.swift */; };
+		EE08C249295AB8E2008D590C /* EmptyDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE08C248295AB8E2008D590C /* EmptyDetailView.swift */; };
+		EE08C24B295ACCD1008D590C /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE08C24A295ACCD1008D590C /* Color.swift */; };
+		EE5265E0295AD0E000FCA8BA /* EuniModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5265DF295AD0E000FCA8BA /* EuniModel.swift */; };
+		EE5265E2295AD0EB00FCA8BA /* EuniStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5265E1295AD0EB00FCA8BA /* EuniStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +38,10 @@
 		03A62891295AA98600167DB5 /* AddSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSession.swift; sourceTree = "<group>"; };
 		03A62893295AA9C400167DB5 /* SessionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDetailView.swift; sourceTree = "<group>"; };
 		A5878533295ACDDA004F1BF2 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		EE08C248295AB8E2008D590C /* EmptyDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyDetailView.swift; sourceTree = "<group>"; };
+		EE08C24A295ACCD1008D590C /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		EE5265DF295AD0E000FCA8BA /* EuniModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EuniModel.swift; sourceTree = "<group>"; };
+		EE5265E1295AD0EB00FCA8BA /* EuniStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EuniStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +82,9 @@
 				A595FB2A295AB55A00642C83 /* Model */,
 				03A62889295AA8B100167DB5 /* View */,
 				A595FB2B295AB56500642C83 /* ViewModel */,
+				EE08C24D295AD07B008D590C /* Model */,
+				EE08C24C295AD068008D590C /* ViewModel */,
+				03A62889295AA8B100167DB5 /* View */,
 				03A62880295AA6BC00167DB5 /* GoogleService-Info.plist */,
 				03A62876295AA6AB00167DB5 /* Assets.xcassets */,
 				03A62878295AA6AB00167DB5 /* Preview Content */,
@@ -96,13 +107,17 @@
 				03A62891295AA98600167DB5 /* AddSession.swift */,
 				03A6288E295AA96700167DB5 /* GeneralView.swift */,
 				03A62893295AA9C400167DB5 /* SessionDetailView.swift */,
+				EE08C248295AB8E2008D590C /* EmptyDetailView.swift */,
+				EE08C24A295ACCD1008D590C /* Color.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
 		};
 		A595FB2A295AB55A00642C83 /* Model */ = {
+		EE08C24C295AD068008D590C /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				EE5265E1295AD0EB00FCA8BA /* EuniStore.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -111,6 +126,10 @@
 			isa = PBXGroup;
 			children = (
 				A5878533295ACDDA004F1BF2 /* LoginViewModel.swift */,
+		EE08C24D295AD07B008D590C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EE5265DF295AD0E000FCA8BA /* EuniModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -199,6 +218,10 @@
 				03A6288F295AA96700167DB5 /* GeneralView.swift in Sources */,
 				03A62875295AA6AA00167DB5 /* ContentView.swift in Sources */,
 				03A62894295AA9C400167DB5 /* SessionDetailView.swift in Sources */,
+				EE08C24B295ACCD1008D590C /* Color.swift in Sources */,
+				EE08C249295AB8E2008D590C /* EmptyDetailView.swift in Sources */,
+				EE5265E0295AD0E000FCA8BA /* EuniModel.swift in Sources */,
+				EE5265E2295AD0EB00FCA8BA /* EuniStore.swift in Sources */,
 				03A62873295AA6AA00167DB5 /* big_project_c_admin_ipadosApp.swift in Sources */,
 				A5878534295ACDDA004F1BF2 /* LoginViewModel.swift in Sources */,
 			);
