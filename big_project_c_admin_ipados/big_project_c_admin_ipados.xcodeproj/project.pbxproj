@@ -77,9 +77,9 @@
 			children = (
 				03A62872295AA6AA00167DB5 /* big_project_c_admin_ipadosApp.swift */,
 				03A62874295AA6AA00167DB5 /* ContentView.swift */,
-				EE08C24D295AD07B008D590C /* Model */,
-				EE08C24C295AD068008D590C /* ViewModel */,
-				03A62889295AA8B100167DB5 /* View */,
+				EE08C24D295AD07B008D590C /* Models */,
+				EE08C24C295AD068008D590C /* ViewModels */,
+				03A62889295AA8B100167DB5 /* Views */,
 				03A62880295AA6BC00167DB5 /* GoogleService-Info.plist */,
 				03A62876295AA6AB00167DB5 /* Assets.xcassets */,
 				03A62878295AA6AB00167DB5 /* Preview Content */,
@@ -95,7 +95,7 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		03A62889295AA8B100167DB5 /* View */ = {
+		03A62889295AA8B100167DB5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				03A6288C295AA95500167DB5 /* LoginView.swift */,
@@ -105,23 +105,23 @@
 				EE08C248295AB8E2008D590C /* EmptyDetailView.swift */,
 				EE08C24A295ACCD1008D590C /* Color.swift */,
 			);
-			path = View;
+			path = Views;
 			sourceTree = "<group>";
 		};
-		EE08C24C295AD068008D590C /* ViewModel */ = {
+		EE08C24C295AD068008D590C /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
 				EE5265E1295AD0EB00FCA8BA /* EuniStore.swift */,
 			);
-			path = ViewModel;
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
-		EE08C24D295AD07B008D590C /* Model */ = {
+		EE08C24D295AD07B008D590C /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				EE5265DF295AD0E000FCA8BA /* EuniModel.swift */,
 			);
-			path = Model;
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
