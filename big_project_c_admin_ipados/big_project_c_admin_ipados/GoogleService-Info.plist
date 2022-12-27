@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>18344743419-qg13loo3dna1i5si4d3ob02ees6lkq38.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.18344743419-qg13loo3dna1i5si4d3ob02ees6lkq38</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBkW5-_wcebG7nSzb73VzDk_UF5-Ti3gzk</string>
+	<key>GCM_SENDER_ID</key>
+	<string>18344743419</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.codelion.Big-Project-C-Admin</string>
+	<key>PROJECT_ID</key>
+	<string>likelionprojectcdev</string>
+	<key>STORAGE_BUCKET</key>
+	<string>likelionprojectcdev.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:18344743419:ios:fd18c0a30f861589bb7b5e</string>
+</dict>
+</plist>
