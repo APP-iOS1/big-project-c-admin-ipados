@@ -24,6 +24,7 @@ struct big_project_c_admin_ipados: App {
         WindowGroup {
             ContentView()
                 .environmentObject(LoginViewModel())
+
         }
     }
 }
