@@ -69,9 +69,9 @@
 			children = (
 				03A62872295AA6AA00167DB5 /* big_project_c_admin_ipadosApp.swift */,
 				03A62874295AA6AA00167DB5 /* ContentView.swift */,
-				03A62890295AA96E00167DB5 /* Model */,
+				7C6325B2295AE8CD00896A47 /* Models */,
 				03A62889295AA8B100167DB5 /* View */,
-				03A6288B295AA93500167DB5 /* ViewModel */,
+				03A6288B295AA93500167DB5 /* ViewModels */,
 				03A62880295AA6BC00167DB5 /* GoogleService-Info.plist */,
 				03A62876295AA6AB00167DB5 /* Assets.xcassets */,
 				03A62878295AA6AB00167DB5 /* Preview Content */,
@@ -98,18 +98,18 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		03A6288B295AA93500167DB5 /* ViewModel */ = {
+		03A6288B295AA93500167DB5 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = ViewModel;
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
-		03A62890295AA96E00167DB5 /* Model */ = {
+		7C6325B2295AE8CD00896A47 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = Model;
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
