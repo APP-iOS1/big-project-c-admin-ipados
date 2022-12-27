@@ -8,12 +8,11 @@
 import SwiftUI
 
 struct SessionDetailView: View {
-    @ObservedObject var euni: EuniStore = EuniStore()
-//    var sessionDetailId: Euni.ID?
+    @ObservedObject var euni: EuniStore
+
+    var euniId: Euni.ID?
     
-    let euniId: Euni.ID?
-    
-    var sessionDetailId: Euni? {
+    var selectedContent: Euni? {
         get {
             for sample in euni.eunis {
                 if sample.id == euniId {
@@ -26,8 +25,7 @@ struct SessionDetailView: View {
     
     var body: some View {
         VStack {
-            
-            Text(sessionDetailId?.title ?? "")
+            Text(selectedContent?.title ?? "")
             
 //            List(euni.eunis) { sample in
 //                Text(sample.lecturer)

@@ -11,8 +11,7 @@ struct GeneralView: View {
 
     @ObservedObject var euni: EuniStore = EuniStore()
     @State private var selectedCategoryId: Euni.ID?
-//    @State private var sessionDetailId: DummySessionData.ID?
-    
+
     var body: some View {
         NavigationSplitView {
             List(euni.eunis, selection: $selectedCategoryId) { dataItem in
@@ -29,7 +28,7 @@ struct GeneralView: View {
             
         } detail: {
             
-            SessionDetailView(euniId: selectedCategoryId)
+            SessionDetailView(euni: euni, euniId: selectedCategoryId)
         }
     }
 }
