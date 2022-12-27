@@ -8,7 +8,7 @@
 import SwiftUI
 import PhotosUI
 
-struct SessionDetailView: View {
+struct AddSessionView: View {
     
     // MARK: - 이미지 받아오기(PhotoURL)
     
@@ -31,10 +31,12 @@ struct SessionDetailView: View {
     // MARK: - Place 피커(3개 장소 임의로)
     @State private var placeCategories: [String] = ["Place1", "Place2", "Place3"]
     @State private var SelectedPlaceCategory: String = ""
-
+    
     // MARK: - createBy (Date 피커)
     @State private var sessionSchedule: Date = Date()
     
+    // MARK: - HostInfo ( 호스트 인포 - 프로필 사진, 강사소개)
+    @State private var hostInfo: String = ""
     
     // MARK: - TextEditor (세미나 상세내용, 상세 커리큘럼)
     @State private var bodyText: String = ""
@@ -44,7 +46,7 @@ struct SessionDetailView: View {
         ZStack {
             HStack {
                 // 세미나 등록하기
-                // TODO: - 사진 추가 시, 여러장이 업로드 되도록 기능 보완 필요
+                // TODO: - 사진 추가 시, 여러장이 업로드 되도록 기능 보완 필요, 가로 스크롤뷰로 미리보기
                 VStack(alignment: .leading) {
                     HStack {
                         PhotosPicker(
@@ -77,12 +79,12 @@ struct SessionDetailView: View {
                         }
                     }
                     .frame(width: 200, height: 200)
-
+                    
                     // 세미나 기본정보
                     VStack(alignment: .leading) {
                         Text("세미나 기본정보")
                             .font(.title)
-                       
+                        
                         
                         // 세부내용
                         VStack {
@@ -138,101 +140,117 @@ struct SessionDetailView: View {
                         
                         Divider()
                         
-                        // TODO: - 호스트 소개부분 기능구현 예정
+                        // MARK: - HostInfo ( 호스트 인포 - 프로필 사진, 강사소개)
                         VStack(alignment: .leading) {
-                            Text("강사소개")
-                        }
-                        .frame(width: 500, height: 200)
-                        
-                    }
-                }
-                .frame(width: 500, height: 900)
-        
-                    
-                Spacer()
-                
-                Divider()
-                
-                // MARK: - 세미나 상세내용
-                VStack {
-                    VStack(alignment: .leading) {
-                        Text("세미나 상세내용")
-                        ZStack(alignment: .leading) {
-                            TextEditor(text: $bodyText)
-                                .padding()
-                                .background(Color(.secondarySystemBackground))
-                                .frame(height: 300)
-                            
-                            if bodyText == "" {
-                                Text("내용을 입력해주세요.")
-                                    .opacity(0.5)
-                                    .offset(x: 180)
+                            Text("강사 소개")
+                            HStack {
+                                Image(systemName: "circle.fill")
+                                    .resizable()
+                                    .foregroundColor(Color.gray)
+                                    .frame(width: 100, height: 100)
+                                VStack {
+                                    ZStack(alignment: .leading) {
+                                        TextEditor(text: $bodyText)
+                                            .padding()
+                                            .background(Color(.secondarySystemBackground))
+                                                                                .frame(height: 150)
+                                    }
+                                }
+                               
                             }
                         }
-                        
+                            .frame(width: 500, height: 200)
+                            
+                        }
                     }
+                    .frame(width: 500, height: 900)
+                    
+                    
+                    Spacer()
+                    
                     Divider()
                     
-                    // MARK: - 상세 커리큘럼
-                    ZStack(alignment: .leading) {
+                    // MARK: - 세미나 상세내용
+                    VStack {
                         VStack(alignment: .leading) {
-                            Text("상세 커리큘럼을 입력해주세요.")
-                            TextEditor(text: $curriculumText)
-                                .padding()
-                                .background(Color(.secondarySystemBackground))
-                                .frame(height: 300)
+                            Text("세미나 상세내용")
+                            ZStack(alignment: .leading) {
+                                TextEditor(text: $bodyText)
+                                    .padding()
+                                    .background(Color(.secondarySystemBackground))
+                                    .frame(height: 300)
+                                
+                                if bodyText == "" {
+                                    Text("내용을 입력해주세요.")
+                                        .opacity(0.5)
+                                        .offset(x: 180)
+                                }
+                            }
                             
-                            if curriculumText == "" {
-                                Text("내용을 입력해주세요.")
-                                    .opacity(0.5)
-                                    .offset(x: 180, y: -160)
+                        }
+                        Divider()
+                        
+                        // MARK: - 상세 커리큘럼
+                        ZStack(alignment: .leading) {
+                            VStack(alignment: .leading) {
+                                Text("상세 커리큘럼을 입력해주세요.")
+                                TextEditor(text: $curriculumText)
+                                    .padding()
+                                    .background(Color(.secondarySystemBackground))
+                                    .frame(height: 300)
+                                
+                                if curriculumText == "" {
+                                    Text("내용을 입력해주세요.")
+                                        .opacity(0.5)
+                                        .offset(x: 180, y: -160)
+                                }
                             }
                         }
-                    }
-                    
-                    // MARK: - 세미나 등록하기 버튼 추가 (데이터)
-                    VStack(alignment: .center) {
-                        Button {
-                            // 등록하는 버튼 ~
-                        } label: {
-                            Text("세미나 등록하기")
-                                .foregroundColor(.white)
-                                .padding()
-                            // 등록하기
+                        
+                        // MARK: - 세미나 등록하기 버튼 추가 (데이터)
+                        VStack(alignment: .center) {
+                            Button {
+                                // 등록하는 버튼 ~
+                            } label: {
+                                Text("세미나 등록하기")
+                                    .foregroundColor(.white)
+                                    .padding()
+                                // 등록하기
+                            }
+                            .frame(width: 330, height: 40)
+                            .font(.title3)
+                            .fontWeight(.bold)
+                            .foregroundColor(.black)
+                            .background {
+                                Color.mint
+                            }
+                            .cornerRadius(10)
+                            
                         }
-                        .frame(width: 330, height: 40)
-                        .font(.title3)
-                        .fontWeight(.bold)
-                        .foregroundColor(.black)
-                        .background {
-                            Color.mint
-                        }
-                        .cornerRadius(10)
-
                     }
+                    .frame(width: 500, height: 900)
                 }
-                .frame(width: 500, height: 900)
             }
+            
+            .padding(.all, 200)
         }
         
-        .padding(.all, 200)
     }
     
-}
-
-
-
-
-
-struct SessionDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        SessionDetailView()
+    
+    
+    
+    
+    struct AddSessionView_Previews: PreviewProvider {
+        static var previews: some View {
+            AddSessionView()
+        }
     }
-}
+    
+    
+    //                    TextField("날짜", text: $sessionSchedule)
+    //                    DatePicker("날짜", selection: $sessionSchedule,
+    //                               displayedComponents: .date)
+    //                    DatePicker("시간", selection: $sessionSchedule,
+    //                               displayedComponents: .hourAndMinute)
 
-
-//                    TextField("날짜", text: $sessionSchedule)
-//                    DatePicker("날짜", selection: $sessionSchedule,
-//                               displayedComponents: .date)
-//                    DatePicker("시간", selection: $sessionSchedule,
-//                               displayedComponents: .hourAndMinute)
