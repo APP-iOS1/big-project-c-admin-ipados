@@ -8,8 +8,28 @@
 import SwiftUI
 
 struct GeneralView: View {
+
+    @ObservedObject var euni: EuniStore = EuniStore()
+    @State private var selectedCategoryId: Euni.ID?
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationSplitView {
+            List(euni.eunis, selection: $selectedCategoryId) { dataItem in
+                VStack(alignment: .leading, spacing: 7) {
+                    Text(dataItem.title)
+                        .font(.title3)
+                        .fontWeight(.bold)
+                    Text(dataItem.time)
+                    Text(dataItem.location)
+                }
+                .padding(10)
+                
+            }
+            
+        } detail: {
+            
+            SessionDetailView(euni: euni, euniId: selectedCategoryId)
+        }
     }
 }
 
