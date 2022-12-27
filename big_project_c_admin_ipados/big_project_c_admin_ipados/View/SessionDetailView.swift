@@ -13,6 +13,7 @@ struct SessionDetailView: View {
     }
 }
 
+
 struct SessionDetailView_Previews: PreviewProvider {
     static var previews: some View {
         SessionDetailView()
