@@ -8,17 +8,32 @@
 import SwiftUI
 
 struct SessionDetailView: View {
-//    var sessionDetailId: DummySessionData.ID?
     @ObservedObject var euni: EuniStore = EuniStore()
+//    var sessionDetailId: Euni.ID?
+    
+    let euniId: Euni.ID?
+    
+    var sessionDetailId: Euni? {
+        get {
+            for sample in euni.eunis {
+                if sample.id == euniId {
+                    return sample
+                }
+            }
+            return nil
+        }
+    }
     
     var body: some View {
         VStack {
             
-//            List(euni) { sample in
+            Text(sessionDetailId?.title ?? "")
+            
+//            List(euni.eunis) { sample in
 //                Text(sample.lecturer)
 //                Text(sample.title)
 //                    .font(.title)
-//                HStack {
+//                HStack(spacing: 10) {
 //                    Text(sample.time)
 //                    Text(sample.location)
 //                }
@@ -27,8 +42,9 @@ struct SessionDetailView: View {
     }
 }
 
-struct SessionDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        SessionDetailView()
-    }
-}
+
+//struct SessionDetailView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SessionDetailView()
+//    }
+//}
