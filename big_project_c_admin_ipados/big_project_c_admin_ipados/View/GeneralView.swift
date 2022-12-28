@@ -52,12 +52,12 @@ struct GeneralView: View {
         detail: {
             SessionDetailView(seminarInfo: seminarInfo, seminarId: selectedCategoryId)
         }
-        .sheet(isPresented: $isShowingAddSessionView) {
-            AddSessionView(seminar: SeminarStore())
-        }
-//        .fullScreenCover(isPresented: $isShowingAddSessionView) {
-//            AddSessionView()
+//        .sheet(isPresented: $isShowingAddSessionView) {
+//            AddSessionView(seminar: SeminarStore())
 //        }
+        .fullScreenCover(isPresented: $isShowingAddSessionView) {
+            AddSessionView(seminar: seminarInfo)
+        }
         
     }
 }
