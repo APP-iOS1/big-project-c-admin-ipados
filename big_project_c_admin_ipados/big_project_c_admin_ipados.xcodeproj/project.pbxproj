@@ -385,7 +385,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"big_project_c_admin_ipados/Preview Content\"";
-				DEVELOPMENT_TEAM = F93LH9N2L8;
+				DEVELOPMENT_TEAM = K8Z5PJ967K;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "테킷팅에서 카메라에 접근하고자 합니다.";
@@ -419,7 +419,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"big_project_c_admin_ipados/Preview Content\"";
-				DEVELOPMENT_TEAM = F93LH9N2L8;
+				DEVELOPMENT_TEAM = K8Z5PJ967K;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "테킷팅에서 카메라에 접근하고자 합니다.";
