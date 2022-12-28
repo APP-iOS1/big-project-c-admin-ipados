@@ -1,12 +1,12 @@
 {
   "images" : [
     {
-      "filename" : "회원 디테일 탭 뷰.png",
+      "filename" : "MemberListView 1.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "회원 디테일 탭 뷰 1.png",
+      "filename" : "MemberListView.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
