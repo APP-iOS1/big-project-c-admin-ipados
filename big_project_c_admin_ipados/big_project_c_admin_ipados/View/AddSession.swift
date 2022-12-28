@@ -46,6 +46,7 @@ struct AddSessionView: View {
 
     
     
+    
     var body: some View {
         VStack(alignment: .leading) {
             ScrollView(showsIndicators: false) {
@@ -228,13 +229,14 @@ struct AddSessionView: View {
                         VStack(alignment: .center) {
                             Button {
                                 seminar.addSeminar(seminar: Seminar(id: UUID().uuidString, image: [image], name: name, date: date, startingTime: startringTime, endingTime: endingTime, category: selectedCategory, location: location, locationUrl: loactionUrl, host: host, hostIntroduction: hostIntroduce, seminarDescription: seminarDescription, seminarCurriculum: seminarCurriculum))
+                                dismiss()
+                                
                             } label: {
                                 Text("세미나 등록하기")
                                     .foregroundColor(.white)
                                     .padding()
                                 // 등록하기
                             }
-                            
                             .font(.title3)
                             .fontWeight(.bold)
                             .foregroundColor(.black)

@@ -20,7 +20,9 @@ class SeminarStore : ObservableObject {
     // 모든 세미나들을 seminarList에 담아줌
     func fetchSeminar() {
         seminarList.removeAll()
-        database.collection("Seminar").getDocuments { (snapshot, error) in
+        database.collection("Seminar")
+            .order(by: "date", descending: false)
+            .getDocuments { (snapshot, error) in
             if let snapshot {
                 for document in snapshot.documents {
                     let docData = document.data()
