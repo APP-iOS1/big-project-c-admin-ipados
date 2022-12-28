@@ -55,7 +55,7 @@ class SeminarStore : ObservableObject {
                 .setData(["id": seminar.id,
                           "image": seminar.image,
                           "name": seminar.name,
-                          "date": seminar.date
+                          "date": seminar.date,
                           "startingTime": seminar.startingTime,
                           "endingTime": seminar.endingTime,
                           "category": seminar.category,

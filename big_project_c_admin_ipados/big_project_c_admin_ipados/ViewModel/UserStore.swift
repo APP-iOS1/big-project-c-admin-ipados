@@ -10,9 +10,13 @@ import Firebase
 import FirebaseFirestore
 import SwiftUI
 
+var userUID = ""
+
 class UserStore : ObservableObject {
     
     @Published var userList : [User] = []
+    @Published var isLogin = false
+    
     
     // 로그인 상태 확인
     @Published var currentUser: Firebase.User?
@@ -72,7 +76,7 @@ class UserStore : ObservableObject {
             else {
                 //성공
                 completion(200)
-//                self.currentUser = result?.user
+                self.currentUser = result?.user
             }
 //            if let error = error {
 //                print("Failed to login user:", error)

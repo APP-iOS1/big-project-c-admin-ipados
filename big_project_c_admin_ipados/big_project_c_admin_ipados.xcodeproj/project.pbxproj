@@ -130,7 +130,6 @@
 				A5AD9394295C2379008A28BE /* CameraScanner.swift */,
 				A5AD9396295C23A0008A28BE /* CameraScannerViewController.swift */,
 				EE2AC20D295C074B0046853B /* SessionDetailUserList.swift */,
- 
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -238,8 +237,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5AD9393295C233E008A28BE /* ScanQRView.swift in Sources */,
-				7C6325BB295AF6D300896A47 /* Seminar.swift in Sources */,
-
 				03A6288D295AA95500167DB5 /* LoginView.swift in Sources */,
 				03A6288F295AA96700167DB5 /* GeneralView.swift in Sources */,
 				7C6325C2295AF6FC00896A47 /* QuestionStore.swift in Sources */,
@@ -255,8 +252,6 @@
 				EE08C249295AB8E2008D590C /* EmptyDetailView.swift in Sources */,
 				EE5265E0295AD0E000FCA8BA /* EuniModel.swift in Sources */,
 				A5AD9395295C2379008A28BE /* CameraScanner.swift in Sources */,
-				7C6325C0295AF6FC00896A47 /* SeminarStore.swift in Sources */,
-
 				7C6325BA295AF6D300896A47 /* User.swift in Sources */,
 				7C6325B5295AF30500896A47 /* LoginViewModel.swift in Sources */,
 				EE5265E2295AD0EB00FCA8BA /* EuniStore.swift in Sources */,
@@ -390,11 +385,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"big_project_c_admin_ipados/Preview Content\"";
-
 				DEVELOPMENT_TEAM = F93LH9N2L8;
-
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "테킷팅에서 카메라에 접근하고자 합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -425,11 +419,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"big_project_c_admin_ipados/Preview Content\"";
-
 				DEVELOPMENT_TEAM = F93LH9N2L8;
-
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "테킷팅에서 카메라에 접근하고자 합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
