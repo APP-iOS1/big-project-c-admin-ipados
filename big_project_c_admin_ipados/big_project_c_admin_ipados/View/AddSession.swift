@@ -12,7 +12,9 @@ struct AddSessionView: View {
     
     // MARK: - Seminar(Sesseion 정보) -> Store에서 나중에 가져올 예정
     @ObservedObject var seminar: SeminarStore
-
+    
+    @Environment(\.dismiss) private var dismiss
+    
     // MARK: - 이미지 받아오기(PhotoURL)
     @State private var selectedItem: PhotosPickerItem? = nil
     @State private var image: String = ""
@@ -41,39 +43,56 @@ struct AddSessionView: View {
     // MARK: - seminarDescription, seminarCurriculum (세미나 상세내용, 상세 커리큘럼)
     @State private var seminarDescription: String = ""
     @State private var seminarCurriculum: String = ""
+
     
     
     var body: some View {
         VStack(alignment: .leading) {
             ScrollView(showsIndicators: false) {
                 
-                VStack(alignment: .leading) {
+                VStack(alignment: .leading, spacing: 50) {
                     
                     // MARK: - 세미나 기본정보 타이틀
                     VStack(alignment: .leading) {
-                        Text("세미나 기본정보")
-                            .font(.largeTitle)
+                        HStack() {
+                            Text("세미나 기본정보")
+                                .font(.largeTitle)
+                            Spacer()
+                            Button{
+                                dismiss()
+                            } label: {
+                                Text("close")
+                            }
+                        }
                     }
+                   
                     
                     Divider()
                     
                     
                     // 세미나 기본정보
                     
-                    VStack {
-                        Text("타이틀")
+                    VStack (alignment: .leading) {
+                        Text("세미나 타이틀")
                             .font(.title2)
                         
                         TextField("세미나의 타이틀을 입력해 주세요.", text: $name)
                     }
                     
+                    Divider()
                     
-                    HStack {
-                        if image.isEmpty {
-                            Image(systemName: "circle.fill")
-                        } else {
-                            AsyncImage(url: URL(string: image), scale: 2.0)
-                                .frame(width: 250, height: 250)
+                    VStack (alignment: .leading)  {
+                        Text("대표 이미지")
+                            .font(.title2)
+                        HStack{
+                            TextField("이미지의 URL", text: $image)
+                            if image.isEmpty {
+                                Image(systemName: "circle.fill")
+                                    .frame(width: 250, height: 250)
+                            } else {
+                                AsyncImage(url: URL(string: image), scale: 2.0)
+                                    .frame(width: 250, height: 250)
+                            }
                         }
                     }
                     
@@ -81,6 +100,7 @@ struct AddSessionView: View {
                     //MARK: - datePicker
                     VStack(alignment: .leading) {
                         Text("날짜를 입력해주세요.")
+                            .font(.title2)
                         HStack {
                             //TODO: - 날짜, 시간 DatePicker를 아이콘으로 만들고, 해당 값을 TextLabel로 작성되도록 하기
                             DatePicker("날짜", selection: $date, displayedComponents: .date)
@@ -96,10 +116,14 @@ struct AddSessionView: View {
                         }
                     }
                     
+                    
+            
                     //MARK: - categoryPicker
                     VStack {
                         HStack(spacing: 220) {
                             Text("세미나 유형을 선택해주세요.")
+                                .font(.title2)
+
                             
                             Picker("세미나 유형을 선택해주세요", selection: $selectedCategory) {
                                 ForEach(category, id: \.self) {
@@ -108,28 +132,43 @@ struct AddSessionView: View {
                             }
                         }
                     }
+                    
+         
+                    
                     // MARK: - PlacePicker
                     VStack(alignment: .leading) {
                         
                         HStack(spacing: 50) {
                             Text("장소")
+                                .font(.title2)
+
                             TextField("", text: $location)
                             
                             // TODO: - 웹뷰 혹은 URL ? -> 내부 협의 필요
                             Text("세부장소")
+                                .font(.title2)
+
                             //                                Spacer()
                             TextField("", text: $loactionUrl)
                         }
                     }
                     
+
+                    
                     // MARK: - HostInfo ( 호스트 인포 - 프로필 사진, 강사소개)
-                    VStack {
+                
+                    
+                    VStack (alignment: .leading) {
                         Text("강사 소개")
+                           
                         HStack {
+                            TextField("이미지의 URL", text: $host)
                             if host.isEmpty  {
                                 Image(systemName: "circle.fill")
+                                    .frame(width: 250, height: 250)
                             } else {
                                 AsyncImage(url: URL(string: host), scale: 0.5)
+                                    .frame(width: 250, height: 250)
                             }
                             VStack {
                                 ZStack(alignment: .leading) {
@@ -143,10 +182,12 @@ struct AddSessionView: View {
                         }
                     }
                     
+                    
                     // MARK: - 세미나 상세내용
                     VStack {
                         VStack(alignment: .leading) {
-                            Text("세미나 상세내용")
+                            Text("세미나 상세 내용")
+                                .font(.title2)
                             ZStack(alignment: .leading) {
                                 TextEditor(text: $seminarDescription)
                                     .padding()
@@ -154,7 +195,7 @@ struct AddSessionView: View {
                                     .frame(height: 300)
                                 
                                 if seminarDescription == "" {
-                                    Text("내용을 입력해주세요.")
+                                    Text("내용을 입력 해주세요.")
                                         .opacity(0.5)
                                         .offset(x: 180)
                                 }
@@ -166,14 +207,15 @@ struct AddSessionView: View {
                         // MARK: - 상세 커리큘럼
                         ZStack(alignment: .leading) {
                             VStack(alignment: .leading) {
-                                Text("상세 커리큘럼을 입력해주세요.")
+                                Text("상세 커리큘럼")
+                                    .font(.title2)
                                 TextEditor(text: $seminarCurriculum)
                                     .padding()
                                     .background(Color(.secondarySystemBackground))
                                     .frame(height: 300)
                                 
                                 if seminarCurriculum == "" {
-                                    Text("내용을 입력해주세요.")
+                                    Text("내용을 입력 해주세요.")
                                         .opacity(0.5)
                                         .offset(x: 180, y: -160)
                                 }
