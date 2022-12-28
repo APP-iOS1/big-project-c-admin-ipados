@@ -24,7 +24,7 @@ struct AddSessionView: View {
     @State private var date: Date = Date()
     @State private var startringTime: String = ""
     @State private var endingTime: String = ""
-
+    
     // MARK: - Category (카테고리)
     @State private var category: [String] = ["프론트","백엔드", "디자인", "블록체인"]
     // 카테고리 피커 돌리기
@@ -41,16 +41,33 @@ struct AddSessionView: View {
     // MARK: - seminarDescription, seminarCurriculum (세미나 상세내용, 상세 커리큘럼)
     @State private var seminarDescription: String = ""
     @State private var seminarCurriculum: String = ""
-
+    
     
     var body: some View {
-        ZStack {
-            HStack {
-                // 세미나 등록하기
-                // TODO: - 사진 추가 시, 여러장이 업로드 되도록 기능 보완 필요, 가로 스크롤뷰로 미리보기
+        VStack(alignment: .leading) {
+            ScrollView(showsIndicators: false) {
+                
                 VStack(alignment: .leading) {
                     
-                    // TODO: - image 추가 -> URL을 어떻게 넣을것인지?
+                    // MARK: - 세미나 기본정보 타이틀
+                    VStack(alignment: .leading) {
+                        Text("세미나 기본정보")
+                            .font(.largeTitle)
+                    }
+                    
+                    Divider()
+                    
+                    
+                    // 세미나 기본정보
+                    
+                    VStack {
+                        Text("타이틀")
+                            .font(.title2)
+                        
+                        TextField("세미나의 타이틀을 입력해 주세요.", text: $name)
+                    }
+                    
+                    
                     HStack {
                         if image.isEmpty {
                             Image(systemName: "circle.fill")
@@ -59,101 +76,72 @@ struct AddSessionView: View {
                                 .frame(width: 250, height: 250)
                         }
                     }
-                    .frame(width: 200, height: 200)
                     
-                    // 세미나 기본정보
+                    
+                    //MARK: - datePicker
                     VStack(alignment: .leading) {
-                        Text("세미나 기본정보")
-                            .font(.title)
-                        
-                        
-                        // 세부내용
-                        VStack {
-                            TextField("세미나의 이름을 입력해 주세요.", text: $name)
+                        Text("날짜를 입력해주세요.")
+                        HStack {
+                            //TODO: - 날짜, 시간 DatePicker를 아이콘으로 만들고, 해당 값을 TextLabel로 작성되도록 하기
+                            DatePicker("날짜", selection: $date, displayedComponents: .date)
+                                .datePickerStyle(CompactDatePickerStyle())
+                            Text("시작시간")
+                            TextField("", text: $startringTime)
+                            Spacer()
+                            Text("종료시간")
+                            TextField("", text: $endingTime)
+                            //                                DatePicker("시간", selection: $date, displayedComponents: .hourAndMinute)
+                            //                                Text("~")
+                            //                                DatePicker("", selection: $date, displayedComponents: .hourAndMinute)
                         }
-                        Divider()
-                        
-                        //MARK: - datePicker
-                        VStack(alignment: .leading) {
-                            Text("날짜를 입력해주세요.")
-                            HStack {
-                                //TODO: - 날짜, 시간 DatePicker를 아이콘으로 만들고, 해당 값을 TextLabel로 작성되도록 하기
-                                DatePicker("날짜", selection: $date, displayedComponents: .date)
-                                    .datePickerStyle(CompactDatePickerStyle())
-                                Text("시작시간")
-                                TextField("", text: $startringTime)
-                                Spacer()
-                                Text("종료시간")
-                                TextField("", text: $endingTime)
-//                                DatePicker("시간", selection: $date, displayedComponents: .hourAndMinute)
-//                                Text("~")
-//                                DatePicker("", selection: $date, displayedComponents: .hourAndMinute)
-                            }
-                        }
-                        
-                        Divider()
-                        
-                        //MARK: - categoryPicker
-                        VStack {
-                            HStack(spacing: 220) {
-                                Text("세미나 유형을 선택해주세요.")
-                                
-                                Picker("세미나 유형을 선택해주세요", selection: $selectedCategory) {
-                                    ForEach(category, id: \.self) {
-                                        Text($0)
-                                    }
-                                }
-                            }
-                        }
-                        Divider()
-                        
-                        // MARK: - PlacePicker
-                        VStack(alignment: .leading) {
+                    }
+                    
+                    //MARK: - categoryPicker
+                    VStack {
+                        HStack(spacing: 220) {
+                            Text("세미나 유형을 선택해주세요.")
                             
-                            HStack(spacing: 50) {
-                                Text("장소")
-                                TextField("", text: $location)
-                                
-                                // TODO: - 웹뷰 혹은 URL ? -> 내부 협의 필요
-                                Text("세부장소")
-//                                Spacer()
-                                TextField("", text: $loactionUrl)
+                            Picker("세미나 유형을 선택해주세요", selection: $selectedCategory) {
+                                ForEach(category, id: \.self) {
+                                    Text($0)
+                                }
                             }
                         }
-//                        .frame(width: 650, height: 200)
+                    }
+                    // MARK: - PlacePicker
+                    VStack(alignment: .leading) {
                         
-                        Divider()
-                        
-                        // MARK: - HostInfo ( 호스트 인포 - 프로필 사진, 강사소개)
-                        VStack(alignment: .leading) {
-                            Text("강사 소개")
-                            HStack {
-                                if host.isEmpty  {
-                                    Image(systemName: "circle.fill")
-                                } else {
-                                    AsyncImage(url: URL(string: host), scale: 0.5)
-                                }
-                                VStack {
-                                    ZStack(alignment: .leading) {
-                                        TextEditor(text: $hostIntroduce)
-                                            .padding()
-                                            .background(Color(.secondarySystemBackground))
-                                            .frame(height: 150)
-                                    }
-                                }
-                               
-                            }
+                        HStack(spacing: 50) {
+                            Text("장소")
+                            TextField("", text: $location)
+                            
+                            // TODO: - 웹뷰 혹은 URL ? -> 내부 협의 필요
+                            Text("세부장소")
+                            //                                Spacer()
+                            TextField("", text: $loactionUrl)
                         }
-                            .frame(width: 500, height: 200)
+                    }
+                    
+                    // MARK: - HostInfo ( 호스트 인포 - 프로필 사진, 강사소개)
+                    VStack {
+                        Text("강사 소개")
+                        HStack {
+                            if host.isEmpty  {
+                                Image(systemName: "circle.fill")
+                            } else {
+                                AsyncImage(url: URL(string: host), scale: 0.5)
+                            }
+                            VStack {
+                                ZStack(alignment: .leading) {
+                                    TextEditor(text: $hostIntroduce)
+                                        .padding()
+                                        .background(Color(.secondarySystemBackground))
+                                        .frame(height: 150)
+                                }
+                            }
                             
                         }
                     }
-                    .frame(width: 500, height: 900)
-                    
-                    
-                    Spacer()
-                    
-                    Divider()
                     
                     // MARK: - 세미나 상세내용
                     VStack {
@@ -202,7 +190,7 @@ struct AddSessionView: View {
                                     .padding()
                                 // 등록하기
                             }
-                            .frame(width: 330, height: 40)
+                            
                             .font(.title3)
                             .fontWeight(.bold)
                             .foregroundColor(.black)
@@ -213,29 +201,27 @@ struct AddSessionView: View {
                             
                         }
                     }
-                    .frame(width: 500, height: 900)
                 }
             }
-            
-            .padding(.all, 200)
         }
-        
+        .padding(.all, 50)
     }
-    
-    
-    
-    
-    
-    struct AddSessionView_Previews: PreviewProvider {
-        static var previews: some View {
-            AddSessionView(seminar: SeminarStore())
-        }
+}
+
+
+
+
+
+struct AddSessionView_Previews: PreviewProvider {
+    static var previews: some View {
+        AddSessionView(seminar: SeminarStore())
     }
-    
-    
-    //                    TextField("날짜", text: $sessionSchedule)
-    //                    DatePicker("날짜", selection: $sessionSchedule,
-    //                               displayedComponents: .date)
-    //                    DatePicker("시간", selection: $sessionSchedule,
-    //                               displayedComponents: .hourAndMinute)
+}
+
+
+//                    TextField("날짜", text: $sessionSchedule)
+//                    DatePicker("날짜", selection: $sessionSchedule,
+//                               displayedComponents: .date)
+//                    DatePicker("시간", selection: $sessionSchedule,
+//                               displayedComponents: .hourAndMinute)
 
