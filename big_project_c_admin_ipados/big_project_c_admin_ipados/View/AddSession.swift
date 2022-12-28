@@ -81,6 +81,8 @@ struct AddSessionView: View {
                     
                     Divider()
                     
+                
+                    
                     VStack (alignment: .leading)  {
                         Text("대표 이미지")
                             .font(.title2)
