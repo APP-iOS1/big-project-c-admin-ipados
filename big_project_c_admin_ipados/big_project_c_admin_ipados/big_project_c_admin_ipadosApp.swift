@@ -22,9 +22,9 @@ struct big_project_c_admin_ipados: App {
 
     var body: some Scene {
         WindowGroup {
-            AddSessionView(seminar: SeminarStore())
-                .environmentObject(LoginViewModel())
 
+            ContentView()
+                .environmentObject(UserStore())
         }
     }
 }
