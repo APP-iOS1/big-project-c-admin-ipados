@@ -141,9 +141,10 @@ struct SessionDetailView: View {
                     .frame(width: geo.size.width/4)
                     .padding(.trailing, 20)
             }
-            .fullScreenCover(isPresented: $clickedQRButton) {
+            .sheet(isPresented: $clickedQRButton) {
                 ScanQRView()
             }
+            
         }
         
     }

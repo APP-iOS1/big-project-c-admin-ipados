@@ -27,7 +27,7 @@ struct ContentView: View {
                     }
                     .tag(2)
                 
-                GeneralView()
+                MemberListView()
                     .tabItem {
                         Label("회원", systemImage: "person.2.fill")
                     }
