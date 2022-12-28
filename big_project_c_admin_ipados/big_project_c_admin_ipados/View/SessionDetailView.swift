@@ -83,7 +83,6 @@ struct SessionDetailView: View {
                             }
                             
                             Button {
-                                // TODO: QR코드 연결
                                 clickedQRButton.toggle()
                             } label: {
                                 Text("QR코드")
@@ -142,6 +141,10 @@ struct SessionDetailView: View {
                     .frame(width: geo.size.width/4)
                     .padding(.trailing, 20)
             }
+            .sheet(isPresented: $clickedQRButton) {
+                ScanQRView()
+            }
+            
         }
         
     }

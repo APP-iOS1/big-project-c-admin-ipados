@@ -39,10 +39,12 @@ struct GeneralView: View {
                     Button {
                         // MARK: -View: AddSession으로 연결
                         isShowingAddSessionView.toggle()
-                        
+                        seminarInfo.fetchSeminar()
+                    
                     } label: {
                         Text("추가")
                     }
+                    
 
                 }
             }
