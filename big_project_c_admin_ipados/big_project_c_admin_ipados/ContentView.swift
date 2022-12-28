@@ -8,14 +8,78 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var userViewModel : UserStore
+    
+    @State private var tabSelection: Int = 2
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        if userViewModel.currentUser != nil {
+            
+            TabView(selection: $tabSelection, content: {
+                EmptyDetailView()
+                    .tabItem {
+                        Label("현황", systemImage: "chart.pie.fill")
+                    }
+                    .tag(1)
+                
+                GeneralView()
+                    .tabItem {
+                        Label("세션", systemImage: "list.bullet")
+                    }
+                    .tag(2)
+                
+                MemberListView()
+                    .tabItem {
+                        Label("회원", systemImage: "person.2.fill")
+                    }
+                    .tag(3)
+                
+            })
+            
+        } else {
+            LoginView()
         }
-        .padding()
+//                    NavigationView {
+//                        if userViewModel.isLogin == true {
+//                            TabView(selection: $tabSelection, content: {
+//                                EmptyDetailView()
+//                                    .tabItem {
+//                                        Label("현황", systemImage: "chart.pie.fill")
+//                                    }
+//                                    .tag(1)
+//
+//                                GeneralView()
+//                                    .tabItem {
+//                                        Label("세션", systemImage: "list.bullet")
+//                                    }
+//                                    .tag(2)
+//
+//                                GeneralView()
+//                                    .tabItem {
+//                                        Label("회원", systemImage: "person.2.fill")
+//                                    }
+//                                    .tag(3)
+//
+//                            })
+//                        }
+//                        else {
+//                            LoginView()
+//                        }
+//                    }
+//                    .onAppear {
+//                        if userViewModel.currentUser != nil {
+//                            userViewModel.isLogin = true
+//                            userUID = userViewModel.currentUser?.uid ?? ""
+//                        }
+//                    }
+        
+        
+        
+//            .onAppear {
+//                if userViewModel.currentUser != nil {
+//                    userViewModel.isLogin = true
+//                    userUID = userViewModel.currentUser?.uid ?? ""
+//                }
+//            }
     }
 }
 

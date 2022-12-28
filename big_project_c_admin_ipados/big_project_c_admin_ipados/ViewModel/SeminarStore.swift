@@ -20,7 +20,9 @@ class SeminarStore : ObservableObject {
     // 모든 세미나들을 seminarList에 담아줌
     func fetchSeminar() {
         seminarList.removeAll()
-        database.collection("Seminar").getDocuments { (snapshot, error) in
+        database.collection("Seminar")
+            .order(by: "date", descending: false)
+            .getDocuments { (snapshot, error) in
             if let snapshot {
                 for document in snapshot.documents {
                     let docData = document.data()
@@ -32,12 +34,13 @@ class SeminarStore : ObservableObject {
                     let endingTime: String = docData["endingTime"] as? String ?? ""
                     let category: String = docData["category"] as? String ?? ""
                     let location: String = docData["location"] as? String ?? ""
+                    let locationUrl: String = docData["locationUrl"] as? String ?? ""
                     let host: String = docData["host"] as? String ?? ""
                     let hostIntroduction: String = docData["hostIntroduction"] as? String ?? ""
                     let seminarDescription: String = docData["seminarDescription"] as? String ?? ""
                     let seminarCurriculum: String = docData["seminarCurriculum"] as? String ?? ""
                     
-                    let seminar = Seminar(id: id, image: image, name: name, date: date, startingTime: startingTime, endingTime: endingTime, category: category, location: location, host: host, hostIntroduction: hostIntroduction, seminarDescription: seminarDescription, seminarCurriculum: seminarCurriculum)
+                    let seminar = Seminar(id: id, image: image, name: name, date: date, startingTime: startingTime, endingTime: endingTime, category: category, location: location, locationUrl: locationUrl, host: host, hostIntroduction: hostIntroduction, seminarDescription: seminarDescription, seminarCurriculum: seminarCurriculum)
                     
                     self.seminarList.append(seminar)
                 }
@@ -48,16 +51,18 @@ class SeminarStore : ObservableObject {
     }
     
     // 세미나 작성 완료시 추가됨 (input Seminar 타입으로 다 넣어주시면 됩니다.)
-    func addSeminar(_ seminar: Seminar) {
+    func addSeminar(seminar: Seminar) {
             database.collection("Seminar")
             .document(seminar.id)
                 .setData(["id": seminar.id,
                           "image": seminar.image,
                           "name": seminar.name,
+                          "date": seminar.date,
                           "startingTime": seminar.startingTime,
                           "endingTime": seminar.endingTime,
                           "category": seminar.category,
                           "location": seminar.location,
+                          "locationUrl": seminar.locationUrl,
                           "host": seminar.host,
                           "hostIntroduction": seminar.hostIntroduction,
                           "seminarDescription": seminar.seminarDescription,
