@@ -1,5 +1,6 @@
 <h1 align="middle">테킷팅(Tech!Ting)</h1>
- <p align="middle"><img src="https://user-images.githubusercontent.com/114331071/209794898-95d4d074-a41c-4f03-9db8-4b1c0a9df726.png" width=30%></p>
+ <p align="middle"><img src="https://user-images.githubusercontent.com/114331071/209800942-616496f5-b675-4a98-8fd2-4df86958fd5e.png" width=30%></p>
+
 
 ## 유민영 강사님 앱 실행 가이드
 ```
