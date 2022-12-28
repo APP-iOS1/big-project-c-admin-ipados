@@ -16,6 +16,7 @@ struct Seminar : Codable, Identifiable {
     var endingTime : String
     var category : String
     var location : String
+    var locationUrl : String
     var host : String
     var hostIntroduction : String
     var seminarDescription : String
