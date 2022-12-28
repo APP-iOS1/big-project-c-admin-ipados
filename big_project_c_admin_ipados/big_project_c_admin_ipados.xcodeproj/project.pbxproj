@@ -28,6 +28,7 @@
 		7C6325C3295AF6FC00896A47 /* AttendanceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6325BF295AF6FC00896A47 /* AttendanceStore.swift */; };
 		EE08C249295AB8E2008D590C /* EmptyDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE08C248295AB8E2008D590C /* EmptyDetailView.swift */; };
 		EE08C24B295ACCD1008D590C /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE08C24A295ACCD1008D590C /* Color.swift */; };
+		EE2AC20E295C074B0046853B /* SessionDetailUserList.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2AC20D295C074B0046853B /* SessionDetailUserList.swift */; };
 		EE5265E0295AD0E000FCA8BA /* EuniModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5265DF295AD0E000FCA8BA /* EuniModel.swift */; };
 		EE5265E2295AD0EB00FCA8BA /* EuniStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5265E1295AD0EB00FCA8BA /* EuniStore.swift */; };
 /* End PBXBuildFile section */
@@ -52,6 +53,7 @@
 		7C6325BF295AF6FC00896A47 /* AttendanceStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttendanceStore.swift; sourceTree = "<group>"; };
 		EE08C248295AB8E2008D590C /* EmptyDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyDetailView.swift; sourceTree = "<group>"; };
 		EE08C24A295ACCD1008D590C /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		EE2AC20D295C074B0046853B /* SessionDetailUserList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDetailUserList.swift; sourceTree = "<group>"; };
 		EE5265DF295AD0E000FCA8BA /* EuniModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EuniModel.swift; sourceTree = "<group>"; };
 		EE5265E1295AD0EB00FCA8BA /* EuniStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EuniStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -118,6 +120,7 @@
 				EE08C248295AB8E2008D590C /* EmptyDetailView.swift */,
 				EE08C24A295ACCD1008D590C /* Color.swift */,
 				7C6325B6295AF48F00896A47 /* AddSession.swift */,
+				EE2AC20D295C074B0046853B /* SessionDetailUserList.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 				7C6325C2295AF6FC00896A47 /* QuestionStore.swift in Sources */,
 				7C6325C3295AF6FC00896A47 /* AttendanceStore.swift in Sources */,
 				03A62875295AA6AA00167DB5 /* ContentView.swift in Sources */,
+				EE2AC20E295C074B0046853B /* SessionDetailUserList.swift in Sources */,
 				7C6325B7295AF48F00896A47 /* AddSession.swift in Sources */,
 				03A62894295AA9C400167DB5 /* SessionDetailView.swift in Sources */,
 				7C6325C1295AF6FC00896A47 /* UserStore.swift in Sources */,
@@ -369,6 +373,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"big_project_c_admin_ipados/Preview Content\"";
+				DEVELOPMENT_TEAM = K8Z5PJ967K;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -386,7 +391,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -401,6 +406,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"big_project_c_admin_ipados/Preview Content\"";
+				DEVELOPMENT_TEAM = K8Z5PJ967K;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -418,7 +424,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
