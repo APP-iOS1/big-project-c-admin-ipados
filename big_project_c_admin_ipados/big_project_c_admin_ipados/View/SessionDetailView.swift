@@ -8,16 +8,17 @@
 import SwiftUI
 
 struct SessionDetailView: View {
-    @ObservedObject var euni: EuniStore
+    @ObservedObject var seminarInfo: SeminarStore
+//    @ObservedObject var questionInfo: QuestionStore
 
-    var euniId: Euni.ID?
+    var seminarId: Seminar.ID?
     @State private var clickedEditButton: Bool = false
     @State private var clickedQRButton: Bool = false
     
-    var selectedContent: Euni? {
+    var selectedContent: Seminar? {
         get {
-            for sample in euni.eunis {
-                if sample.id == euniId {
+            for sample in seminarInfo.seminarList {
+                if sample.id == seminarId {
                     return sample
                 }
             }
@@ -25,64 +26,124 @@ struct SessionDetailView: View {
         }
     }
     
+    let dummyQuestions: [String] = [
+        "댓글입니다아아아아아아아아아아1",
+        "댓글입니다아아아아아아아아아아2",
+        "댓글입니다아아아아아아아아아아3",
+        "댓글입니다아아아아아아아아아아4",
+        "댓글입니다아아아아아아아아아아1",
+        "댓글입니다아아아아아아아아아아2",
+        "댓글입니다아아아아아아아아아아3",
+        "댓글입니다아아아아아아아아아아1",
+        "댓글입니다아아아아아아아아아아2",
+        "댓글입니다아아아아아아아아아아3",
+        "댓글입니다아아아아아아아아아아1",
+        "댓글입니다아아아아아아아아아아2",
+        "댓글입니다아아아아아아아아아아3",
+        "댓글입니다아아아아아아아아아아1",
+        "댓글입니다아아아아아아아아아아2",
+        "댓글입니다아아아아아아아아아아3",
+        "댓글입니다아아아아아아아아아아1",
+        "댓글입니다아아아아아아아아아아2",
+        "댓글입니다아아아아아아아아아아3"
+    ]
+    
     var body: some View {
-        VStack(alignment: .leading) {
-            Text(selectedContent?.title ?? "")
-                .font(.title)
-                .fontWeight(.bold)
+        GeometryReader { geo in
             HStack {
-                HStack {
-                    Image(systemName: "calendar")
-                    Text(selectedContent?.time ?? "")
-                    Image(systemName: "mappin.and.ellipse")
-                    Text(selectedContent?.location ?? "")
-                }
-                .font(.caption2)
-                
-                Spacer()
-                
-                HStack {
-                    Button {
-                        // TODO: 내용 수정 기능 구현
-                        clickedEditButton.toggle()
-                    } label: {
-                        Text("세미나 내용 수정하기")
-                            .frame(width: 150)
-                            .padding(12)
-                            .fontWeight(.bold)
-                            .foregroundColor(clickedEditButton ? Color.accentColor : Color.white)
-                            .background(clickedEditButton ? Color.white : Color.accentColor)
-                            .cornerRadius(15)
+                VStack(alignment: .leading) {
+                    Text(selectedContent?.name ?? "")
+                        .font(.title)
+                        .fontWeight(.bold)
+                    HStack {
+                        HStack {
+                            Image(systemName: "calendar")
+                            Text(selectedContent?.createdDate ?? "")
+                                .font(.subheadline)
+                                .padding(.trailing, 5)
+                            Image(systemName: "mappin.and.ellipse")
+                            Text(selectedContent?.location ?? "")
+                                .font(.subheadline)
+                        }
+                        
+                        Spacer()
+                        
+                        HStack {
+                            Button {
+                                // TODO: 내용 수정 기능 구현
+                                clickedEditButton.toggle()
+                            } label: {
+                                Text("세미나 내용 수정하기")
+                                    .frame(width: 150)
+                                    .padding(12)
+                                    .fontWeight(.bold)
+                                    .foregroundColor(Color.white)
+                                    .background(Color.accentColor)
+                                    .cornerRadius(15)
+                            }
+                            
+                            Button {
+                                // TODO: QR코드 연결
+                                clickedQRButton.toggle()
+                            } label: {
+                                Text("QR코드")
+                                    .frame(width: 150)
+                                    .padding(12)
+                                    .fontWeight(.bold)
+                                    .foregroundColor(Color.white)
+                                    .background(Color.accentColor)
+                                    .cornerRadius(15)
+                            }
+
+                        }
                     }
                     
-                    Button {
-                        // TODO: QR코드 연결
-                        clickedQRButton.toggle()
-                    } label: {
-                        Text("QR코드")
-                            .frame(width: 150)
-                            .padding(12)
-                            .fontWeight(.bold)
-                            .foregroundColor(clickedQRButton ? Color.accentColor : Color.white)
-                            .background(clickedQRButton ? Color.white : Color.accentColor)
-                            .cornerRadius(15)
+                    Divider()
+                        .padding(.vertical, 20)
+                    
+
+                    // MARK: -View : Q&A 리스트 관리
+                    Text("받은 Q&A")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                    
+                    List(dummyQuestions, id:\.self) { question in
+                        Text(question)
+                            .padding()
+                            .listRowBackground(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .fill(Color.secondary.opacity(0.15))
+                                    .foregroundColor(.white)
+                                    .padding(
+                                        EdgeInsets(
+                                            top: 10,
+                                            leading: 0,
+                                            bottom: 10,
+                                            trailing: 0
+                                        )
+                                    )
+                                
+                            )
+                            .listRowSeparator(.hidden)
                     }
+                    .scrollContentBackground(.hidden)
+                    .listStyle(InsetGroupedListStyle())
+                    .padding(.leading, -13)
+                    
+                    
 
+                    Spacer()
                 }
+                .padding(.leading, 40)
+                
+                
+                // MARK: -View : 오른쪽 사이드 유저 리스트
+                SessionDetailUserList()
+                    .frame(width: geo.size.width/4)
+                    .padding(.trailing, 20)
             }
-            
-            Divider()
-            
-
-            
-            Text("받은 Q&A")
-                .font(.largeTitle)
-                .fontWeight(.bold)
-            
-
-            Spacer()
         }
-        .padding(.horizontal, 80)
+        
     }
 }
 

@@ -9,32 +9,59 @@ import SwiftUI
 
 struct GeneralView: View {
 
-    @ObservedObject var euni: EuniStore = EuniStore()
-    @State private var selectedCategoryId: Euni.ID?
+    @ObservedObject var seminarInfo: SeminarStore = SeminarStore()
+    
+    @State private var selectedCategoryId: Seminar.ID?
+    @State private var isShowingAddSessionView: Bool = false
 
     var body: some View {
         NavigationSplitView {
-            List(euni.eunis, selection: $selectedCategoryId) { dataItem in
+            List(seminarInfo.seminarList, selection: $selectedCategoryId) { dataItem in
                 VStack(alignment: .leading, spacing: 7) {
-                    Text(dataItem.title)
+                    Text(dataItem.name)
                         .font(.title3)
                         .fontWeight(.bold)
-                    Text(dataItem.time)
+                    Text(dataItem.createdDate)
                     Text(dataItem.location)
+//                    Divider()
                 }
                 .padding(10)
-                
             }
-            
-        } detail: {
-            
-            SessionDetailView(euni: euni, euniId: selectedCategoryId)
+            .listStyle(.plain)
+            .onAppear {
+                seminarInfo.fetchSeminar()
+            }
+            .navigationTitle("세미나 목록")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    
+                    Button {
+                        // MARK: -View: AddSession으로 연결
+                        isShowingAddSessionView.toggle()
+                        
+                    } label: {
+                        Text("추가")
+                    }
+
+                }
+            }
         }
+        detail: {
+            SessionDetailView(seminarInfo: seminarInfo, seminarId: selectedCategoryId)
+        }
+        .sheet(isPresented: $isShowingAddSessionView) {
+            AddSessionView()
+        }
+//        .fullScreenCover(isPresented: $isShowingAddSessionView) {
+//            AddSessionView()
+//        }
+        
     }
 }
 
-struct GeneralView_Previews: PreviewProvider {
-    static var previews: some View {
-        GeneralView()
-    }
-}
+//struct GeneralView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        GeneralView(selectedCategoryId: .constant(UUID()))
+//    }
+//}
