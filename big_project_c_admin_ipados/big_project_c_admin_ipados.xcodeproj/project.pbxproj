@@ -26,7 +26,6 @@
 		7C6325C1295AF6FC00896A47 /* UserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6325BD295AF6FC00896A47 /* UserStore.swift */; };
 		7C6325C2295AF6FC00896A47 /* QuestionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6325BE295AF6FC00896A47 /* QuestionStore.swift */; };
 		7C6325C3295AF6FC00896A47 /* AttendanceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6325BF295AF6FC00896A47 /* AttendanceStore.swift */; };
-		A5AD9393295C233E008A28BE /* ScanQRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AD9392295C233E008A28BE /* ScanQRView.swift */; };
 		A5AD9395295C2379008A28BE /* CameraScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AD9394295C2379008A28BE /* CameraScanner.swift */; };
 		A5AD9397295C23A0008A28BE /* CameraScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AD9396295C23A0008A28BE /* CameraScannerViewController.swift */; };
 		EE08C249295AB8E2008D590C /* EmptyDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE08C248295AB8E2008D590C /* EmptyDetailView.swift */; };
@@ -54,7 +53,6 @@
 		7C6325BD295AF6FC00896A47 /* UserStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserStore.swift; sourceTree = "<group>"; };
 		7C6325BE295AF6FC00896A47 /* QuestionStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionStore.swift; sourceTree = "<group>"; };
 		7C6325BF295AF6FC00896A47 /* AttendanceStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttendanceStore.swift; sourceTree = "<group>"; };
-		A5AD9392295C233E008A28BE /* ScanQRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanQRView.swift; sourceTree = "<group>"; };
 		A5AD9394295C2379008A28BE /* CameraScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraScanner.swift; sourceTree = "<group>"; };
 		A5AD9396295C23A0008A28BE /* CameraScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraScannerViewController.swift; sourceTree = "<group>"; };
 		EE08C248295AB8E2008D590C /* EmptyDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyDetailView.swift; sourceTree = "<group>"; };
@@ -126,7 +124,6 @@
 				EE08C248295AB8E2008D590C /* EmptyDetailView.swift */,
 				EE08C24A295ACCD1008D590C /* Color.swift */,
 				7C6325B6295AF48F00896A47 /* AddSession.swift */,
-				A5AD9392295C233E008A28BE /* ScanQRView.swift */,
 				A5AD9394295C2379008A28BE /* CameraScanner.swift */,
 				A5AD9396295C23A0008A28BE /* CameraScannerViewController.swift */,
 				EE2AC20D295C074B0046853B /* SessionDetailUserList.swift */,
@@ -236,7 +233,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A5AD9393295C233E008A28BE /* ScanQRView.swift in Sources */,
 				03A6288D295AA95500167DB5 /* LoginView.swift in Sources */,
 				03A6288F295AA96700167DB5 /* GeneralView.swift in Sources */,
 				7C6325C2295AF6FC00896A47 /* QuestionStore.swift in Sources */,
@@ -385,7 +381,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"big_project_c_admin_ipados/Preview Content\"";
-				DEVELOPMENT_TEAM = F93LH9N2L8;
+				DEVELOPMENT_TEAM = JB8T59WMFR;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "테킷팅에서 카메라에 접근하고자 합니다.";
@@ -419,7 +415,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"big_project_c_admin_ipados/Preview Content\"";
-				DEVELOPMENT_TEAM = F93LH9N2L8;
+				DEVELOPMENT_TEAM = JB8T59WMFR;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "테킷팅에서 카메라에 접근하고자 합니다.";

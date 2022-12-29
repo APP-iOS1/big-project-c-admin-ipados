@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SessionDetailUserList: View {
 //    @ObservedObject var seminarInfo: SeminarStore
-    
+    @EnvironmentObject var attendanceStore : AttendanceStore
     let dummyUser: [String] = [
         "또리",
         "쿠니",
@@ -27,19 +27,22 @@ struct SessionDetailUserList: View {
     
     var body: some View {
         VStack {
-            Text("참석한 사자들 (\(dummyUser.count))")
+            Text("참석한 사자들 (\(attendanceStore.attendanceUserList.count))")
                 .font(.title2)
                 .fontWeight(.bold)
-            List(dummyUser, id: \.self) { username in
-                Text(username)
+            List(attendanceStore.attendanceUserList, id: \.self) { username in
+                Text(username.userNickname)
             }
             .listStyle(.plain)
+        }
+        .onAppear {
+            attendanceStore.fetchAttendance()
         }
     }
 }
 
-struct SessionDetailUserList_Previews: PreviewProvider {
-    static var previews: some View {
-        SessionDetailUserList()
-    }
-}
+//struct SessionDetailUserList_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SessionDetailUserList()
+//    }
+//}

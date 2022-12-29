@@ -10,19 +10,16 @@ import SwiftUI
 
 struct CameraScanner: View {
     @Binding var startScanning: Bool
-    @Binding var scanUserResult: String
-    @Binding var scanEmailResult: String {
-        didSet {
-            print(scanEmailResult)
-            if scanEmailResult != "알 수 없는 유저" {
-                self.presentationMode.wrappedValue.dismiss()
-            }
-        }
-    }
+
+    @Binding var scanIdResult : String
+    @Binding var scanUserUidResult : String
+    @Binding var scanUserNickname : String
     @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var attendanceStore : AttendanceStore
     var body: some View {
         NavigationView {
-            CameraScannerViewController(startScanning: $startScanning, scanUserResult: $scanUserResult, scanEmailResult: $scanEmailResult)
+
+            CameraScannerViewController(startScanning: $startScanning, scanIdResult: $scanIdResult, scanUserUidResult: $scanUserUidResult, scanUserNickNameResult: $scanUserNickname)
                 .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {
                         Button {
@@ -33,12 +30,16 @@ struct CameraScanner: View {
                     }
                 }
                 .interactiveDismissDisabled(true)
+                .onDisappear {
+                    print("dd")
+                    attendanceStore.addAttendance(attendance: Attendance(id: scanIdResult, uid: scanUserUidResult, userNickname: scanUserNickname))
+                }
         }
     }
 }
 
 struct CameraScanner_Previews: PreviewProvider {
     static var previews: some View {
-        CameraScanner(startScanning: .constant(true), scanUserResult: .constant(""), scanEmailResult: .constant(""))
+        CameraScanner(startScanning: .constant(true), scanIdResult: .constant(""), scanUserUidResult: .constant(""), scanUserNickname: .constant(""))
     }
 }

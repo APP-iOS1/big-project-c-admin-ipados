@@ -6,9 +6,17 @@
 //
 
 import SwiftUI
+import VisionKit
 
 struct SessionDetailView: View {
+    @State private var showCameraScannerView = false
+    @State private var isDeviceCapacity = false
+    @State private var showDeviceNotCapacityAlert = false
+    @State private var scanIdResult : String = ""
+    @State private var scanUserUidResult : String = ""
+    @State private var scanUserNickNameResult : String = ""
     @ObservedObject var seminarInfo: SeminarStore
+    @EnvironmentObject var attendanceStore : AttendanceStore
 //    @ObservedObject var questionInfo: QuestionStore
 
     var seminarId: Seminar.ID?
@@ -84,7 +92,11 @@ struct SessionDetailView: View {
                             
                             Button {
                                 // TODO: QR코드 연결
-                                clickedQRButton.toggle()
+                                if isDeviceCapacity {
+                                    self.showCameraScannerView = true
+                                } else {
+                                    self.showDeviceNotCapacityAlert = true
+                                }
                             } label: {
                                 Text("QR코드")
                                     .frame(width: 150)
@@ -142,6 +154,14 @@ struct SessionDetailView: View {
                     .frame(width: geo.size.width/4)
                     .padding(.trailing, 20)
             }
+            .sheet(isPresented: $showCameraScannerView) {
+                            CameraScanner(startScanning: $showCameraScannerView, scanIdResult: $scanIdResult, scanUserUidResult: $scanUserUidResult, scanUserNickname: $scanUserNickNameResult)
+                        }
+            .alert("스캐너 사용불가", isPresented: $showDeviceNotCapacityAlert, actions: {})
+        }
+        .onAppear {
+            print("온어피어")
+            isDeviceCapacity = (DataScannerViewController.isSupported && DataScannerViewController.isAvailable)
         }
         
     }
