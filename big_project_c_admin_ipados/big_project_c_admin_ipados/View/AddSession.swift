@@ -237,10 +237,11 @@ struct AddSessionView: View {
                                         .offset(x: 180)
                                 }
                             }
-                            
                         }
+                    }
                         
                         // MARK: - 상세 커리큘럼
+                    VStack {
                         VStack(alignment: .leading) {
                             VStack(alignment: .leading) {
                                 Text("상세 커리큘럼")
@@ -259,6 +260,8 @@ struct AddSessionView: View {
                                 }
                             }
                         }
+                    
+                       
                         
                         
                         // MARK: - 세미나 등록하기 버튼 추가 (데이터)
