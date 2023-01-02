@@ -40,10 +40,12 @@ struct GeneralView: View {
                     Button {
                         // MARK: -View: AddSession으로 연결
                         isShowingAddSessionView.toggle()
-                        
+                        seminarInfo.fetchSeminar()
+                    
                     } label: {
                         Text("추가")
                     }
+                    
 
                 }
             }
@@ -51,12 +53,12 @@ struct GeneralView: View {
         detail: {
             SessionDetailView(seminarInfo: seminarInfo, seminarId: selectedCategoryId)
         }
-        .sheet(isPresented: $isShowingAddSessionView) {
-            AddSessionView(seminar: SeminarStore())
-        }
-//        .fullScreenCover(isPresented: $isShowingAddSessionView) {
-//            AddSessionView()
+//        .sheet(isPresented: $isShowingAddSessionView) {
+//            AddSessionView(seminar: SeminarStore())
 //        }
+        .fullScreenCover(isPresented: $isShowingAddSessionView) {
+            AddSessionView(seminar: seminarInfo)
+        }
         
     }
 }

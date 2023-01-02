@@ -19,6 +19,8 @@ struct SessionDetailView: View {
     @EnvironmentObject var attendanceStore : AttendanceStore
 //    @ObservedObject var questionInfo: QuestionStore
 
+//    @Binding var seminarList: Seminar
+    
     var seminarId: Seminar.ID?
     @State private var clickedEditButton: Bool = false
     @State private var clickedQRButton: Bool = false
@@ -33,6 +35,7 @@ struct SessionDetailView: View {
             return nil
         }
     }
+
     
     let dummyQuestions: [String] = [
         "댓글입니다아아아아아아아아아아1",
@@ -77,18 +80,23 @@ struct SessionDetailView: View {
                         Spacer()
                         
                         HStack {
-                            Button {
-                                // TODO: 내용 수정 기능 구현
-                                clickedEditButton.toggle()
-                            } label: {
-                                Text("세미나 내용 수정하기")
-                                    .frame(width: 150)
-                                    .padding(12)
-                                    .fontWeight(.bold)
-                                    .foregroundColor(Color.white)
-                                    .background(Color.accentColor)
-                                    .cornerRadius(15)
-                            }
+                            
+                                Button {
+                                    // TODO: 내용 수정 기능 구현
+                                    clickedEditButton.toggle()
+                                } label: {
+                                    Text("세미나 내용 수정하기")
+                                        .frame(width: 150)
+                                        .padding(12)
+                                        .fontWeight(.bold)
+                                        .foregroundColor(Color.white)
+                                        .background(Color.accentColor)
+                                        .cornerRadius(15)
+                                }
+                                .sheet(isPresented: $clickedEditButton) {
+//                                    EditSessionView(seminarInfo: seminarInfo, selectedContent: selectedContent)
+                                }
+                            
                             
                             Button {
                                 // TODO: QR코드 연결

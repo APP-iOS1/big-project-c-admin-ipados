@@ -14,13 +14,22 @@ import Firebase
 class SeminarStore : ObservableObject {
     // 세미나 배열
     @Published var seminarList : [Seminar] = []
+
+    
     
     let database = Firestore.firestore()
+    
+    init() {
+        seminarList = []
+    }
+    
     
     // 모든 세미나들을 seminarList에 담아줌
     func fetchSeminar() {
         seminarList.removeAll()
-        database.collection("Seminar").getDocuments { (snapshot, error) in
+        database.collection("Seminar")
+            .order(by: "date", descending: false)
+            .getDocuments { (snapshot, error) in
             if let snapshot {
                 for document in snapshot.documents {
                     let docData = document.data()
@@ -70,6 +79,29 @@ class SeminarStore : ObservableObject {
             //FireStore Data를 READ 해오는 함수 호출
             fetchSeminar()
         }
+    
+    func editSeminar(seminar: Seminar) {
+            database.collection("Seminar")
+            .document(seminar.id)
+                .updateData(["id": seminar.id,
+                          "image": seminar.image,
+                          "name": seminar.name,
+                          "date": seminar.date,
+                          "startingTime": seminar.startingTime,
+                          "endingTime": seminar.endingTime,
+                          "category": seminar.category,
+                          "location": seminar.location,
+                          "locationUrl": seminar.locationUrl,
+                          "host": seminar.host,
+                          "hostIntroduction": seminar.hostIntroduction,
+                          "seminarDescription": seminar.seminarDescription,
+                          "seminarCurriculum": seminar.seminarCurriculum,
+                         ])
+
+            //FireStore Data를 READ 해오는 함수 호출
+            fetchSeminar()
+        }
+
     
 }
 

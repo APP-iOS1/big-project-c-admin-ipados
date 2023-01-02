@@ -18,6 +18,7 @@
 		03A6288D295AA95500167DB5 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A6288C295AA95500167DB5 /* LoginView.swift */; };
 		03A6288F295AA96700167DB5 /* GeneralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A6288E295AA96700167DB5 /* GeneralView.swift */; };
 		03A62894295AA9C400167DB5 /* SessionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A62893295AA9C400167DB5 /* SessionDetailView.swift */; };
+		3FA17BBD296292F60081D287 /* EditSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA17BBC296292F60081D287 /* EditSession.swift */; };
 		3FA7AAF5295BDB56002C4CB1 /* Seminar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA7AAF4295BDB56002C4CB1 /* Seminar.swift */; };
 		3FA7AAF7295BDB61002C4CB1 /* SeminarStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA7AAF6295BDB61002C4CB1 /* SeminarStore.swift */; };
 		7C6325B5295AF30500896A47 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6325B4295AF30500896A47 /* LoginViewModel.swift */; };
@@ -31,6 +32,7 @@
 		EE08C249295AB8E2008D590C /* EmptyDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE08C248295AB8E2008D590C /* EmptyDetailView.swift */; };
 		EE08C24B295ACCD1008D590C /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE08C24A295ACCD1008D590C /* Color.swift */; };
 		EE2AC20E295C074B0046853B /* SessionDetailUserList.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2AC20D295C074B0046853B /* SessionDetailUserList.swift */; };
+		EE2AC210295C43E40046853B /* MemberListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2AC20F295C43E40046853B /* MemberListView.swift */; };
 		EE5265E0295AD0E000FCA8BA /* EuniModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5265DF295AD0E000FCA8BA /* EuniModel.swift */; };
 		EE5265E2295AD0EB00FCA8BA /* EuniStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5265E1295AD0EB00FCA8BA /* EuniStore.swift */; };
 /* End PBXBuildFile section */
@@ -45,6 +47,7 @@
 		03A6288C295AA95500167DB5 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		03A6288E295AA96700167DB5 /* GeneralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralView.swift; sourceTree = "<group>"; };
 		03A62893295AA9C400167DB5 /* SessionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDetailView.swift; sourceTree = "<group>"; };
+		3FA17BBC296292F60081D287 /* EditSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSession.swift; sourceTree = "<group>"; };
 		3FA7AAF4295BDB56002C4CB1 /* Seminar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Seminar.swift; sourceTree = "<group>"; };
 		3FA7AAF6295BDB61002C4CB1 /* SeminarStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeminarStore.swift; sourceTree = "<group>"; };
 		7C6325B4295AF30500896A47 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -58,6 +61,7 @@
 		EE08C248295AB8E2008D590C /* EmptyDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyDetailView.swift; sourceTree = "<group>"; };
 		EE08C24A295ACCD1008D590C /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		EE2AC20D295C074B0046853B /* SessionDetailUserList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDetailUserList.swift; sourceTree = "<group>"; };
+		EE2AC20F295C43E40046853B /* MemberListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberListView.swift; sourceTree = "<group>"; };
 		EE5265DF295AD0E000FCA8BA /* EuniModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EuniModel.swift; sourceTree = "<group>"; };
 		EE5265E1295AD0EB00FCA8BA /* EuniStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EuniStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -118,15 +122,18 @@
 		03A62889295AA8B100167DB5 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				03A6288C295AA95500167DB5 /* LoginView.swift */,
-				03A6288E295AA96700167DB5 /* GeneralView.swift */,
-				03A62893295AA9C400167DB5 /* SessionDetailView.swift */,
-				EE08C248295AB8E2008D590C /* EmptyDetailView.swift */,
-				EE08C24A295ACCD1008D590C /* Color.swift */,
 				7C6325B6295AF48F00896A47 /* AddSession.swift */,
 				A5AD9394295C2379008A28BE /* CameraScanner.swift */,
 				A5AD9396295C23A0008A28BE /* CameraScannerViewController.swift */,
+				EE08C24A295ACCD1008D590C /* Color.swift */,
+				3FA17BBC296292F60081D287 /* EditSession.swift */,
+				EE08C248295AB8E2008D590C /* EmptyDetailView.swift */,
+				03A6288E295AA96700167DB5 /* GeneralView.swift */,
+				03A6288C295AA95500167DB5 /* LoginView.swift */,
+				EE2AC20F295C43E40046853B /* MemberListView.swift */,
+				A5AD9392295C233E008A28BE /* ScanQRView.swift */,
 				EE2AC20D295C074B0046853B /* SessionDetailUserList.swift */,
+				03A62893295AA9C400167DB5 /* SessionDetailView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -237,7 +244,9 @@
 				03A6288F295AA96700167DB5 /* GeneralView.swift in Sources */,
 				7C6325C2295AF6FC00896A47 /* QuestionStore.swift in Sources */,
 				7C6325C3295AF6FC00896A47 /* AttendanceStore.swift in Sources */,
+				3FA17BBD296292F60081D287 /* EditSession.swift in Sources */,
 				03A62875295AA6AA00167DB5 /* ContentView.swift in Sources */,
+				EE2AC210295C43E40046853B /* MemberListView.swift in Sources */,
 				EE2AC20E295C074B0046853B /* SessionDetailUserList.swift in Sources */,
 				7C6325B7295AF48F00896A47 /* AddSession.swift in Sources */,
 				03A62894295AA9C400167DB5 /* SessionDetailView.swift in Sources */,
@@ -381,7 +390,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"big_project_c_admin_ipados/Preview Content\"";
-				DEVELOPMENT_TEAM = 699L8LQSR7;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "테킷팅에서 카메라에 접근하고자 합니다.";
@@ -415,7 +424,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"big_project_c_admin_ipados/Preview Content\"";
-				DEVELOPMENT_TEAM = 699L8LQSR7;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "테킷팅에서 카메라에 접근하고자 합니다.";
