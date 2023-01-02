@@ -21,6 +21,7 @@ struct Seminar : Codable, Identifiable {
     var hostIntroduction : String
     var seminarDescription : String
     var seminarCurriculum : String
+    var postImageUrl : String
     
     var createdDate: String {
             let dateFormatter = DateFormatter()

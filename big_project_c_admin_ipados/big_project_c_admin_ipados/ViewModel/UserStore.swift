@@ -40,6 +40,7 @@ class UserStore : ObservableObject {
         currentUser = Auth.auth().currentUser
         
     }
+    
     func fetchUser() {
         userList.removeAll()
         database.collection("User").getDocuments { (snapshot, error) in

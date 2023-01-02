@@ -7,6 +7,7 @@
 
 import SwiftUI
 import PhotosUI
+import FirebaseStorage
 
 struct AddSessionView: View {
     
@@ -16,8 +17,12 @@ struct AddSessionView: View {
     @Environment(\.dismiss) private var dismiss
     
     // MARK: - 이미지 받아오기(PhotoURL)
-    @State private var selectedItem: PhotosPickerItem? = nil
+    @State private var selectedItem: PhotosPickerItem?
+    @State private var selectedPhotoData: Data?
+    @State private var selectedItems: [PhotosPickerItem] = []
+    @State private var selectedPhotosData: [Data] = []
     @State private var image: String = ""
+    @State private var isPicker = false
     
     //MARK: - Name (타이틀)
     @State private var name: String = ""
@@ -43,7 +48,9 @@ struct AddSessionView: View {
     // MARK: - seminarDescription, seminarCurriculum (세미나 상세내용, 상세 커리큘럼)
     @State private var seminarDescription: String = ""
     @State private var seminarCurriculum: String = ""
-
+    
+    @State private var id = UUID().uuidString
+    
     
     
     
@@ -66,7 +73,7 @@ struct AddSessionView: View {
                             }
                         }
                     }
-                   
+                    
                     
                     Divider()
                     
@@ -82,21 +89,75 @@ struct AddSessionView: View {
                     
                     Divider()
                     
-                
+                    
                     
                     VStack (alignment: .leading)  {
                         Text("대표 이미지")
                             .font(.title2)
-                        HStack{
-                            TextField("이미지의 URL", text: $image)
-                            if image.isEmpty {
-                                Image(systemName: "circle.fill")
-                                    .frame(width: 250, height: 250)
+                        Button {
+                            isPicker.toggle()
+                        } label: {
+                            if let image = self.seminar.postImageUrls {
+                                Image(uiImage: image)
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: UIScreen.main.bounds.width)
                             } else {
-                                AsyncImage(url: URL(string: image), scale: 2.0)
-                                    .frame(width: 250, height: 250)
+                                ZStack {
+                                    Image(systemName: "camera")
+                                        .zIndex(1)
+                                        .font(.largeTitle)
+                                        .foregroundColor(.accentColor)
+                                    
+                                    Rectangle()
+                                        .stroke(Color.accentColor, lineWidth: 1)
+                                        .frame(width: 400, height: 330)
+                                }
                             }
                         }
+                        .sheet(isPresented: $isPicker) {
+                            ImagePicker(image: $seminar.postImageUrls)
+                        }
+                        
+                        //                        PhotosPicker(selection: $selectedItems, maxSelectionCount: 10, matching: .images) {
+                        //                            Label("사진을 선택해주세요", systemImage: "photo")
+                        //                                .controlSize(.large)
+                        //                                .buttonStyle(.borderedProminent)
+                        //                        }
+                        //                        .padding()
+                        //Using PhotosUI
+                        //                        ScrollView(.horizontal) {
+                        //                            HStack {
+                        //                                ForEach(selectedPhotosData, id: \.self) { photoData in
+                        //                                    if let image = UIImage(data: photoData) {
+                        //                                        Image(uiImage: image)
+                        //                                            .resizable()
+                        //                                            .frame(width: 300, height: 300)
+                        //                                            .scaledToFill()
+                        //                                    }
+                        //                                }
+                        //                            }
+                        //                        }
+                        //                        .onChange(of: selectedItems) { newItems in
+                        //                            for newItem in newItems {
+                        //                                Task {
+                        //                                    if let data = try await newItem.loadTransferable(type: Data.self) {
+                        //                                        selectedPhotosData.append(data)
+                        //                                    }
+                        //                                }
+                        //                            }
+                        //                                selectedPhotosData = []
+                        //                        }
+                        
+                        //                            TextField("이미지의 URL", text: $image)
+                        //                            if image.isEmpty {
+                        //                                Image(systemName: "circle.fill")
+                        //                                    .frame(width: 250, height: 250)
+                        //                            } else {
+                        //                                AsyncImage(url: URL(string: image), scale: 2.0)
+                        //                                    .frame(width: 250, height: 250)
+                        //                            }
+                        
                     }
                     
                     
@@ -120,13 +181,13 @@ struct AddSessionView: View {
                     }
                     
                     
-            
+                    
                     //MARK: - categoryPicker
                     VStack {
                         HStack(spacing: 220) {
                             Text("세미나 유형을 선택해주세요.")
                                 .font(.title2)
-
+                            
                             
                             Picker("세미나 유형을 선택해주세요", selection: $selectedCategory) {
                                 ForEach(category, id: \.self) {
@@ -136,7 +197,7 @@ struct AddSessionView: View {
                         }
                     }
                     
-         
+                    
                     
                     // MARK: - PlacePicker
                     VStack(alignment: .leading) {
@@ -144,26 +205,26 @@ struct AddSessionView: View {
                         HStack(spacing: 50) {
                             Text("장소")
                                 .font(.title2)
-
+                            
                             TextField("", text: $location)
                             
                             // TODO: - 웹뷰 혹은 URL ? -> 내부 협의 필요
                             Text("세부장소")
                                 .font(.title2)
-
+                            
                             //                                Spacer()
                             TextField("", text: $loactionUrl)
                         }
                     }
                     
-
+                    
                     
                     // MARK: - HostInfo ( 호스트 인포 - 프로필 사진, 강사소개)
-                
+                    
                     
                     VStack (alignment: .leading) {
                         Text("강사 소개")
-                           
+                        
                         HStack {
                             TextField("이미지의 URL", text: $host)
                             if host.isEmpty  {
@@ -228,31 +289,35 @@ struct AddSessionView: View {
                         // MARK: - 세미나 등록하기 버튼 추가 (데이터)
                         VStack(alignment: .center) {
                             Button {
-                                seminar.addSeminar(seminar: Seminar(id: UUID().uuidString, image: [image], name: name, date: date, startingTime: startringTime, endingTime: endingTime, category: selectedCategory, location: location, locationUrl: loactionUrl, host: host, hostIntroduction: hostIntroduce, seminarDescription: seminarDescription, seminarCurriculum: seminarCurriculum))
-                                dismiss()
+                                seminar.addSeminar(seminar: Seminar(id: id, image: [image], name: name, date: date, startingTime: startringTime, endingTime: endingTime, category: selectedCategory, location: location, locationUrl: loactionUrl, host: host, hostIntroduction: hostIntroduce, seminarDescription: seminarDescription, seminarCurriculum: seminarCurriculum, postImageUrl: image))
+                                seminar.storeImageToStorage(uid: id)
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                                    seminar.postImageUrls = nil
+                                }
+                                    dismiss()
+                                    
+                                } label: {
+                                    Text("세미나 등록하기")
+                                        .foregroundColor(.white)
+                                        .padding()
+                                    // 등록하기
+                                }
+                                .font(.title3)
+                                .fontWeight(.bold)
+                                .foregroundColor(.black)
+                                .background {
+                                    Color.mint
+                                }
+                                .cornerRadius(10)
                                 
-                            } label: {
-                                Text("세미나 등록하기")
-                                    .foregroundColor(.white)
-                                    .padding()
-                                // 등록하기
                             }
-                            .font(.title3)
-                            .fontWeight(.bold)
-                            .foregroundColor(.black)
-                            .background {
-                                Color.mint
-                            }
-                            .cornerRadius(10)
-                            
                         }
                     }
                 }
             }
+            .padding(.all, 50)
         }
-        .padding(.all, 50)
     }
-}
 
 
 

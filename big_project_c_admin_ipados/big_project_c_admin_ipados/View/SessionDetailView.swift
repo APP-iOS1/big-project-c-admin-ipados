@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct SessionDetailView: View {
     @ObservedObject var seminarInfo: SeminarStore
@@ -100,6 +101,10 @@ struct SessionDetailView: View {
                     Divider()
                         .padding(.vertical, 20)
                     
+                    WebImage(url: URL(string: selectedContent?.postImageUrl ?? ""))
+                        .resizable()
+                        .cornerRadius(25)
+                        .frame(width: 50, height: 50)
 
                     // MARK: -View : Q&A 리스트 관리
                     Text("받은 Q&A")
@@ -128,12 +133,13 @@ struct SessionDetailView: View {
                     .scrollContentBackground(.hidden)
                     .listStyle(InsetGroupedListStyle())
                     .padding(.leading, -13)
-                    
-                    
 
                     Spacer()
                 }
                 .padding(.leading, 40)
+                .onAppear {
+                    seminarInfo.fetchSeminar()
+                }
                 
                 
                 // MARK: -View : 오른쪽 사이드 유저 리스트
@@ -151,8 +157,8 @@ struct SessionDetailView: View {
 }
 
 
-//struct SessionDetailView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SessionDetailView()
-//    }
-//}
+struct SessionDetailView_Previews: PreviewProvider {
+    static var previews: some View {
+        SessionDetailView(seminarInfo: SeminarStore())
+    }
+}

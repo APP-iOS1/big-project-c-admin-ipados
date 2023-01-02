@@ -16,17 +16,17 @@ struct GeneralView: View {
 
     var body: some View {
         NavigationSplitView {
-            List(seminarInfo.seminarList, selection: $selectedCategoryId) { dataItem in
-                VStack(alignment: .leading, spacing: 7) {
-                    Text(dataItem.name)
-                        .font(.title3)
-                        .fontWeight(.bold)
-                    Text(dataItem.createdDate)
-                    Text(dataItem.location)
-//                    Divider()
+                List(seminarInfo.seminarList, selection: $selectedCategoryId) { dataItem in
+                    VStack(alignment: .leading, spacing: 7) {
+                        Text(dataItem.name)
+                            .font(.title3)
+                            .fontWeight(.bold)
+                        Text(dataItem.createdDate)
+                        Text(dataItem.location)
+                        //                    Divider()
+                    }
+                    .padding(10)
                 }
-                .padding(10)
-            }
             .listStyle(.plain)
             .onAppear {
                 seminarInfo.fetchSeminar()
@@ -62,8 +62,8 @@ struct GeneralView: View {
     }
 }
 
-//struct GeneralView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        GeneralView(selectedCategoryId: .constant(UUID()))
-//    }
-//}
+struct GeneralView_Previews: PreviewProvider {
+    static var previews: some View {
+        GeneralView()
+    }
+}

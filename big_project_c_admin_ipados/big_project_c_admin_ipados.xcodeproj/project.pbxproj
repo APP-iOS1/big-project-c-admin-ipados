@@ -20,6 +20,9 @@
 		03A62894295AA9C400167DB5 /* SessionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A62893295AA9C400167DB5 /* SessionDetailView.swift */; };
 		3FA7AAF5295BDB56002C4CB1 /* Seminar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA7AAF4295BDB56002C4CB1 /* Seminar.swift */; };
 		3FA7AAF7295BDB61002C4CB1 /* SeminarStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA7AAF6295BDB61002C4CB1 /* SeminarStore.swift */; };
+		7C2563EA29627E6E003B2187 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 7C2563E929627E6E003B2187 /* FirebaseStorage */; };
+		7C2563EC2962B2EB003B2187 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2563EB2962B2EB003B2187 /* ImagePicker.swift */; };
+		7C2563EF2962B670003B2187 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 7C2563EE2962B670003B2187 /* SDWebImageSwiftUI */; };
 		7C6325B5295AF30500896A47 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6325B4295AF30500896A47 /* LoginViewModel.swift */; };
 		7C6325B7295AF48F00896A47 /* AddSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6325B6295AF48F00896A47 /* AddSession.swift */; };
 		7C6325BA295AF6D300896A47 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6325B8295AF6D300896A47 /* User.swift */; };
@@ -49,6 +52,7 @@
 		03A62893295AA9C400167DB5 /* SessionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDetailView.swift; sourceTree = "<group>"; };
 		3FA7AAF4295BDB56002C4CB1 /* Seminar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Seminar.swift; sourceTree = "<group>"; };
 		3FA7AAF6295BDB61002C4CB1 /* SeminarStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeminarStore.swift; sourceTree = "<group>"; };
+		7C2563EB2962B2EB003B2187 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		7C6325B4295AF30500896A47 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		7C6325B6295AF48F00896A47 /* AddSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSession.swift; sourceTree = "<group>"; };
 		7C6325B8295AF6D300896A47 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -71,7 +75,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C2563EF2962B670003B2187 /* SDWebImageSwiftUI in Frameworks */,
 				03A62884295AA7D800167DB5 /* FirebaseAuth in Frameworks */,
+				7C2563EA29627E6E003B2187 /* FirebaseStorage in Frameworks */,
 				03A62886295AA7D800167DB5 /* FirebaseFirestore in Frameworks */,
 				03A62888295AA7D800167DB5 /* FirebaseFirestoreSwift in Frameworks */,
 			);
@@ -85,6 +91,7 @@
 			children = (
 				03A62871295AA6AA00167DB5 /* big_project_c_admin_ipados */,
 				03A62870295AA6AA00167DB5 /* Products */,
+				7C2563E829627E6E003B2187 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,6 +108,7 @@
 			children = (
 				03A62872295AA6AA00167DB5 /* big_project_c_admin_ipadosApp.swift */,
 				03A62874295AA6AA00167DB5 /* ContentView.swift */,
+				7C2563EB2962B2EB003B2187 /* ImagePicker.swift */,
 				EE08C24D295AD07B008D590C /* Model */,
 				EE08C24C295AD068008D590C /* ViewModel */,
 				03A62889295AA8B100167DB5 /* View */,
@@ -135,6 +143,13 @@
 				03A62893295AA9C400167DB5 /* SessionDetailView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		7C2563E829627E6E003B2187 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		EE08C24C295AD068008D590C /* ViewModel */ = {
@@ -180,6 +195,8 @@
 				03A62883295AA7D800167DB5 /* FirebaseAuth */,
 				03A62885295AA7D800167DB5 /* FirebaseFirestore */,
 				03A62887295AA7D800167DB5 /* FirebaseFirestoreSwift */,
+				7C2563E929627E6E003B2187 /* FirebaseStorage */,
+				7C2563EE2962B670003B2187 /* SDWebImageSwiftUI */,
 			);
 			productName = "big-project-c-admin-ipados";
 			productReference = 03A6286F295AA6AA00167DB5 /* big_project_c_admin_ipados.app */;
@@ -211,6 +228,7 @@
 			mainGroup = 03A62866295AA6AA00167DB5;
 			packageReferences = (
 				03A62882295AA7D800167DB5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				7C2563ED2962B670003B2187 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 			);
 			productRefGroup = 03A62870295AA6AA00167DB5 /* Products */;
 			projectDirPath = "";
@@ -252,6 +270,7 @@
 				3FA7AAF5295BDB56002C4CB1 /* Seminar.swift in Sources */,
 				7C6325C1295AF6FC00896A47 /* UserStore.swift in Sources */,
 				EE08C24B295ACCD1008D590C /* Color.swift in Sources */,
+				7C2563EC2962B2EB003B2187 /* ImagePicker.swift in Sources */,
 				3FA7AAF7295BDB61002C4CB1 /* SeminarStore.swift in Sources */,
 				EE08C249295AB8E2008D590C /* EmptyDetailView.swift in Sources */,
 				EE5265E0295AD0E000FCA8BA /* EuniModel.swift in Sources */,
@@ -481,6 +500,14 @@
 				minimumVersion = 9.0.0;
 			};
 		};
+		7C2563ED2962B670003B2187 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -498,6 +525,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 03A62882295AA7D800167DB5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestoreSwift;
+		};
+		7C2563E929627E6E003B2187 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 03A62882295AA7D800167DB5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+		7C2563EE2962B670003B2187 /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7C2563ED2962B670003B2187 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
