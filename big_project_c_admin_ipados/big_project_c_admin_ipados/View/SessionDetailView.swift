@@ -67,7 +67,7 @@ struct SessionDetailView: View {
                         } label: {
                             Text("세션 수정하기")
                                 .padding(.vertical, 13)
-                                .padding(.trailing, 20)
+                                .padding(.trailing, 28)
                                 .fontWeight(.semibold)
                                 .foregroundColor(Color.accentColor)
                                 .cornerRadius(15)
@@ -89,9 +89,9 @@ struct SessionDetailView: View {
                         Button {
                             clickedQRButton.toggle()
                         } label: {
-                            Text("QR코드")
+                            Text("QR 출석 체크")
                                 .padding(.vertical, 13)
-                                .padding(.horizontal, 40)
+                                .padding(.horizontal, 30)
                                 .fontWeight(.bold)
                                 .foregroundColor(Color.white)
                                 .background(Color.accentColor)
