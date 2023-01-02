@@ -27,6 +27,7 @@ struct SessionDetailView: View {
             return nil
         }
     }
+
     
     let dummyQuestions: [String] = [
         "댓글입니다아아아아아아아아아아1",
@@ -85,7 +86,7 @@ struct SessionDetailView: View {
                                         .cornerRadius(15)
                                 }
                                 .sheet(isPresented: $clickedEditButton) {
-                                    EditSessionView(seminarInfo: seminarInfo)
+//                                    EditSessionView(seminarInfo: seminarInfo, selectedContent: selectedContent)
                                 }
                             
                             
