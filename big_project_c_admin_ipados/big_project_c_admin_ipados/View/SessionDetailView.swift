@@ -85,7 +85,7 @@ struct SessionDetailView: View {
                                         .cornerRadius(15)
                                 }
                                 .sheet(isPresented: $clickedEditButton) {
-                                    // EditSessionView()로 이동할 수 있도록 함
+                                    EditSessionView(seminarInfo: seminarInfo)
                                 }
                             
                             

@@ -17,9 +17,7 @@ struct AddSessionView: View {
     
     // MARK: - 이미지 받아오기(PhotoURL)
     @State private var selectedItem: PhotosPickerItem? = nil
-    @State private var image1: String = ""
-    @State private var image2: String = ""
-    @State private var image3: String = ""
+    @State private var image: String = ""
     
     
     
@@ -114,11 +112,11 @@ struct AddSessionView: View {
                         
                         HStack {
                             HStack{
-                                TextField("이미지 URL을 작성해주세요.", text: $image1)
+                                TextField("이미지 URL을 작성해주세요.", text: $image)
                             }
                             
                             HStack {
-                                AsyncImage(url: URL(string: image1), transaction: transaction, content: imageView)
+                                AsyncImage(url: URL(string: image), transaction: transaction, content: imageView)
                                     .frame(width: 100, height: 100)
                                 
                             }
@@ -287,7 +285,7 @@ struct AddSessionView: View {
                         // MARK: - 세미나 등록하기 버튼 추가 (데이터)
                         VStack(alignment: .center) {
                             Button {
-                                seminar.addSeminar(seminar: Seminar(id: UUID().uuidString, image: [image1, image2, image3], name: name, date: date, startingTime: startingTime, endingTime: endingTime, category: selectedCategory, location: location, locationUrl: loactionUrl, host: host, hostIntroduction: hostIntroduce, seminarDescription: seminarDescription, seminarCurriculum: seminarCurriculum))
+                                seminar.addSeminar(seminar: Seminar(id: UUID().uuidString, image: [image], name: name, date: date, startingTime: startingTime, endingTime: endingTime, category: selectedCategory, location: location, locationUrl: loactionUrl, host: host, hostIntroduction: hostIntroduce, seminarDescription: seminarDescription, seminarCurriculum: seminarCurriculum))
                                 dismiss()
                                 
                             } label: {
@@ -309,7 +307,7 @@ struct AddSessionView: View {
                 }
             }
         }
-        .padding(.all, 100)
+        .padding(.all, 50)
     }
     
     //MARK: - Async image를 나타내는 비동기 메서드

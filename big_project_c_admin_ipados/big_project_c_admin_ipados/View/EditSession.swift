@@ -10,36 +10,25 @@ import PhotosUI
 
 struct EditSessionView: View {
 
+    @ObservedObject var seminarInfo: SeminarStore
+    var seminarId: Seminar.ID?
     
-    @Binding var seminarList: Seminar
-    
-    // MARK: - Seminar(Sesseion 정보) -> Store에서 나중에 가져올 예정
-    @Binding var clickedEditButton: Bool
-    
-    @ObservedObject var seminar: SeminarStore
-    
+    @State private var clickedEditButton: Bool = false
     @Environment(\.dismiss) private var dismiss
     
-    // MARK: - 이미지 받아오기(PhotoURL)
-    @State private var selectedItem: PhotosPickerItem? = nil
-    
-    @State private var image1: String = ""
-    @State private var image2: String = ""
-    @State private var image3: String = ""
-    
-    
-    // 이미지 transaction 효과
     private let transaction: Transaction = .init(animation: .linear)
-    
-    //MARK: - Name (타이틀)
-    @State private var name: String = ""
-    
-    // MARK: - date, startTime, endingTime (Date 피커)
-    @State private var date: Date = Date()
-    @State private var startingTime: String = ""
-    @State private var endingTime: String = ""
-    
-    
+    // MARK: - 특정 세미나의 ID가, 기존의 저장된 ID값과 같을 경우에는 반환(selectedContent)
+    var selectedContent: Seminar? {
+        get {
+            for sample in seminarInfo.seminarList {
+                if sample.id == seminarId {
+                    return sample
+                }
+            }
+            return nil
+        }
+    }
+
     var dateFormatter : DateFormatter {
         let formatter = DateFormatter()
         //한국 시간으로 표시
@@ -51,23 +40,6 @@ struct EditSessionView: View {
         return formatter
     }
     
-    // MARK: - Category (카테고리)
-    @State private var category: [String] = ["프론트","백엔드", "디자인", "블록체인"]
-    // 카테고리 피커 돌리기
-    @State private var selectedCategory: String = ""
-    
-    // MARK: - location 피커(3개 장소 임의로)
-    @State private var location: String = ""
-    @State private var loactionUrl: String = ""
-    
-    // MARK: - host, hostIntroduction (호스트 인포 - 프로필 사진, 강사소개)
-    @State private var host: String = ""
-    @State private var hostIntroduce: String = ""
-    
-    // MARK: - seminarDescription, seminarCurriculum (세미나 상세내용, 상세 커리큘럼)
-    @State private var seminarDescription: String = ""
-    @State private var seminarCurriculum: String = ""
-
     
     
     
@@ -108,7 +80,7 @@ struct EditSessionView: View {
                             .font(.title2)
                             .fontWeight(.bold)
                         
-                        TextField("타이틀을 입력해주세요.", text: $name)
+                        TextField("타이틀을 입력해주세요.", text: selectedContent?.name ?? "")
                     }
                     
                     
@@ -119,11 +91,11 @@ struct EditSessionView: View {
                         
                         HStack {
                             HStack{
-                                TextField("이미지 URL을 작성해주세요.", text: $image1)
+                                TextField("이미지 URL을 작성해주세요.", text: selectedContent?.image)
                             }
                             
                             HStack {
-                                AsyncImage(url: URL(string: image1), transaction: transaction, content: imageView)
+                                AsyncImage(url: URL(string: selectedContent?.image), transaction: transaction, content: imageView)
                                     .frame(width: 100, height: 100)
                                 
                             }
@@ -144,26 +116,26 @@ struct EditSessionView: View {
                             HStack {
                                 Image(systemName: "calendar.circle")
                                 Text("날짜")
-                                DatePicker(selection: $date, displayedComponents: .date) {
+                                DatePicker(selection: selectedContent?.date ?? "", displayedComponents: .date) {
                                     Text("date")
                                 }
-                                Text("\(date, formatter: dateFormatter)")
+                                Text("\(selectedContent?.date ?? "", formatter: dateFormatter)")
                             }
                             .labelsHidden()
                             
-                            Divider()
                             
+                            Divider()
                             
                             HStack {
                                 
                                 Image(systemName: "clock")
                                 Text("시작시간")
-                                TextField("시작.", text: $startingTime)
+                                TextField("시작.", text: selectedContent?.startingTime ?? "")
                                 
                                 Spacer()
                                 
                                 Text("종료시간")
-                                TextField("종료.", text: $endingTime)
+                                TextField("종료.", text: selectedContent?.endingTime ?? "")
                             }
                         }
                     }
@@ -179,16 +151,16 @@ struct EditSessionView: View {
                         HStack(spacing: 50) {
                             Text("세미나 유형을 선택해주세요")
                                 .font(.callout)
-
-                            Picker("세미나 유형을 선택해주세요", selection: $selectedCategory) {
-                                ForEach(category, id: \.self) {
+                            
+                            Picker("세미나 유형을 선택해주세요", selection: selectedContent?.category ?? "") {
+                                ForEach(selectedContent?.category ?? "", id: \.self) {
                                     Text($0)
                                 }
                             }
                         }
                     }
                     
-         
+                    
                     
                     // MARK: - PlacePicker
                     VStack(alignment: .leading) {
@@ -201,20 +173,20 @@ struct EditSessionView: View {
                             Text("장소를 입력해 주세요")
                                 .font(.callout)
                             
-                            TextField("세부장소", text: $location)
+                            TextField("세부장소", text: selectedContent?.location ?? "")
                             
                             // TODO: - 웹뷰 혹은 URL ? -> 내부 협의 필요
                             Text("장소URL")
                                 .font(.callout)
-
-                            TextField("주소", text: $loactionUrl)
+                            
+                            TextField("주소", text: selectedContent?.locationUrl ?? "")
                         }
                     }
                     
-
+                    
                     
                     // MARK: - HostInfo ( 호스트 인포 - 프로필 사진, 강사소개)
-                
+                    
                     
                     VStack (alignment: .leading) {
                         Text("강사 소개")
@@ -222,27 +194,27 @@ struct EditSessionView: View {
                             .fontWeight(.bold)
                         
                         HStack {
-                            TextField("이미지 URL을 작성해주세요.", text: $host)
-                            AsyncImage(url: URL(string: host), transaction: transaction, content: imageView)
+                            TextField("이미지 URL을 작성해주세요.", text: selectedContent?.host ?? "")
+                            AsyncImage(url: URL(string: selectedContent?.host ?? ""), transaction: transaction, content: imageView)
                                 .frame(width: 100, height: 100)
                             
                         }
                         
                         VStack(alignment: .leading) {
-                            TextEditor(text: $hostIntroduce)
+                            TextEditor(text: selectedContent?.hostIntroduction ?? "")
                                 .padding()
                                 .background(Color(.secondarySystemBackground))
                                 .frame(height: 150)
                             
-                            if hostIntroduce == "" {
-                                Text("내용을 입력 해주세요.")
-                                    .opacity(0.5)
-                                    .offset(x: 350, y: -95)
-                            }
+//                            if selectedContent?.hostIntroduction ?? "" == "" {
+//                                Text("내용을 입력 해주세요.")
+//                                    .opacity(0.5)
+//                                    .offset(x: 350, y: -95)
+//                            }
                         }
                     }
                     
-
+                    
                     
                     // MARK: - 세미나 상세내용
                     VStack {
@@ -251,21 +223,21 @@ struct EditSessionView: View {
                                 .font(.title2)
                                 .fontWeight(.bold)
                             
-                                TextEditor(text: $seminarDescription)
-                                    .padding()
-                                    .background(Color(.secondarySystemBackground))
-                                    .frame(height: 300)
-                                
-                                if seminarDescription == "" {
-                                    Text("내용을 입력 해주세요.")
-                                        .opacity(0.5)
-                                        .offset(x: 350, y: -160)
-                                }
-                         
+                            TextEditor(text: selectedContent?.seminarDescription ?? "")
+                                .padding()
+                                .background(Color(.secondarySystemBackground))
+                                .frame(height: 300)
+                            
+//                            if selectedContent?.seminarDescription ?? "" == "" {
+//                                Text("내용을 입력 해주세요.")
+//                                    .opacity(0.5)
+//                                    .offset(x: 350, y: -160)
+//                            }
+//
                         }
                     }
-                        
-                        // MARK: - 상세 커리큘럼
+                    
+                    // MARK: - 상세 커리큘럼
                     VStack {
                         VStack(alignment: .leading) {
                             VStack(alignment: .leading) {
@@ -273,20 +245,20 @@ struct EditSessionView: View {
                                     .font(.title2)
                                     .fontWeight(.bold)
                                 
-                                TextEditor(text: $seminarCurriculum)
+                                TextEditor(text: selectedContent?.seminarCurriculum )
                                     .padding()
                                     .background(Color(.secondarySystemBackground))
                                     .frame(height: 300)
                                 
-                                if seminarCurriculum == "" {
-                                    Text("내용을 입력 해주세요.")
-                                        .opacity(0.5)
-                                        .offset(x: 350, y: -160)
-                                }
+//                                if selectedContent?.seminarCurriculum == "" {
+//                                    Text("내용을 입력 해주세요.")
+//                                        .opacity(0.5)
+//                                        .offset(x: 350, y: -160)
+//                                }
                             }
                         }
-                    
-                       
+                        
+                        
                         
                         
                         // MARK: - 세미나 등록하기 버튼 추가 (데이터)
@@ -306,26 +278,26 @@ struct EditSessionView: View {
                                 Color.accentColor
                             }
                             .cornerRadius(10)
-
+                            
                             
                             
                             Button {
+                                seminarInfo.editSeminar(seminar: Seminar(id: selectedContent?.id,
+                                                                         image: selectedContent?.image,
+                                                                         name: selectedContent?.name,
+                                                                         date: selectedContent?.date,
+                                                                         startingTime: selectedContent?.startingTime,
+                                                                         endingTime: selectedContent?.endingTime,
+                                                                         category: selectedContent?.category,
+                                                                         location: selectedContent?.location,
+                                                                         locationUrl: selectedContent?.locationUrl,
+                                                                         host: selectedContent?.host,
+                                                                         hostIntroduction: selectedContent?.hostIntroduction,
+                                                                         seminarDescription: selectedContent?.seminarDescription,
+                                                                         seminarCurriculum: selectedContent?.seminarCurriculum))
                                 
-                                seminar.editSeminar(seminar: Seminar(id: seminarList.id,
-                                                                     image: seminarList.image,
-                                                                     name: seminarList.name,
-                                                                     date: seminarList.date,
-                                                                     startingTime: seminarList.startingTime,
-                                                                     endingTime: seminarList.endingTime,
-                                                                     category: seminarList.category,
-                                                                     location: seminarList.location,
-                                                                     locationUrl: seminarList.locationUrl,
-                                                                     host: seminarList.host,
-                                                                     hostIntroduction: seminarList.hostIntroduction,
-                                                                     seminarDescription: seminarList.seminarDescription,
-                                                                     seminarCurriculum: seminarList.seminarCurriculum))
                                 
-       
+                                
                                 clickedEditButton.toggle()
                                 dismiss()
                                 
@@ -382,12 +354,3 @@ struct EditSessionView: View {
 }
 
 
-
-//
-//
-//struct EditSessionView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        EditSessionView(initSeminar: , clickedEditButton: , seminar: <#T##SeminarStore#>)
-//    }
-//}
-//
