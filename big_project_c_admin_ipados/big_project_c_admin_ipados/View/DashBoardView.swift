@@ -80,6 +80,7 @@ struct DashBoardView: View {
                         GridRow {
                             Text("카테고리 별 누적 데이터")
                                 .font(.largeTitle).bold()
+                                .padding(.vertical)
                             
                             HStack(spacing: 100) {
                                 Text("#")
@@ -145,7 +146,7 @@ struct DashBoardView: View {
                         VStack(alignment: .leading) {
                             Text("누적 현황")
                                 .font(.largeTitle).bold()
-                                .padding()
+                                .padding(.vertical)
                             
                             HStack {
                                 Image(systemName: "person.2.fill")
