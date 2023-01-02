@@ -25,6 +25,7 @@ struct big_project_c_admin_ipados: App {
 
             ContentView()
                 .environmentObject(UserStore())
+                .environmentObject(AttendanceStore())
         }
     }
 }

@@ -39,8 +39,8 @@ struct Question : Codable, Identifiable {
     var question : String
 }
 
-struct Attendance : Codable, Identifiable {
+struct Attendance : Codable, Identifiable, Hashable {
     var id : String
-    var userUid : String
+//    var uid : String
     var userNickname : String
 }
