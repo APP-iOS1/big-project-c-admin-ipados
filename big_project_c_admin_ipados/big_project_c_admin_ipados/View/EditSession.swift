@@ -1,26 +1,31 @@
 //
-//  AddSession.swift
+//  EditSession.swift
 //  big_project_c_admin_ipados
 //
-//  Created by TEDDY on 12/27/22.
+//  Created by Jae hyuk Yim on 2023/01/02.
 //
 
 import SwiftUI
 import PhotosUI
 
-struct AddSessionView: View {
+struct EditSessionView: View {
+
+    
+    @Binding var seminarList: Seminar
     
     // MARK: - Seminar(Sesseion 정보) -> Store에서 나중에 가져올 예정
+    @Binding var clickedEditButton: Bool
+    
     @ObservedObject var seminar: SeminarStore
     
     @Environment(\.dismiss) private var dismiss
     
     // MARK: - 이미지 받아오기(PhotoURL)
     @State private var selectedItem: PhotosPickerItem? = nil
+    
     @State private var image1: String = ""
     @State private var image2: String = ""
     @State private var image3: String = ""
-    
     
     
     // 이미지 transaction 효과
@@ -287,11 +292,45 @@ struct AddSessionView: View {
                         // MARK: - 세미나 등록하기 버튼 추가 (데이터)
                         VStack(alignment: .center) {
                             Button {
-                                seminar.addSeminar(seminar: Seminar(id: UUID().uuidString, image: [image1, image2, image3], name: name, date: date, startingTime: startingTime, endingTime: endingTime, category: selectedCategory, location: location, locationUrl: loactionUrl, host: host, hostIntroduction: hostIntroduce, seminarDescription: seminarDescription, seminarCurriculum: seminarCurriculum))
+                                print("수정 취소")
+                                clickedEditButton.toggle()
+                            } label: {
+                                Text("수정 취소")
+                                    .foregroundColor(.white)
+                                    .padding()
+                            }
+                            .font(.title3)
+                            .fontWeight(.bold)
+                            .foregroundColor(.black)
+                            .background {
+                                Color.accentColor
+                            }
+                            .cornerRadius(10)
+
+                            
+                            
+                            Button {
+                                
+                                seminar.editSeminar(seminar: Seminar(id: seminarList.id,
+                                                                     image: seminarList.image,
+                                                                     name: seminarList.name,
+                                                                     date: seminarList.date,
+                                                                     startingTime: seminarList.startingTime,
+                                                                     endingTime: seminarList.endingTime,
+                                                                     category: seminarList.category,
+                                                                     location: seminarList.location,
+                                                                     locationUrl: seminarList.locationUrl,
+                                                                     host: seminarList.host,
+                                                                     hostIntroduction: seminarList.hostIntroduction,
+                                                                     seminarDescription: seminarList.seminarDescription,
+                                                                     seminarCurriculum: seminarList.seminarCurriculum))
+                                
+       
+                                clickedEditButton.toggle()
                                 dismiss()
                                 
                             } label: {
-                                Text("세미나 등록하기")
+                                Text("세미나 수정하기")
                                     .foregroundColor(.white)
                                     .padding()
                                 // 등록하기
@@ -344,18 +383,11 @@ struct AddSessionView: View {
 
 
 
-
-
-struct AddSessionView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddSessionView(seminar: SeminarStore())
-    }
-}
-
-
-//                    TextField("날짜", text: $sessionSchedule)
-//                    DatePicker("날짜", selection: $sessionSchedule,
-//                               displayedComponents: .date)
-//                    DatePicker("시간", selection: $sessionSchedule,
-//                               displayedComponents: .hourAndMinute)
-
+//
+//
+//struct EditSessionView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        EditSessionView(initSeminar: , clickedEditButton: , seminar: <#T##SeminarStore#>)
+//    }
+//}
+//
