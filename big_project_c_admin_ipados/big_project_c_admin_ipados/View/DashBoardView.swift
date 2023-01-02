@@ -23,7 +23,7 @@ struct DashBoardView: View {
                         .padding()
                     
                     HStack(spacing: 20) {
-                        // FIXME: Pie Graph 수정하기
+                        // FIXME: Pie Graph 수정하기git
                         Canvas { context, size in
                             let total = slices.reduce(0) { $0 + $1.0 }
                             context.translateBy(x: size.width * 0.5, y: size.height * 0.5)
@@ -195,8 +195,9 @@ struct DashBoardView: View {
                     
                 } // GridRow
                 
-                Spacer()
             }
+            
+            Spacer()
         }
     }
 }
