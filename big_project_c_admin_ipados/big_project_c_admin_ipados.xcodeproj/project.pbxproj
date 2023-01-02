@@ -18,24 +18,26 @@
 		03A6288D295AA95500167DB5 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A6288C295AA95500167DB5 /* LoginView.swift */; };
 		03A6288F295AA96700167DB5 /* GeneralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A6288E295AA96700167DB5 /* GeneralView.swift */; };
 		03A62894295AA9C400167DB5 /* SessionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A62893295AA9C400167DB5 /* SessionDetailView.swift */; };
+		3F1B3F5029634568008D8748 /* MemberListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1B3F4F29634568008D8748 /* MemberListView.swift */; };
+		3F1B3F522963458C008D8748 /* DashBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1B3F512963458C008D8748 /* DashBoardView.swift */; };
+		3F1B3F5429634591008D8748 /* ChartShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1B3F5329634591008D8748 /* ChartShape.swift */; };
+		3F1B3F5B296345B1008D8748 /* AttendanceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1B3F55296345B1008D8748 /* AttendanceStore.swift */; };
+		3F1B3F5C296345B1008D8748 /* QuestionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1B3F56296345B1008D8748 /* QuestionStore.swift */; };
+		3F1B3F5D296345B1008D8748 /* SeminarStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1B3F57296345B1008D8748 /* SeminarStore.swift */; };
+		3F1B3F5E296345B1008D8748 /* UserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1B3F58296345B1008D8748 /* UserStore.swift */; };
+		3F1B3F5F296345B1008D8748 /* EuniStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1B3F59296345B1008D8748 /* EuniStore.swift */; };
+		3F1B3F60296345B1008D8748 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1B3F5A296345B1008D8748 /* LoginViewModel.swift */; };
+		3F1B3F6229634651008D8748 /* EditTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1B3F6129634651008D8748 /* EditTestView.swift */; };
 		3FA17BBD296292F60081D287 /* EditSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA17BBC296292F60081D287 /* EditSession.swift */; };
 		3FA7AAF5295BDB56002C4CB1 /* Seminar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA7AAF4295BDB56002C4CB1 /* Seminar.swift */; };
-		3FA7AAF7295BDB61002C4CB1 /* SeminarStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA7AAF6295BDB61002C4CB1 /* SeminarStore.swift */; };
-		7C6325B5295AF30500896A47 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6325B4295AF30500896A47 /* LoginViewModel.swift */; };
 		7C6325B7295AF48F00896A47 /* AddSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6325B6295AF48F00896A47 /* AddSession.swift */; };
 		7C6325BA295AF6D300896A47 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6325B8295AF6D300896A47 /* User.swift */; };
-		7C6325C1295AF6FC00896A47 /* UserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6325BD295AF6FC00896A47 /* UserStore.swift */; };
-		7C6325C2295AF6FC00896A47 /* QuestionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6325BE295AF6FC00896A47 /* QuestionStore.swift */; };
-		7C6325C3295AF6FC00896A47 /* AttendanceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6325BF295AF6FC00896A47 /* AttendanceStore.swift */; };
-		A5AD9393295C233E008A28BE /* ScanQRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AD9392295C233E008A28BE /* ScanQRView.swift */; };
 		A5AD9395295C2379008A28BE /* CameraScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AD9394295C2379008A28BE /* CameraScanner.swift */; };
 		A5AD9397295C23A0008A28BE /* CameraScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AD9396295C23A0008A28BE /* CameraScannerViewController.swift */; };
 		EE08C249295AB8E2008D590C /* EmptyDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE08C248295AB8E2008D590C /* EmptyDetailView.swift */; };
 		EE08C24B295ACCD1008D590C /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE08C24A295ACCD1008D590C /* Color.swift */; };
 		EE2AC20E295C074B0046853B /* SessionDetailUserList.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2AC20D295C074B0046853B /* SessionDetailUserList.swift */; };
-		EE2AC210295C43E40046853B /* MemberListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2AC20F295C43E40046853B /* MemberListView.swift */; };
 		EE5265E0295AD0E000FCA8BA /* EuniModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5265DF295AD0E000FCA8BA /* EuniModel.swift */; };
-		EE5265E2295AD0EB00FCA8BA /* EuniStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5265E1295AD0EB00FCA8BA /* EuniStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,24 +50,26 @@
 		03A6288C295AA95500167DB5 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		03A6288E295AA96700167DB5 /* GeneralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralView.swift; sourceTree = "<group>"; };
 		03A62893295AA9C400167DB5 /* SessionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDetailView.swift; sourceTree = "<group>"; };
+		3F1B3F4F29634568008D8748 /* MemberListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MemberListView.swift; path = "../../../../../../Downloads/big-project-c-admin-ipados-230103_Scan_changhwi/big_project_c_admin_ipados/big_project_c_admin_ipados/View/MemberListView.swift"; sourceTree = "<group>"; };
+		3F1B3F512963458C008D8748 /* DashBoardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashBoardView.swift; sourceTree = "<group>"; };
+		3F1B3F5329634591008D8748 /* ChartShape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartShape.swift; sourceTree = "<group>"; };
+		3F1B3F55296345B1008D8748 /* AttendanceStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AttendanceStore.swift; path = "../../../../../../Downloads/big-project-c-admin-ipados-230103_Scan_changhwi/big_project_c_admin_ipados/big_project_c_admin_ipados/ViewModel/AttendanceStore.swift"; sourceTree = "<group>"; };
+		3F1B3F56296345B1008D8748 /* QuestionStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuestionStore.swift; path = "../../../../../../Downloads/big-project-c-admin-ipados-230103_Scan_changhwi/big_project_c_admin_ipados/big_project_c_admin_ipados/ViewModel/QuestionStore.swift"; sourceTree = "<group>"; };
+		3F1B3F57296345B1008D8748 /* SeminarStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SeminarStore.swift; path = "../../../../../../Downloads/big-project-c-admin-ipados-230103_Scan_changhwi/big_project_c_admin_ipados/big_project_c_admin_ipados/ViewModel/SeminarStore.swift"; sourceTree = "<group>"; };
+		3F1B3F58296345B1008D8748 /* UserStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserStore.swift; path = "../../../../../../Downloads/big-project-c-admin-ipados-230103_Scan_changhwi/big_project_c_admin_ipados/big_project_c_admin_ipados/ViewModel/UserStore.swift"; sourceTree = "<group>"; };
+		3F1B3F59296345B1008D8748 /* EuniStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EuniStore.swift; path = "../../../../../../Downloads/big-project-c-admin-ipados-230103_Scan_changhwi/big_project_c_admin_ipados/big_project_c_admin_ipados/ViewModel/EuniStore.swift"; sourceTree = "<group>"; };
+		3F1B3F5A296345B1008D8748 /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewModel.swift; path = "../../../../../../Downloads/big-project-c-admin-ipados-230103_Scan_changhwi/big_project_c_admin_ipados/big_project_c_admin_ipados/ViewModel/LoginViewModel.swift"; sourceTree = "<group>"; };
+		3F1B3F6129634651008D8748 /* EditTestView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTestView.swift; sourceTree = "<group>"; };
 		3FA17BBC296292F60081D287 /* EditSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSession.swift; sourceTree = "<group>"; };
 		3FA7AAF4295BDB56002C4CB1 /* Seminar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Seminar.swift; sourceTree = "<group>"; };
-		3FA7AAF6295BDB61002C4CB1 /* SeminarStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeminarStore.swift; sourceTree = "<group>"; };
-		7C6325B4295AF30500896A47 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		7C6325B6295AF48F00896A47 /* AddSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSession.swift; sourceTree = "<group>"; };
 		7C6325B8295AF6D300896A47 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		7C6325BD295AF6FC00896A47 /* UserStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserStore.swift; sourceTree = "<group>"; };
-		7C6325BE295AF6FC00896A47 /* QuestionStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionStore.swift; sourceTree = "<group>"; };
-		7C6325BF295AF6FC00896A47 /* AttendanceStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttendanceStore.swift; sourceTree = "<group>"; };
-		A5AD9392295C233E008A28BE /* ScanQRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanQRView.swift; sourceTree = "<group>"; };
 		A5AD9394295C2379008A28BE /* CameraScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraScanner.swift; sourceTree = "<group>"; };
 		A5AD9396295C23A0008A28BE /* CameraScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraScannerViewController.swift; sourceTree = "<group>"; };
 		EE08C248295AB8E2008D590C /* EmptyDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyDetailView.swift; sourceTree = "<group>"; };
 		EE08C24A295ACCD1008D590C /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		EE2AC20D295C074B0046853B /* SessionDetailUserList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDetailUserList.swift; sourceTree = "<group>"; };
-		EE2AC20F295C43E40046853B /* MemberListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberListView.swift; sourceTree = "<group>"; };
 		EE5265DF295AD0E000FCA8BA /* EuniModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EuniModel.swift; sourceTree = "<group>"; };
-		EE5265E1295AD0EB00FCA8BA /* EuniStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EuniStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,12 +134,14 @@
 				EE08C24A295ACCD1008D590C /* Color.swift */,
 				3FA17BBC296292F60081D287 /* EditSession.swift */,
 				EE08C248295AB8E2008D590C /* EmptyDetailView.swift */,
-				03A6288E295AA96700167DB5 /* GeneralView.swift */,
 				03A6288C295AA95500167DB5 /* LoginView.swift */,
-				EE2AC20F295C43E40046853B /* MemberListView.swift */,
-				A5AD9392295C233E008A28BE /* ScanQRView.swift */,
+				3F1B3F4F29634568008D8748 /* MemberListView.swift */,
 				EE2AC20D295C074B0046853B /* SessionDetailUserList.swift */,
+				3F1B3F512963458C008D8748 /* DashBoardView.swift */,
+				3F1B3F5329634591008D8748 /* ChartShape.swift */,
+				03A6288E295AA96700167DB5 /* GeneralView.swift */,
 				03A62893295AA9C400167DB5 /* SessionDetailView.swift */,
+				3F1B3F6129634651008D8748 /* EditTestView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -143,12 +149,12 @@
 		EE08C24C295AD068008D590C /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				EE5265E1295AD0EB00FCA8BA /* EuniStore.swift */,
-				7C6325B4295AF30500896A47 /* LoginViewModel.swift */,
-				7C6325BF295AF6FC00896A47 /* AttendanceStore.swift */,
-				7C6325BE295AF6FC00896A47 /* QuestionStore.swift */,
-				3FA7AAF6295BDB61002C4CB1 /* SeminarStore.swift */,
-				7C6325BD295AF6FC00896A47 /* UserStore.swift */,
+				3F1B3F55296345B1008D8748 /* AttendanceStore.swift */,
+				3F1B3F59296345B1008D8748 /* EuniStore.swift */,
+				3F1B3F5A296345B1008D8748 /* LoginViewModel.swift */,
+				3F1B3F56296345B1008D8748 /* QuestionStore.swift */,
+				3F1B3F57296345B1008D8748 /* SeminarStore.swift */,
+				3F1B3F58296345B1008D8748 /* UserStore.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -242,27 +248,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A5AD9393295C233E008A28BE /* ScanQRView.swift in Sources */,
 				03A6288D295AA95500167DB5 /* LoginView.swift in Sources */,
+				3F1B3F6229634651008D8748 /* EditTestView.swift in Sources */,
 				03A6288F295AA96700167DB5 /* GeneralView.swift in Sources */,
-				7C6325C2295AF6FC00896A47 /* QuestionStore.swift in Sources */,
-				7C6325C3295AF6FC00896A47 /* AttendanceStore.swift in Sources */,
+				3F1B3F5C296345B1008D8748 /* QuestionStore.swift in Sources */,
+				3F1B3F5E296345B1008D8748 /* UserStore.swift in Sources */,
+				3F1B3F5D296345B1008D8748 /* SeminarStore.swift in Sources */,
+				3F1B3F5B296345B1008D8748 /* AttendanceStore.swift in Sources */,
 				3FA17BBD296292F60081D287 /* EditSession.swift in Sources */,
+				3F1B3F5029634568008D8748 /* MemberListView.swift in Sources */,
 				03A62875295AA6AA00167DB5 /* ContentView.swift in Sources */,
-				EE2AC210295C43E40046853B /* MemberListView.swift in Sources */,
+				3F1B3F5429634591008D8748 /* ChartShape.swift in Sources */,
 				EE2AC20E295C074B0046853B /* SessionDetailUserList.swift in Sources */,
 				7C6325B7295AF48F00896A47 /* AddSession.swift in Sources */,
+				3F1B3F522963458C008D8748 /* DashBoardView.swift in Sources */,
 				03A62894295AA9C400167DB5 /* SessionDetailView.swift in Sources */,
 				3FA7AAF5295BDB56002C4CB1 /* Seminar.swift in Sources */,
-				7C6325C1295AF6FC00896A47 /* UserStore.swift in Sources */,
+				3F1B3F5F296345B1008D8748 /* EuniStore.swift in Sources */,
+				3F1B3F60296345B1008D8748 /* LoginViewModel.swift in Sources */,
 				EE08C24B295ACCD1008D590C /* Color.swift in Sources */,
-				3FA7AAF7295BDB61002C4CB1 /* SeminarStore.swift in Sources */,
 				EE08C249295AB8E2008D590C /* EmptyDetailView.swift in Sources */,
 				EE5265E0295AD0E000FCA8BA /* EuniModel.swift in Sources */,
 				A5AD9395295C2379008A28BE /* CameraScanner.swift in Sources */,
 				7C6325BA295AF6D300896A47 /* User.swift in Sources */,
-				7C6325B5295AF30500896A47 /* LoginViewModel.swift in Sources */,
-				EE5265E2295AD0EB00FCA8BA /* EuniStore.swift in Sources */,
 				A5AD9397295C23A0008A28BE /* CameraScannerViewController.swift in Sources */,
 				03A62873295AA6AA00167DB5 /* big_project_c_admin_ipadosApp.swift in Sources */,
 			);

@@ -1,4 +1,4 @@
-//
+///
 //  EuniModel.swift
 //  big_project_c_admin_ipados
 //
@@ -15,4 +15,5 @@ struct Euni: Identifiable, Hashable {
     let location: String
     let QnA: [String]
 }
+
 

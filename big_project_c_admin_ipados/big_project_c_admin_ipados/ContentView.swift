@@ -13,7 +13,6 @@ struct ContentView: View {
     @State private var tabSelection: Int = 2
     var body: some View {
         if userViewModel.currentUser != nil {
-            
             TabView(selection: $tabSelection, content: {
                 EmptyDetailView()
                     .tabItem {
@@ -34,7 +33,6 @@ struct ContentView: View {
                     .tag(3)
                 
             })
-            
         } else {
             LoginView()
         }

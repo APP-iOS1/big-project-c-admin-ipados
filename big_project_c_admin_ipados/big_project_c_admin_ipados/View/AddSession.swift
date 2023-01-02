@@ -70,7 +70,7 @@ struct AddSessionView: View {
                 
                 VStack(alignment: .leading, spacing: 80) {
                     
-                    // MARK: - 세미나 기본정보 타이틀
+                    // MARK: - 세미나 기본정보 제목 및 닫기(Dismiss) 버튼
                     VStack(alignment: .leading) {
                         HStack() {
                             Text("세미나 기본정보")
@@ -92,37 +92,39 @@ struct AddSessionView: View {
                             .cornerRadius(10)
                         }
                     }
-            
                     
-                    // 세미나 기본정보
                     
+                    // MARK: - 세미나 기본정보 타이틀
                     VStack (alignment: .leading) {
-                        Text("세미나 타이틀")
+                        Text("세미나 제목")
                             .font(.title2)
                             .fontWeight(.bold)
                         
-                        TextField("타이틀을 입력해주세요.", text: $name)
+                        HStack(spacing: 50) {
+                            Text("제목을 입력해주세요")
+                                .font(.callout)
+                            
+                            TextField("제목 및 부제목", text: $name)
+                        }
                     }
                     
-                    
-                    VStack (alignment: .leading)  {
+                    //MARK: - 이미지 URL
+                    VStack (alignment: .leading) {
                         Text("대표 이미지")
                             .font(.title2)
                             .fontWeight(.bold)
                         
-                        HStack {
-                            HStack{
-                                TextField("이미지 URL을 작성해주세요.", text: $image)
-                            }
+                        HStack(spacing: 50) {
+                            Text("이미지 URL을 입력해주세요")
+                                .font(.callout)
                             
-                            HStack {
-                                AsyncImage(url: URL(string: image), transaction: transaction, content: imageView)
-                                    .frame(width: 100, height: 100)
-                                
-                            }
+                            TextField("URL 주소", text: $image)
+                            
+                            AsyncImage(url: URL(string: image), transaction: transaction, content: imageView)
+                                .frame(width: 100, height: 100)
+                            
                         }
                     }
-
                     
                     
                     //MARK: - datePicker
@@ -131,48 +133,51 @@ struct AddSessionView: View {
                         Text("일정")
                             .font(.title2)
                             .fontWeight(.bold)
-   
-                        HStack {
+                        
+                        HStack(spacing: 50) {
                             //TODO: - 날짜, 시간 DatePicker를 아이콘으로 만들고, 해당 값을 TextLabel로 작성되도록 하기
                             HStack {
-                                Image(systemName: "calendar.circle")
-                                Text("날짜")
-                                DatePicker(selection: $date, displayedComponents: .date) {
-                                    Text("date")
+                                HStack {
+                                    Image(systemName: "calendar.circle")
+                                    Text("날짜")
                                 }
-                                Text("\(date, formatter: dateFormatter)")
+                                DatePicker(selection: $date, displayedComponents: .date) {
+                                    Text("\(date, formatter: dateFormatter)")
+                                }
                             }
                             .labelsHidden()
                             
-                            Divider()
                             
+                            Spacer()
                             
                             HStack {
+                                HStack {
+                                    Image(systemName: "clock")
+                                    Text("시작시간")
+                                    TextField("입력", text: $startingTime)
+                                }
                                 
-                                Image(systemName: "clock")
-                                Text("시작시간")
-                                TextField("시작.", text: $startingTime)
-                                
-                                Spacer()
-                                
-                                Text("종료시간")
-                                TextField("종료.", text: $endingTime)
+                                HStack {
+                                    Text("종료시간")
+                                    TextField("입력", text: $endingTime)
+                                }
                             }
                         }
                     }
                     
-
+                    
                     //MARK: - categoryPicker
                     VStack(alignment: .leading) {
-                        
-                        Text("유형")
-                            .font(.title2)
-                            .fontWeight(.bold)
+                
+                            Text("유형")
+                                .font(.title2)
+                                .fontWeight(.bold)
+                  
                         
                         HStack(spacing: 50) {
                             Text("세미나 유형을 선택해주세요")
                                 .font(.callout)
-
+                            
                             Picker("세미나 유형을 선택해주세요", selection: $selectedCategory) {
                                 ForEach(category, id: \.self) {
                                     Text($0)
@@ -181,133 +186,133 @@ struct AddSessionView: View {
                         }
                     }
                     
-         
                     
-                    // MARK: - PlacePicker
+                    // MARK: - Place
                     VStack(alignment: .leading) {
                         
-                        Text("장소")
-                            .font(.title2)
-                            .fontWeight(.bold)
+                            Text("장소")
+                                .font(.title2)
+                                .fontWeight(.bold)
+                     
                         
                         HStack(spacing: 50) {
-                            Text("장소를 입력해 주세요")
+                            Text("장소를 입력해주세요")
                                 .font(.callout)
                             
                             TextField("세부장소", text: $location)
                             
-                            // TODO: - 웹뷰 혹은 URL ? -> 내부 협의 필요
-                            Text("장소URL")
+                            Text("장소 URL을 입력해주세요")
                                 .font(.callout)
-
+                            
                             TextField("주소", text: $loactionUrl)
                         }
                     }
                     
-
                     
                     // MARK: - HostInfo ( 호스트 인포 - 프로필 사진, 강사소개)
-                
-                    
                     VStack (alignment: .leading) {
                         Text("강사 소개")
                             .font(.title2)
                             .fontWeight(.bold)
                         
-                        HStack {
-                            TextField("이미지 URL을 작성해주세요.", text: $host)
+                        HStack(spacing: 50) {
+                            Text("프로필 이미지 URL을 입력해주세요")
+                                .font(.callout)
+                            
+                            TextField("URL 주소", text: $host)
+                            
                             AsyncImage(url: URL(string: host), transaction: transaction, content: imageView)
                                 .frame(width: 100, height: 100)
                             
                         }
                         
                         VStack(alignment: .leading) {
+                            
+                            Text("소개글을 입력해주세요")
+                                .font(.callout)
+                                .foregroundColor(Color.gray)
                             TextEditor(text: $hostIntroduce)
                                 .padding()
                                 .background(Color(.secondarySystemBackground))
                                 .frame(height: 150)
                             
-                            if hostIntroduce == "" {
-                                Text("내용을 입력 해주세요.")
-                                    .opacity(0.5)
-                                    .offset(x: 350, y: -95)
-                            }
                         }
                     }
                     
-
+                    
                     
                     // MARK: - 세미나 상세내용
-                    VStack {
-                        VStack(alignment: .leading) {
-                            Text("세미나 상세 내용")
-                                .font(.title2)
-                                .fontWeight(.bold)
-                            
-                                TextEditor(text: $seminarDescription)
-                                    .padding()
-                                    .background(Color(.secondarySystemBackground))
-                                    .frame(height: 300)
-                                
-                                if seminarDescription == "" {
-                                    Text("내용을 입력 해주세요.")
-                                        .opacity(0.5)
-                                        .offset(x: 350, y: -160)
-                                }
-                         
-                        }
-                    }
-                        
-                        // MARK: - 상세 커리큘럼
-                    VStack {
-                        VStack(alignment: .leading) {
-                            VStack(alignment: .leading) {
-                                Text("상세 커리큘럼")
-                                    .font(.title2)
-                                    .fontWeight(.bold)
-                                
-                                TextEditor(text: $seminarCurriculum)
-                                    .padding()
-                                    .background(Color(.secondarySystemBackground))
-                                    .frame(height: 300)
-                                
-                                if seminarCurriculum == "" {
-                                    Text("내용을 입력 해주세요.")
-                                        .opacity(0.5)
-                                        .offset(x: 350, y: -160)
-                                }
-                            }
-                        }
-                    
-                       
-                        
-                        
-                        // MARK: - 세미나 등록하기 버튼 추가 (데이터)
-                        VStack(alignment: .center) {
-                            Button {
-                                seminar.addSeminar(seminar: Seminar(id: UUID().uuidString, image: [image], name: name, date: date, startingTime: startingTime, endingTime: endingTime, category: selectedCategory, location: location, locationUrl: loactionUrl, host: host, hostIntroduction: hostIntroduce, seminarDescription: seminarDescription, seminarCurriculum: seminarCurriculum))
-                                dismiss()
-                                
-                            } label: {
-                                Text("세미나 등록하기")
-                                    .foregroundColor(.white)
-                                    .padding()
-                                // 등록하기
-                            }
-                            .font(.title3)
+                    VStack(alignment: .leading) {
+                        Text("세미나 상세 내용")
+                            .font(.title2)
                             .fontWeight(.bold)
-                            .foregroundColor(.black)
-                            .background {
-                                Color.accentColor
-                            }
-                            .cornerRadius(10)
+                        Spacer()
+                        VStack(alignment: .leading) {
+                            Text("구체적인 내용을 입력해주세요")
+                                .font(.callout)
+                                .foregroundColor(Color.gray)
+                            TextEditor(text: $seminarDescription)
+                                .padding()
+                                .background(Color(.secondarySystemBackground))
+                                .frame(height: 300)
+                        }
+                        
+                    }
+                    
+                    
+                    // MARK: - 상세 커리큘럼
+                    VStack(alignment: .leading) {
+                        Text("상세 커리큘럼")
+                            .font(.title2)
+                            .fontWeight(.bold)
+                        
+                        VStack(alignment: .leading) {
+                            Text("세부 커리큘럼을 입력해주세요")
+                                .font(.callout)
+                                .foregroundColor(Color.gray)
+                            
+                            TextEditor(text: $seminarCurriculum)
+                                .padding()
+                                .background(Color(.secondarySystemBackground))
+                                .frame(height: 300)
+                            
                             
                         }
                     }
+                    
+                    
+                    
+                    
+                    // MARK: - 세미나 등록하기 버튼 추가 (데이터)
+                    VStack(alignment: .trailing) {
+                        Button {
+                            seminar.addSeminar(seminar: Seminar(id: UUID().uuidString, image: [image], name: name, date: date, startingTime: startingTime, endingTime: endingTime, category: selectedCategory, location: location, locationUrl: loactionUrl, host: host, hostIntroduction: hostIntroduce, seminarDescription: seminarDescription, seminarCurriculum: seminarCurriculum))
+
+                            
+                            dismiss()
+                            
+                        } label: {
+                            Text("세미나 등록하기")
+                                .foregroundColor(.white)
+                                .padding()
+                            // 등록하기
+                        }
+                        .font(.title3)
+                        .fontWeight(.bold)
+                        .foregroundColor(.black)
+                        .background {
+                            Color.accentColor
+                        }
+                        .cornerRadius(10)
+                        
+                    }
+                    
+                    
                 }
+            
             }
         }
-        .padding(.all, 50)
+        .padding()
     }
     
     //MARK: - Async image를 나타내는 비동기 메서드

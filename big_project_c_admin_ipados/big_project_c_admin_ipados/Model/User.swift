@@ -1,4 +1,4 @@
-//
+///
 //  Model.swift
 //  Big_Project_C_Customer
 //
@@ -15,6 +15,9 @@ struct User : Codable, Identifiable {
     var isAdmin : Bool
     var uid : String
 }
+
+
+
 
 
 
