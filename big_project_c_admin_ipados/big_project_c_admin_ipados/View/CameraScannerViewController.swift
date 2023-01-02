@@ -48,12 +48,10 @@ struct CameraScannerViewController: UIViewControllerRepresentable {
         func dataScanner(_ dataScanner: DataScannerViewController, didTapOn item: RecognizedItem) {
             switch item {
             case .barcode(let barcode):
-
                 let details = barcode.payloadStringValue?.components(separatedBy: "\n") ?? ["id", "userUid", "userNickname"]
                 parent.scanIdResult = details[0] //id
-                
-                parent.scanUserUidResult = details[1]
-                parent.scanUserNickNameResult = details[2]
+//                parent.scanUserUidResult = details[1]
+                parent.scanUserNickNameResult = details[1]
                 print("barcode: \(barcode.payloadStringValue ?? "알 수 없음")")
                     dataScanner.stopScanning()
                     dataScanner.dismiss(animated: true)

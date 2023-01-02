@@ -14,20 +14,20 @@ import Firebase
 class AttendanceStore : ObservableObject {
     // 참석자 배열
     @Published var attendanceUserList : [Attendance] = []
-    
+        
     let database = Firestore.firestore()
     
-    func fetchAttendance() {
+    func fetchAttendance(seminarID : String) {
         attendanceUserList.removeAll()
-        database.collection("Attendance").getDocuments { (snapshot, error) in
+        database.collection("Seminar").document("\(seminarID)").collection("Attendance").getDocuments { (snapshot, error) in
             if let snapshot {
                 for document in snapshot.documents {
                     let docData = document.data()
-                    let id : String = document.documentID
-                    let uid: String = docData["uid"] as? String ?? ""
+//                    let id : String = document.documentID
+                    let id: String = docData["id"] as? String ?? ""
                     let userNickName: String = docData["userNickName"] as? String ?? ""
                     
-                    let attendance = Attendance(id: id, uid: uid, userNickname: userNickName)
+                    let attendance = Attendance(id: id, userNickname: userNickName)
                     
                     self.attendanceUserList.append(attendance)
                 }
@@ -37,16 +37,15 @@ class AttendanceStore : ObservableObject {
         }
     }
     
-    func addAttendance(attendance: Attendance) {
-            database.collection("Attendance")
+    func addAttendance(seminarID : String,attendance: Attendance) {
+        database.collection("Seminar").document("\(seminarID)").collection("Attendance")
             .document(attendance.id)
                 .setData(["id": attendance.id,
-                          "uid": attendance.uid,
                           "userNickName": attendance.userNickname,
                          ])
 
             //FireStore Data를 READ 해오는 함수 호출
-        fetchAttendance()
+        fetchAttendance(seminarID: seminarID)
         }
     
 }

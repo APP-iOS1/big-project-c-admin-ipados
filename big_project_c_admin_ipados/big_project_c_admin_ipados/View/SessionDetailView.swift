@@ -150,12 +150,13 @@ struct SessionDetailView: View {
                 
                 
                 // MARK: -View : 오른쪽 사이드 유저 리스트
-                SessionDetailUserList()
+//                SessionDetailUserList(seminarID: seminarId)
+                SessionDetailUserList(selectedContent: selectedContent)
                     .frame(width: geo.size.width/4)
                     .padding(.trailing, 20)
             }
             .sheet(isPresented: $showCameraScannerView) {
-                            CameraScanner(startScanning: $showCameraScannerView, scanIdResult: $scanIdResult, scanUserUidResult: $scanUserUidResult, scanUserNickname: $scanUserNickNameResult)
+                CameraScanner(startScanning: $showCameraScannerView, scanIdResult: $scanIdResult, scanUserUidResult: $scanUserUidResult, scanUserNickname: $scanUserNickNameResult, seminarID: seminarId ?? "")
                         }
             .alert("스캐너 사용불가", isPresented: $showDeviceNotCapacityAlert, actions: {})
         }

@@ -12,6 +12,7 @@ struct GeneralView: View {
     @ObservedObject var seminarInfo: SeminarStore = SeminarStore()
     
     @State private var selectedCategoryId: Seminar.ID?
+//    @State private var selectedCategoryIdTest : Seminar.ID
     @State private var isShowingAddSessionView: Bool = false
 
     var body: some View {

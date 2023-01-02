@@ -14,6 +14,8 @@ struct CameraScanner: View {
     @Binding var scanIdResult : String
     @Binding var scanUserUidResult : String
     @Binding var scanUserNickname : String
+//    @Binding var seminarID : String
+    var seminarID : String
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var attendanceStore : AttendanceStore
     var body: some View {
@@ -32,14 +34,14 @@ struct CameraScanner: View {
                 .interactiveDismissDisabled(true)
                 .onDisappear {
                     print("dd")
-                    attendanceStore.addAttendance(attendance: Attendance(id: scanIdResult, uid: scanUserUidResult, userNickname: scanUserNickname))
+                    attendanceStore.addAttendance(seminarID: seminarID, attendance: Attendance(id: scanIdResult, userNickname: scanUserNickname))
                 }
         }
     }
 }
 
-struct CameraScanner_Previews: PreviewProvider {
-    static var previews: some View {
-        CameraScanner(startScanning: .constant(true), scanIdResult: .constant(""), scanUserUidResult: .constant(""), scanUserNickname: .constant(""))
-    }
-}
+//struct CameraScanner_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CameraScanner(startScanning: .constant(true), scanIdResult: .constant(""), scanUserUidResult: .constant(""), scanUserNickname: .constant(""), semibarID: <#Binding<String>#>)
+//    }
+//}
