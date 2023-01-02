@@ -12,7 +12,6 @@ import VisionKit
 struct CameraScannerViewController: UIViewControllerRepresentable {
     @Binding var startScanning: Bool
     @Binding var scanIdResult : String
-    @Binding var scanUserUidResult : String
     @Binding var scanUserNickNameResult : String
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
@@ -50,7 +49,6 @@ struct CameraScannerViewController: UIViewControllerRepresentable {
             case .barcode(let barcode):
                 let details = barcode.payloadStringValue?.components(separatedBy: "\n") ?? ["id", "userUid", "userNickname"]
                 parent.scanIdResult = details[0] //id
-//                parent.scanUserUidResult = details[1]
                 parent.scanUserNickNameResult = details[1]
                 print("barcode: \(barcode.payloadStringValue ?? "알 수 없음")")
                     dataScanner.stopScanning()

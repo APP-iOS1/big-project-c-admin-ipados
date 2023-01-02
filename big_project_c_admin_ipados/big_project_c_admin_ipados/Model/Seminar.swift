@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Seminar : Codable, Identifiable {
+struct Seminar : Codable, Identifiable, Equatable {
     var id : String // 자동 생성
     var image : [String] // 이미지 배열
     var name : String

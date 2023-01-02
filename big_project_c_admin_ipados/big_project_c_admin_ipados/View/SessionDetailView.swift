@@ -12,9 +12,9 @@ struct SessionDetailView: View {
     @State private var showCameraScannerView = false
     @State private var isDeviceCapacity = false
     @State private var showDeviceNotCapacityAlert = false
-    @State private var scanIdResult : String = ""
-    @State private var scanUserUidResult : String = ""
-    @State private var scanUserNickNameResult : String = ""
+//    @State private var scanIdResult : String = ""
+//    @State private var scanUserUidResult : String = ""
+//    @State private var scanUserNickNameResult : String = ""
     @ObservedObject var seminarInfo: SeminarStore
     @EnvironmentObject var attendanceStore : AttendanceStore
 //    @ObservedObject var questionInfo: QuestionStore
@@ -156,7 +156,7 @@ struct SessionDetailView: View {
                     .padding(.trailing, 20)
             }
             .sheet(isPresented: $showCameraScannerView) {
-                CameraScanner(startScanning: $showCameraScannerView, scanIdResult: $scanIdResult, scanUserUidResult: $scanUserUidResult, scanUserNickname: $scanUserNickNameResult, seminarID: seminarId ?? "")
+                CameraScanner(startScanning: $showCameraScannerView, seminarID: selectedContent?.id ?? "")
                         }
             .alert("스캐너 사용불가", isPresented: $showDeviceNotCapacityAlert, actions: {})
         }

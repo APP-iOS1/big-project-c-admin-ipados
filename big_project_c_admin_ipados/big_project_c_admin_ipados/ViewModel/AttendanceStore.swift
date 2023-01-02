@@ -32,9 +32,8 @@ class AttendanceStore : ObservableObject {
                     self.attendanceUserList.append(attendance)
                 }
             }
-            print("appendAttendanceUserLIst")
-            dump(self.attendanceUserList)
         }
+       
     }
     
     func addAttendance(seminarID : String,attendance: Attendance) {

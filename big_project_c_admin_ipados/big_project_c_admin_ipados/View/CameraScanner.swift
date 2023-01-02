@@ -11,9 +11,8 @@ import SwiftUI
 struct CameraScanner: View {
     @Binding var startScanning: Bool
 
-    @Binding var scanIdResult : String
-    @Binding var scanUserUidResult : String
-    @Binding var scanUserNickname : String
+    @State var scanIdResult : String = ""
+    @State var scanUserNickname : String = ""
 //    @Binding var seminarID : String
     var seminarID : String
     @Environment(\.presentationMode) var presentationMode
@@ -21,7 +20,7 @@ struct CameraScanner: View {
     var body: some View {
         NavigationView {
 
-            CameraScannerViewController(startScanning: $startScanning, scanIdResult: $scanIdResult, scanUserUidResult: $scanUserUidResult, scanUserNickNameResult: $scanUserNickname)
+            CameraScannerViewController(startScanning: $startScanning, scanIdResult: $scanIdResult, scanUserNickNameResult: $scanUserNickname)
                 .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {
                         Button {
@@ -32,8 +31,12 @@ struct CameraScanner: View {
                     }
                 }
                 .interactiveDismissDisabled(true)
+                .onAppear {
+                    print("herhehrehrehrherhehrherhehrehr")
+                    print(seminarID)
+                }
                 .onDisappear {
-                    print("dd")
+                    print(seminarID)
                     attendanceStore.addAttendance(seminarID: seminarID, attendance: Attendance(id: scanIdResult, userNickname: scanUserNickname))
                 }
         }
