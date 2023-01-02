@@ -52,56 +52,60 @@ struct SessionDetailView: View {
         GeometryReader { geo in
             HStack {
                 VStack(alignment: .leading) {
-                    Text(selectedContent?.name ?? "")
-                        .font(.title)
-                        .fontWeight(.bold)
+                    
                     HStack {
-                        HStack {
-                            Image(systemName: "calendar")
-                            Text(selectedContent?.createdDate ?? "")
-                                .font(.subheadline)
-                                .padding(.trailing, 5)
-                            Image(systemName: "mappin.and.ellipse")
-                            Text(selectedContent?.location ?? "")
-                                .font(.subheadline)
-                        }
+                        Text(selectedContent?.name ?? "강의 제목")
+                            .font(.title)
+                            .fontWeight(.bold)
                         
                         Spacer()
                         
-                        HStack {
-                            Button {
-                                // TODO: 내용 수정 기능 구현
-                                clickedEditButton.toggle()
-                            } label: {
-                                Text("세미나 내용 수정하기")
-                                    .frame(width: 150)
-                                    .padding(12)
-                                    .fontWeight(.bold)
-                                    .foregroundColor(Color.white)
-                                    .background(Color.accentColor)
-                                    .cornerRadius(15)
-                            }
-                            
-                            Button {
-                                clickedQRButton.toggle()
-                            } label: {
-                                Text("QR코드")
-                                    .frame(width: 150)
-                                    .padding(12)
-                                    .fontWeight(.bold)
-                                    .foregroundColor(Color.white)
-                                    .background(Color.accentColor)
-                                    .cornerRadius(15)
-                            }
-
+                        //  MARK: -View : 수정 버튼
+                        // TODO: EditSession 연결
+                        Button {
+                            clickedEditButton.toggle()
+                        } label: {
+                            Text("세션 수정하기")
+                                .padding(.vertical, 13)
+                                .padding(.trailing, 20)
+                                .fontWeight(.semibold)
+                                .foregroundColor(Color.accentColor)
+                                .cornerRadius(15)
                         }
                     }
+                    .frame(minHeight: 50)
+                   
+                    HStack {
+                        Image(systemName: "calendar")
+                        Text(selectedContent?.createdDate ?? "2023-01-01")
+                            .font(.subheadline)
+                            .padding(.trailing, 15)
+                        Image(systemName: "mappin.and.ellipse")
+                        Text(selectedContent?.location ?? "멋쟁이사자처럼 광화문 오피스")
+                            .font(.subheadline)
+
+                        Spacer()
+
+                        Button {
+                            clickedQRButton.toggle()
+                        } label: {
+                            Text("QR코드")
+                                .padding(.vertical, 13)
+                                .padding(.horizontal, 40)
+                                .fontWeight(.bold)
+                                .foregroundColor(Color.white)
+                                .background(Color.accentColor)
+                                .cornerRadius(15)
+                        }
+                    }
+                    .frame(minHeight: 30)
                     
                     Divider()
                         .padding(.vertical, 20)
                     
 
                     // MARK: -View : Q&A 리스트 관리
+                    // TODO: Question 데이터 연결 (댓글 내용, 시간대 띄워주기)
                     Text("받은 Q&A")
                         .font(.largeTitle)
                         .fontWeight(.bold)
@@ -116,9 +120,9 @@ struct SessionDetailView: View {
                                     .padding(
                                         EdgeInsets(
                                             top: 10,
-                                            leading: 0,
+                                            leading: 10,
                                             bottom: 10,
-                                            trailing: 0
+                                            trailing: 10
                                         )
                                     )
                                 
@@ -126,7 +130,7 @@ struct SessionDetailView: View {
                             .listRowSeparator(.hidden)
                     }
                     .scrollContentBackground(.hidden)
-                    .listStyle(InsetGroupedListStyle())
+                    .listStyle(PlainListStyle())
                     .padding(.leading, -13)
                     
                     
@@ -134,11 +138,12 @@ struct SessionDetailView: View {
                     Spacer()
                 }
                 .padding(.leading, 40)
+                .padding(.trailing, 10)
                 
                 
                 // MARK: -View : 오른쪽 사이드 유저 리스트
                 SessionDetailUserList()
-                    .frame(width: geo.size.width/4)
+                    .frame(width: geo.size.width/4.5)
                     .padding(.trailing, 20)
             }
             .sheet(isPresented: $clickedQRButton) {
