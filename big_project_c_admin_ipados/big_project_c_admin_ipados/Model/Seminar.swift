@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Seminar : Codable, Identifiable {
+struct Seminar : Codable, Identifiable, Equatable {
     var id : String // 자동 생성
     var image : [String] // 이미지 배열
     var name : String
@@ -39,8 +39,8 @@ struct Question : Codable, Identifiable {
     var question : String
 }
 
-struct Attendance : Codable, Identifiable {
+struct Attendance : Codable, Identifiable, Hashable {
     var id : String
-    var userUid : String
+//    var uid : String
     var userNickname : String
 }

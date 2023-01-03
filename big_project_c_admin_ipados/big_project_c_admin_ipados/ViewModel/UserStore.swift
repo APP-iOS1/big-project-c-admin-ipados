@@ -17,7 +17,7 @@ class UserStore : ObservableObject {
     @Published var userList : [User] = []
     @Published var isLogin = false
     
-    
+    var user: User?
     // 로그인 상태 확인
     @Published var currentUser: Firebase.User?
     let database = Firestore.firestore()
@@ -76,6 +76,7 @@ class UserStore : ObservableObject {
             else {
                 //성공
                 completion(200)
+
                 self.currentUser = result?.user
             }
 //            if let error = error {

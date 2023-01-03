@@ -14,10 +14,43 @@ import Firebase
 class SeminarStore : ObservableObject {
     // 세미나 배열
     @Published var seminarList : [Seminar] = []
+
+    @Published var seminar : Seminar
     
     let database = Firestore.firestore()
     
+    init() {
+        seminarList = []
+        seminar = Seminar(id: "", image: [], name: "", date: Date(), startingTime: "", endingTime: "", category: "", location: "", locationUrl: "", host: "", hostIntroduction: "", seminarDescription: "", seminarCurriculum: "")
+    }
+    
+    
     // 모든 세미나들을 seminarList에 담아줌
+    func fetchSeminarID(seminarID : String) {
+        seminarList.removeAll()
+        database.collection("Seminar").document("\(seminarID)").getDocument { (snapshot, error) in
+            if let docData = snapshot?.data() {
+                    let id : String = docData["id"] as? String ?? ""
+                    let image: [String] = docData["image"] as? [String] ?? []
+                    let name: String = docData["name"] as? String ?? ""
+                    let date: Date = docData["date"] as? Date ?? Date()
+                    let startingTime: String = docData["startingTime"] as? String ?? ""
+                    let endingTime: String = docData["endingTime"] as? String ?? ""
+                    let category: String = docData["category"] as? String ?? ""
+                    let location: String = docData["location"] as? String ?? ""
+                    let locationUrl: String = docData["locationUrl"] as? String ?? ""
+                    let host: String = docData["host"] as? String ?? ""
+                    let hostIntroduction: String = docData["hostIntroduction"] as? String ?? ""
+                    let seminarDescription: String = docData["seminarDescription"] as? String ?? ""
+                    let seminarCurriculum: String = docData["seminarCurriculum"] as? String ?? ""
+                    
+                    let seminar = Seminar(id: id, image: image, name: name, date: date, startingTime: startingTime, endingTime: endingTime, category: category, location: location, locationUrl: locationUrl, host: host, hostIntroduction: hostIntroduction, seminarDescription: seminarDescription, seminarCurriculum: seminarCurriculum)
+                    
+                    self.seminarList.append(seminar)
+                    print(seminar)
+                }
+        }
+    }
     func fetchSeminar() {
         seminarList.removeAll()
         database.collection("Seminar")
@@ -72,6 +105,29 @@ class SeminarStore : ObservableObject {
             //FireStore Data를 READ 해오는 함수 호출
             fetchSeminar()
         }
+    
+    func editSeminar(seminar: Seminar) {
+            database.collection("Seminar")
+            .document(seminar.id)
+                .updateData(["id": seminar.id,
+                          "image": seminar.image,
+                          "name": seminar.name,
+                          "date": seminar.date,
+                          "startingTime": seminar.startingTime,
+                          "endingTime": seminar.endingTime,
+                          "category": seminar.category,
+                          "location": seminar.location,
+                          "locationUrl": seminar.locationUrl,
+                          "host": seminar.host,
+                          "hostIntroduction": seminar.hostIntroduction,
+                          "seminarDescription": seminar.seminarDescription,
+                          "seminarCurriculum": seminar.seminarCurriculum,
+                         ])
+
+            //FireStore Data를 READ 해오는 함수 호출
+            fetchSeminar()
+        }
+
     
 }
 

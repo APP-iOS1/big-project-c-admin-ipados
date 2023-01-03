@@ -20,6 +20,9 @@
 		03A62894295AA9C400167DB5 /* SessionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A62893295AA9C400167DB5 /* SessionDetailView.swift */; };
 		3F591A482963C66300B4E4C7 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F591A472963C66300B4E4C7 /* SearchBar.swift */; };
 		3FA142492962B9F600892BDC /* MemberListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA142482962B9F600892BDC /* MemberListRow.swift */; };
+		2B0F81E12962C2F40081AB74 /* ChartShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0F81E02962C2F40081AB74 /* ChartShape.swift */; };
+		2B7669F929629628008F939A /* DashBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7669F829629628008F939A /* DashBoardView.swift */; };
+		3FA17BBD296292F60081D287 /* EditSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA17BBC296292F60081D287 /* EditSession.swift */; };
 		3FA7AAF5295BDB56002C4CB1 /* Seminar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA7AAF4295BDB56002C4CB1 /* Seminar.swift */; };
 		3FA7AAF7295BDB61002C4CB1 /* SeminarStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA7AAF6295BDB61002C4CB1 /* SeminarStore.swift */; };
 		7C6325B5295AF30500896A47 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6325B4295AF30500896A47 /* LoginViewModel.swift */; };
@@ -28,9 +31,11 @@
 		7C6325C1295AF6FC00896A47 /* UserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6325BD295AF6FC00896A47 /* UserStore.swift */; };
 		7C6325C2295AF6FC00896A47 /* QuestionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6325BE295AF6FC00896A47 /* QuestionStore.swift */; };
 		7C6325C3295AF6FC00896A47 /* AttendanceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6325BF295AF6FC00896A47 /* AttendanceStore.swift */; };
-		A5AD9393295C233E008A28BE /* ScanQRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AD9392295C233E008A28BE /* ScanQRView.swift */; };
+		A5039BC02963229F00707541 /* EditTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5039BBF2963229F00707541 /* EditTestView.swift */; };
 		A5AD9395295C2379008A28BE /* CameraScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AD9394295C2379008A28BE /* CameraScanner.swift */; };
 		A5AD9397295C23A0008A28BE /* CameraScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AD9396295C23A0008A28BE /* CameraScannerViewController.swift */; };
+		A5D9AF392962D200001DD898 /* GeneralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D9AF382962D200001DD898 /* GeneralView.swift */; };
+		A5D9AF3B2962D239001DD898 /* SessionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D9AF3A2962D239001DD898 /* SessionDetailView.swift */; };
 		EE08C249295AB8E2008D590C /* EmptyDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE08C248295AB8E2008D590C /* EmptyDetailView.swift */; };
 		EE08C24B295ACCD1008D590C /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE08C24A295ACCD1008D590C /* Color.swift */; };
 		EE2AC20E295C074B0046853B /* SessionDetailUserList.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2AC20D295C074B0046853B /* SessionDetailUserList.swift */; };
@@ -51,6 +56,9 @@
 		03A62893295AA9C400167DB5 /* SessionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDetailView.swift; sourceTree = "<group>"; };
 		3F591A472963C66300B4E4C7 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		3FA142482962B9F600892BDC /* MemberListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberListRow.swift; sourceTree = "<group>"; };
+		2B0F81E02962C2F40081AB74 /* ChartShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartShape.swift; sourceTree = "<group>"; };
+		2B7669F829629628008F939A /* DashBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashBoardView.swift; sourceTree = "<group>"; };
+		3FA17BBC296292F60081D287 /* EditSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSession.swift; sourceTree = "<group>"; };
 		3FA7AAF4295BDB56002C4CB1 /* Seminar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Seminar.swift; sourceTree = "<group>"; };
 		3FA7AAF6295BDB61002C4CB1 /* SeminarStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeminarStore.swift; sourceTree = "<group>"; };
 		7C6325B4295AF30500896A47 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -59,9 +67,11 @@
 		7C6325BD295AF6FC00896A47 /* UserStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserStore.swift; sourceTree = "<group>"; };
 		7C6325BE295AF6FC00896A47 /* QuestionStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionStore.swift; sourceTree = "<group>"; };
 		7C6325BF295AF6FC00896A47 /* AttendanceStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttendanceStore.swift; sourceTree = "<group>"; };
-		A5AD9392295C233E008A28BE /* ScanQRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanQRView.swift; sourceTree = "<group>"; };
+		A5039BBF2963229F00707541 /* EditTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTestView.swift; sourceTree = "<group>"; };
 		A5AD9394295C2379008A28BE /* CameraScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraScanner.swift; sourceTree = "<group>"; };
 		A5AD9396295C23A0008A28BE /* CameraScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraScannerViewController.swift; sourceTree = "<group>"; };
+		A5D9AF382962D200001DD898 /* GeneralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralView.swift; sourceTree = "<group>"; };
+		A5D9AF3A2962D239001DD898 /* SessionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDetailView.swift; sourceTree = "<group>"; };
 		EE08C248295AB8E2008D590C /* EmptyDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyDetailView.swift; sourceTree = "<group>"; };
 		EE08C24A295ACCD1008D590C /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		EE2AC20D295C074B0046853B /* SessionDetailUserList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDetailUserList.swift; sourceTree = "<group>"; };
@@ -130,15 +140,19 @@
 				A5AD9394295C2379008A28BE /* CameraScanner.swift */,
 				A5AD9396295C23A0008A28BE /* CameraScannerViewController.swift */,
 				EE08C24A295ACCD1008D590C /* Color.swift */,
+				3FA17BBC296292F60081D287 /* EditSession.swift */,
 				EE08C248295AB8E2008D590C /* EmptyDetailView.swift */,
-				03A6288E295AA96700167DB5 /* GeneralView.swift */,
 				03A6288C295AA95500167DB5 /* LoginView.swift */,
 				3FA142482962B9F600892BDC /* MemberListRow.swift */,
 				EE2AC20F295C43E40046853B /* MemberListView.swift */,
 				3F591A472963C66300B4E4C7 /* SearchBar.swift */,
 				A5AD9392295C233E008A28BE /* ScanQRView.swift */,
 				EE2AC20D295C074B0046853B /* SessionDetailUserList.swift */,
-				03A62893295AA9C400167DB5 /* SessionDetailView.swift */,
+				2B7669F829629628008F939A /* DashBoardView.swift */,
+				2B0F81E02962C2F40081AB74 /* ChartShape.swift */,
+				A5D9AF382962D200001DD898 /* GeneralView.swift */,
+				A5D9AF3A2962D239001DD898 /* SessionDetailView.swift */,
+				A5039BBF2963229F00707541 /* EditTestView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -245,18 +259,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A5AD9393295C233E008A28BE /* ScanQRView.swift in Sources */,
 				03A6288D295AA95500167DB5 /* LoginView.swift in Sources */,
 				3FA142492962B9F600892BDC /* MemberListRow.swift in Sources */,
 				03A6288F295AA96700167DB5 /* GeneralView.swift in Sources */,
+				2B7669F929629628008F939A /* DashBoardView.swift in Sources */,
 				7C6325C2295AF6FC00896A47 /* QuestionStore.swift in Sources */,
 				3F591A482963C66300B4E4C7 /* SearchBar.swift in Sources */,
 				7C6325C3295AF6FC00896A47 /* AttendanceStore.swift in Sources */,
+				A5D9AF3B2962D239001DD898 /* SessionDetailView.swift in Sources */,
+				2B0F81E12962C2F40081AB74 /* ChartShape.swift in Sources */,
+				3FA17BBD296292F60081D287 /* EditSession.swift in Sources */,
 				03A62875295AA6AA00167DB5 /* ContentView.swift in Sources */,
 				EE2AC210295C43E40046853B /* MemberListView.swift in Sources */,
 				EE2AC20E295C074B0046853B /* SessionDetailUserList.swift in Sources */,
+				A5039BC02963229F00707541 /* EditTestView.swift in Sources */,
 				7C6325B7295AF48F00896A47 /* AddSession.swift in Sources */,
-				03A62894295AA9C400167DB5 /* SessionDetailView.swift in Sources */,
 				3FA7AAF5295BDB56002C4CB1 /* Seminar.swift in Sources */,
 				7C6325C1295AF6FC00896A47 /* UserStore.swift in Sources */,
 				EE08C24B295ACCD1008D590C /* Color.swift in Sources */,
@@ -267,6 +284,7 @@
 				7C6325BA295AF6D300896A47 /* User.swift in Sources */,
 				7C6325B5295AF30500896A47 /* LoginViewModel.swift in Sources */,
 				EE5265E2295AD0EB00FCA8BA /* EuniStore.swift in Sources */,
+				A5D9AF392962D200001DD898 /* GeneralView.swift in Sources */,
 				A5AD9397295C23A0008A28BE /* CameraScannerViewController.swift in Sources */,
 				03A62873295AA6AA00167DB5 /* big_project_c_admin_ipadosApp.swift in Sources */,
 			);
@@ -397,15 +415,15 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"big_project_c_admin_ipados/Preview Content\"";
-				DEVELOPMENT_TEAM = K8Z5PJ967K;
+				DEVELOPMENT_TEAM = JB8T59WMFR;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "테킷팅에서 카메라에 접근하고자 합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -431,15 +449,15 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"big_project_c_admin_ipados/Preview Content\"";
-				DEVELOPMENT_TEAM = K8Z5PJ967K;
+				DEVELOPMENT_TEAM = JB8T59WMFR;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "테킷팅에서 카메라에 접근하고자 합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
