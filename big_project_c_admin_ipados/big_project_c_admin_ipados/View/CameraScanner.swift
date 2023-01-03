@@ -33,11 +33,13 @@ struct CameraScanner: View {
                 .interactiveDismissDisabled(true)
                 .onAppear {
                     print("herhehrehrehrherhehrherhehrehr")
-                    print(seminarID)
+                    print(seminarID, "이거")
                 }
                 .onDisappear {
                     print(seminarID)
-                    attendanceStore.addAttendance(seminarID: seminarID, attendance: Attendance(id: scanIdResult, userNickname: scanUserNickname))
+                    if scanIdResult != "" && scanUserNickname != "" {
+                        attendanceStore.addAttendance(seminarID: seminarID, attendance: Attendance(id: scanIdResult, userNickname: scanUserNickname))
+                    }
                 }
         }
     }
