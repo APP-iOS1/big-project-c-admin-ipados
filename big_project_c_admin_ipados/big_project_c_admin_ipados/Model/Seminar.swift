@@ -36,7 +36,7 @@ struct Seminar : Codable, Identifiable, Equatable {
         }
 }
 
-struct Question : Codable, Identifiable {
+struct Question : Codable, Identifiable, Hashable {
     var id : String
     var question : String
 }

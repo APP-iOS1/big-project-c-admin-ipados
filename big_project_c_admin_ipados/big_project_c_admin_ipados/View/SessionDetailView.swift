@@ -15,8 +15,11 @@ struct SessionDetailView: View {
     
     @ObservedObject var seminarStore: SeminarStore
     @EnvironmentObject var attendanceStore : AttendanceStore
-    
-    var seminarId: Seminar.ID?
+    @StateObject var questionStore: QuestionStore = QuestionStore()
+//    @ObservedObject var questionInfo: QuestionStore
+
+//    @Binding var seminarList: Seminar    
+    @Binding var seminarId: Seminar.ID?
     @State private var clickedEditButton: Bool = false
     @State private var clickedQRButton: Bool = false
     
@@ -30,36 +33,122 @@ struct SessionDetailView: View {
             return nil
         }
     }
-    
-    
-    let dummyQuestions: [String] = [
-        "댓글입니다아아아아아아아아아아1",
-        "댓글입니다아아아아아아아아아아2",
-        "댓글입니다아아아아아아아아아아3",
-        "댓글입니다아아아아아아아아아아4",
-        "댓글입니다아아아아아아아아아아1",
-        "댓글입니다아아아아아아아아아아2",
-        "댓글입니다아아아아아아아아아아3",
-        "댓글입니다아아아아아아아아아아1",
-        "댓글입니다아아아아아아아아아아2",
-        "댓글입니다아아아아아아아아아아3",
-        "댓글입니다아아아아아아아아아아1",
-        "댓글입니다아아아아아아아아아아2",
-        "댓글입니다아아아아아아아아아아3",
-        "댓글입니다아아아아아아아아아아1",
-        "댓글입니다아아아아아아아아아아2",
-        "댓글입니다아아아아아아아아아아3",
-        "댓글입니다아아아아아아아아아아1",
-        "댓글입니다아아아아아아아아아아2",
-        "댓글입니다아아아아아아아아아아3"
-    ]
-    
     var body: some View {
         GeometryReader { geo in
             HStack {
                 VStack(alignment: .leading) {
                     
                     HStack {
+                        VStack(alignment: .leading) {
+                            Text(selectedContent?.name ?? "")
+                                .font(.title)
+                                .fontWeight(.bold)
+                            HStack {
+                                HStack {
+                                    Image(systemName: "calendar")
+                                    Text(selectedContent?.createdDate ?? "")
+                                        .font(.subheadline)
+                                        .padding(.trailing, 5)
+                                    Image(systemName: "mappin.and.ellipse")
+                                    Text(selectedContent?.location ?? "")
+                                        .font(.subheadline)
+                                }
+                                
+                                Spacer()
+                                
+                                HStack {
+                                    
+                                        Button {
+                                            // TODO: 내용 수정 기능 구현
+                                            clickedEditButton = true
+                                        } label: {
+                                            Text("세미나 내용 수정하기")
+                                                .frame(width: 150)
+                                                .padding(12)
+                                                .fontWeight(.bold)
+                                                .foregroundColor(Color.white)
+                                                .background(Color.accentColor)
+                                                .cornerRadius(15)
+                                        }
+                                        .fullScreenCover(isPresented: $clickedEditButton) {
+//                                            EditSessionView(seminarInfo: seminarInfo, selectedContent: selectedContent)
+                                            EditTestView(seminarInfo: seminarInfo, seminarID: selectedContent?.id ?? "")
+                                        }
+                                    
+                                    
+                                    Button {
+                                        // TODO: QR코드 연결
+                                        if isDeviceCapacity {
+                                            self.showCameraScannerView = true
+                                        } else {
+                                            self.showDeviceNotCapacityAlert = true
+                                        }
+                                        
+                                    } label: {
+                                        Text("QR코드")
+                                            .frame(width: 150)
+                                            .padding(12)
+                                            .fontWeight(.bold)
+                                            .foregroundColor(Color.white)
+                                            .background(Color.accentColor)
+                                            .cornerRadius(15)
+                                    }
+
+                                }
+                            }
+                            
+                            Divider()
+                                .padding(.vertical, 20)
+                            
+
+                            // MARK: -View : Q&A 리스트 관리
+                            HStack {
+                                Text("받은 Q&A")
+                                    .font(.largeTitle)
+                                    .fontWeight(.bold)
+                                Spacer()
+                                Button {
+                                    questionStore.fetchQuestion(seminarID: seminarId ?? "")
+                                } label: {
+                                    Image(systemName: "arrow.clockwise")
+                                        .foregroundColor(.black)
+                                        .padding(.trailing, 20)
+                                        .font(.title3)
+                                        
+                                }
+
+                            }
+                        
+                            
+                            
+                            List(questionStore.questionList, id:\.self) { question in
+                                Text(question.question)
+                                    .padding()
+                                    .listRowBackground(
+                                        RoundedRectangle(cornerRadius: 10)
+                                            .fill(Color.secondary.opacity(0.15))
+                                            .foregroundColor(.white)
+                                            .padding(
+                                                EdgeInsets(
+                                                    top: 10,
+                                                    leading: 0,
+                                                    bottom: 10,
+                                                    trailing: 0
+                                                )
+                                            )
+
+                                    )
+                                    .listRowSeparator(.hidden)
+                            }
+                            .scrollContentBackground(.hidden)
+                            .listStyle(InsetGroupedListStyle())
+                            .padding(.leading, -13)
+                            .refreshable {
+                                questionStore.fetchQuestion(seminarID: seminarId ?? "")
+                            }
+                            
+
+                            Spacer()
                         Text(selectedContent?.name ?? "강의 제목")
                             .font(.title)
                             .fontWeight(.bold)
@@ -79,8 +168,7 @@ struct SessionDetailView: View {
                                 .cornerRadius(15)
                         }
                         .sheet(isPresented: $clickedEditButton) {
-                            EditSessionView(seminarStore: seminarStore, seminar: selectedContent ?? Seminar(id: "", image: [], name: "", date: Date(), startingTime: "", endingTime: "", category: "", location: "", locationUrl: "", hostName: "", hostImage: "", hostIntroduction: "", seminarDescription: "", seminarCurriculum: ""))
-                        }
+                            EditSessionView(seminarStore: seminarStore, seminar: selectedContent ?? Seminar(id: "", image: [], name: "", date: Date(), startingTime: "", endingTime: "", category: "", location: "", locationUrl: "", hostName: "", hostImage: "", hostIntroduction: "", seminarDescription: "", seminarCurriculum: ""))                        }
                         
                     }
                     
@@ -165,7 +253,13 @@ struct SessionDetailView: View {
         }
         .onAppear {
             isDeviceCapacity = (DataScannerViewController.isSupported && DataScannerViewController.isAvailable)
+            
+            questionStore.fetchQuestion(seminarID: seminarId ?? "")
         }
+        .onChange(of:seminarId) { newValue in
+            questionStore.fetchQuestion(seminarID: newValue ?? "")
+            
+                    }
         .navigationBarTitleDisplayMode(.inline)
     }
 }

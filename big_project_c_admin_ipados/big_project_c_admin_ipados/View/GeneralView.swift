@@ -11,7 +11,7 @@ struct GeneralView: View {
 
     @ObservedObject var seminarInfo: SeminarStore = SeminarStore()
     
-    @State private var selectedCategoryId: Seminar.ID?
+    @State var selectedCategoryId: Seminar.ID?
 //    @State private var selectedCategoryIdTest : Seminar.ID
     @State private var isShowingAddSessionView: Bool = false
 
@@ -51,15 +51,18 @@ struct GeneralView: View {
             }
         }
         detail: {
-            SessionDetailView(seminarStore: seminarInfo, seminarId: selectedCategoryId)
-        }
+            if let selectedCategoryId {
+                SessionDetailView(seminarInfo: seminarInfo, seminarId: $selectedCategoryId)
+                } else {
+                Text("카테고리를 선택해주세요")
+                }
+            }        
 //        .sheet(isPresented: $isShowingAddSessionView) {
 //            AddSessionView(seminar: SeminarStore())
 //        }
         .fullScreenCover(isPresented: $isShowingAddSessionView) {
             AddSessionView(seminarStore: seminarInfo)
         }
-        
     }
 }
 
