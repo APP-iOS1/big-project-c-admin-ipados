@@ -79,7 +79,7 @@ struct SessionDetailView: View {
                                 .cornerRadius(15)
                         }
                         .sheet(isPresented: $clickedEditButton) {
-                            EditSessionView(seminarStore: seminarStore, seminar: selectedContent ?? Seminar(id: "", image: [], name: "", date: Date(), startingTime: "", endingTime: "", category: "", location: "", locationUrl: "", host: "", hostIntroduction: "", seminarDescription: "", seminarCurriculum: ""))
+                            EditSessionView(seminarStore: seminarStore, seminar: selectedContent ?? Seminar(id: "", image: [], name: "", date: Date(), startingTime: "", endingTime: "", category: "", location: "", locationUrl: "", hostName: "", hostImage: "", hostIntroduction: "", seminarDescription: "", seminarCurriculum: ""))
                         }
                         
                     }

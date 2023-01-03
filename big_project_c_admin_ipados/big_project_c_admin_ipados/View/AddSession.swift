@@ -58,7 +58,8 @@ struct AddSessionView: View {
     @State private var loactionUrl: String = ""
     
     // MARK: - host, hostIntroduction (호스트 인포 - 프로필 사진, 강사소개)
-    @State private var host: String = ""
+    @State private var hostName: String = ""
+    @State private var hostImage: String = ""
     @State private var hostIntroduce: String = ""
     @State private var isHostPickerShowing = false
     @State private var selectedHostImage: UIImage?
@@ -356,7 +357,7 @@ struct AddSessionView: View {
                         let id = UUID().uuidString
                         //                                seminar.storeImageToStorage(id: id, selectedImages: selectedImages)
                         
-                        seminarStore.addSeminar(seminar: Seminar(id: id, image: [image], name: name, date: date, startingTime: startingTime, endingTime: endingTime, category: selectedCategory, location: location, locationUrl: loactionUrl, host: host, hostIntroduction: hostIntroduce, seminarDescription: seminarDescription, seminarCurriculum: seminarCurriculum), selectedImages: selectedImages, selectedHostImage: selectedHostImage)
+                        seminarStore.addSeminar(seminar: Seminar(id: id, image: [image], name: name, date: date, startingTime: startingTime, endingTime: endingTime, category: selectedCategory, location: location, locationUrl: loactionUrl, hostName: hostName, hostImage: hostImage, hostIntroduction: hostIntroduce, seminarDescription: seminarDescription, seminarCurriculum: seminarCurriculum), selectedImages: selectedImages, selectedHostImage: selectedHostImage)
                         
                         dismiss()
                         

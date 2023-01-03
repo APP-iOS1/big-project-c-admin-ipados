@@ -39,7 +39,8 @@ struct EditTestView: View {
                                                       category: selectedContent?.category ?? "",
                                                       location: selectedContent?.location ?? "",
                                                       locationUrl: selectedContent?.locationUrl ?? "",
-                                                      host: selectedContent?.host ?? "",
+                                                      hostName: selectedContent?.hostName ?? "",
+                                                      hostImage: selectedContent?.hostImage ?? "",
                                                       hostIntroduction: selectedContent?.hostIntroduction ?? "",
                                                       seminarDescription: selectedContent?.seminarDescription ?? "",
                                                       seminarCurriculum: selectedContent?.seminarCurriculum ?? ""))

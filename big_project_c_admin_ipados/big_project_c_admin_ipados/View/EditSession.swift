@@ -56,7 +56,9 @@ struct EditSessionView: View {
     @State private var locationUrl: String = ""
     
     // MARK: - host, hostIntroduction (호스트 인포 - 프로필 사진, 강사소개)
-    @State private var host: String = ""
+    @State private var hostName: String = ""
+    @State private var hostImage: String = ""
+    
     @State private var hostIntroduce: String = ""
     
     // MARK: - seminarDescription, seminarCurriculum (세미나 상세내용, 상세 커리큘럼)
@@ -221,9 +223,9 @@ struct EditSessionView: View {
                             Text("프로필 이미지 URL을 입력해주세요")
                                 .font(.callout)
                             
-                            TextField("URL 주소", text: $host)
+                            TextField("URL 주소", text: $hostImage)
                             
-                            AsyncImage(url: URL(string: host), transaction: transaction, content: imageView)
+                            AsyncImage(url: URL(string: hostImage), transaction: transaction, content: imageView)
                                 .frame(width: 100, height: 100)
                             
                         }
@@ -288,7 +290,7 @@ struct EditSessionView: View {
                     // MARK: - 세미나 등록하기 버튼 추가 (데이터)
                     VStack(alignment: .trailing) {
                         Button {
-                            seminarStore.editSeminar(seminar: Seminar(id: seminar.id, image: [image], name: name, date: date, startingTime: startingTime, endingTime: endingTime, category: selectedCategory, location: location, locationUrl: locationUrl, host: host, hostIntroduction: hostIntroduce, seminarDescription: seminarDescription, seminarCurriculum: seminarCurriculum))
+                            seminarStore.editSeminar(seminar: Seminar(id: seminar.id, image: [image], name: name, date: date, startingTime: startingTime, endingTime: endingTime, category: selectedCategory, location: location, locationUrl: locationUrl, hostName: hostName, hostImage: hostImage, hostIntroduction: hostIntroduce, seminarDescription: seminarDescription, seminarCurriculum: seminarCurriculum))
 
 
                             
@@ -325,7 +327,8 @@ struct EditSessionView: View {
             selectedCategory = seminar.category
             location = seminar.location
             locationUrl = seminar.locationUrl
-            host = seminar.host
+            hostName = seminar.hostName
+            hostImage = seminar.hostImage
             hostIntroduce = seminar.hostIntroduction
             seminarDescription = seminar.seminarDescription
             seminarCurriculum = seminar.seminarCurriculum

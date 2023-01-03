@@ -22,7 +22,7 @@ class SeminarStore : ObservableObject {
     
     init() {
         seminarList = []
-        seminar = Seminar(id: "", image: [], name: "", date: Date(), startingTime: "", endingTime: "", category: "", location: "", locationUrl: "", host: "", hostIntroduction: "", seminarDescription: "", seminarCurriculum: "")
+        seminar = Seminar(id: "", image: [], name: "", date: Date(), startingTime: "", endingTime: "", category: "", location: "", locationUrl: "", hostName: "", hostImage: "", hostIntroduction: "", seminarDescription: "", seminarCurriculum: "")
     }
     
     // MARK: Storage 함수
@@ -108,12 +108,13 @@ class SeminarStore : ObservableObject {
                     let category: String = docData["category"] as? String ?? ""
                     let location: String = docData["location"] as? String ?? ""
                     let locationUrl: String = docData["locationUrl"] as? String ?? ""
-                    let host: String = docData["host"] as? String ?? ""
+                    let hostName: String = docData["hostName"] as? String ?? ""
+                    let hostImage: String = docData["hostImage"] as? String ?? ""
                     let hostIntroduction: String = docData["hostIntroduction"] as? String ?? ""
                     let seminarDescription: String = docData["seminarDescription"] as? String ?? ""
                     let seminarCurriculum: String = docData["seminarCurriculum"] as? String ?? ""
                     
-                    let seminar = Seminar(id: id, image: image, name: name, date: date, startingTime: startingTime, endingTime: endingTime, category: category, location: location, locationUrl: locationUrl, host: host, hostIntroduction: hostIntroduction, seminarDescription: seminarDescription, seminarCurriculum: seminarCurriculum)
+                    let seminar = Seminar(id: id, image: image, name: name, date: date, startingTime: startingTime, endingTime: endingTime, category: category, location: location, locationUrl: locationUrl, hostName: hostName, hostImage: hostImage, hostIntroduction: hostIntroduction, seminarDescription: seminarDescription, seminarCurriculum: seminarCurriculum)
                     
                     self.seminarList.append(seminar)
                     print(seminar)
@@ -137,12 +138,13 @@ class SeminarStore : ObservableObject {
                     let category: String = docData["category"] as? String ?? ""
                     let location: String = docData["location"] as? String ?? ""
                     let locationUrl: String = docData["locationUrl"] as? String ?? ""
-                    let host: String = docData["host"] as? String ?? ""
+                    let hostName: String = docData["hostName"] as? String ?? ""
+                    let hostImage: String = docData["hostImage"] as? String ?? ""
                     let hostIntroduction: String = docData["hostIntroduction"] as? String ?? ""
                     let seminarDescription: String = docData["seminarDescription"] as? String ?? ""
                     let seminarCurriculum: String = docData["seminarCurriculum"] as? String ?? ""
                     
-                    let seminar = Seminar(id: id, image: image, name: name, date: date, startingTime: startingTime, endingTime: endingTime, category: category, location: location, locationUrl: locationUrl, host: host, hostIntroduction: hostIntroduction, seminarDescription: seminarDescription, seminarCurriculum: seminarCurriculum)
+                    let seminar = Seminar(id: id, image: image, name: name, date: date, startingTime: startingTime, endingTime: endingTime, category: category, location: location, locationUrl: locationUrl, hostName: hostName, hostImage: hostImage, hostIntroduction: hostIntroduction, seminarDescription: seminarDescription, seminarCurriculum: seminarCurriculum)
                     
                     self.seminarList.append(seminar)
                 }
@@ -165,7 +167,8 @@ class SeminarStore : ObservableObject {
                           "category": seminar.category,
                           "location": seminar.location,
                           "locationUrl": seminar.locationUrl,
-                          "host": seminar.host,
+                          "hostName": seminar.hostName,
+                          "hostImage": seminar.hostImage,
                           "hostIntroduction": seminar.hostIntroduction,
                           "seminarDescription": seminar.seminarDescription,
                           "seminarCurriculum": seminar.seminarCurriculum,
@@ -188,7 +191,8 @@ class SeminarStore : ObservableObject {
                           "category": seminar.category,
                           "location": seminar.location,
                           "locationUrl": seminar.locationUrl,
-                          "host": seminar.host,
+                             "hostName": seminar.hostName,
+                             "hostImage": seminar.hostImage,
                           "hostIntroduction": seminar.hostIntroduction,
                           "seminarDescription": seminar.seminarDescription,
                           "seminarCurriculum": seminar.seminarCurriculum,
@@ -245,7 +249,7 @@ class SeminarStore : ObservableObject {
                 return dateFormatter
             }()
 
-            let postData = ["id": uid, "host" : imageUrl.absoluteString]
+            let postData = ["id": uid, "hostImage" : imageUrl.absoluteString]
 
                 Firestore.firestore().collection("Seminar").document(uid).updateData(postData)
                     print("success")
