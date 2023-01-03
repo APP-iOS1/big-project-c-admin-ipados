@@ -16,6 +16,10 @@
 		03A62886295AA7D800167DB5 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 03A62885295AA7D800167DB5 /* FirebaseFirestore */; };
 		03A62888295AA7D800167DB5 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 03A62887295AA7D800167DB5 /* FirebaseFirestoreSwift */; };
 		03A6288D295AA95500167DB5 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A6288C295AA95500167DB5 /* LoginView.swift */; };
+		03A6288F295AA96700167DB5 /* GeneralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A6288E295AA96700167DB5 /* GeneralView.swift */; };
+		03A62894295AA9C400167DB5 /* SessionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A62893295AA9C400167DB5 /* SessionDetailView.swift */; };
+		3F591A482963C66300B4E4C7 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F591A472963C66300B4E4C7 /* SearchBar.swift */; };
+		3FA142492962B9F600892BDC /* MemberListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA142482962B9F600892BDC /* MemberListRow.swift */; };
 		2B0F81E12962C2F40081AB74 /* ChartShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0F81E02962C2F40081AB74 /* ChartShape.swift */; };
 		2B7669F929629628008F939A /* DashBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7669F829629628008F939A /* DashBoardView.swift */; };
 		3FA17BBD296292F60081D287 /* EditSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA17BBC296292F60081D287 /* EditSession.swift */; };
@@ -48,6 +52,10 @@
 		03A62879295AA6AB00167DB5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		03A62880295AA6BC00167DB5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		03A6288C295AA95500167DB5 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		03A6288E295AA96700167DB5 /* GeneralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralView.swift; sourceTree = "<group>"; };
+		03A62893295AA9C400167DB5 /* SessionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDetailView.swift; sourceTree = "<group>"; };
+		3F591A472963C66300B4E4C7 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		3FA142482962B9F600892BDC /* MemberListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberListRow.swift; sourceTree = "<group>"; };
 		2B0F81E02962C2F40081AB74 /* ChartShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartShape.swift; sourceTree = "<group>"; };
 		2B7669F829629628008F939A /* DashBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashBoardView.swift; sourceTree = "<group>"; };
 		3FA17BBC296292F60081D287 /* EditSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSession.swift; sourceTree = "<group>"; };
@@ -135,7 +143,10 @@
 				3FA17BBC296292F60081D287 /* EditSession.swift */,
 				EE08C248295AB8E2008D590C /* EmptyDetailView.swift */,
 				03A6288C295AA95500167DB5 /* LoginView.swift */,
+				3FA142482962B9F600892BDC /* MemberListRow.swift */,
 				EE2AC20F295C43E40046853B /* MemberListView.swift */,
+				3F591A472963C66300B4E4C7 /* SearchBar.swift */,
+				A5AD9392295C233E008A28BE /* ScanQRView.swift */,
 				EE2AC20D295C074B0046853B /* SessionDetailUserList.swift */,
 				2B7669F829629628008F939A /* DashBoardView.swift */,
 				2B0F81E02962C2F40081AB74 /* ChartShape.swift */,
@@ -249,8 +260,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				03A6288D295AA95500167DB5 /* LoginView.swift in Sources */,
+				3FA142492962B9F600892BDC /* MemberListRow.swift in Sources */,
+				03A6288F295AA96700167DB5 /* GeneralView.swift in Sources */,
 				2B7669F929629628008F939A /* DashBoardView.swift in Sources */,
 				7C6325C2295AF6FC00896A47 /* QuestionStore.swift in Sources */,
+				3F591A482963C66300B4E4C7 /* SearchBar.swift in Sources */,
 				7C6325C3295AF6FC00896A47 /* AttendanceStore.swift in Sources */,
 				A5D9AF3B2962D239001DD898 /* SessionDetailView.swift in Sources */,
 				2B0F81E12962C2F40081AB74 /* ChartShape.swift in Sources */,
