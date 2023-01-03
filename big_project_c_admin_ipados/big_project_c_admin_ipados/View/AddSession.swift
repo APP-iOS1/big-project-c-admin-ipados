@@ -328,11 +328,12 @@ struct AddSessionView: View {
                         VStack(alignment: .center) {
                             Button {
                                 let id = UUID().uuidString
-                                seminar.storeImageToStorage(id: id, selectedImages: selectedImages)
+//                                seminar.storeImageToStorage(id: id, selectedImages: selectedImages)
                                 
-                                seminar.addSeminar(seminar: Seminar(id: id, image: [image], name: name, date: date, startingTime: startingTime, endingTime: endingTime, category: selectedCategory, location: location, locationUrl: loactionUrl, host: host, hostIntroduction: hostIntroduce, seminarDescription: seminarDescription, seminarCurriculum: seminarCurriculum))
+                                seminar.addSeminar(seminar: Seminar(id: id, image: [image], name: name, date: date, startingTime: startingTime, endingTime: endingTime, category: selectedCategory, location: location, locationUrl: loactionUrl, host: host, hostIntroduction: hostIntroduce, seminarDescription: seminarDescription, seminarCurriculum: seminarCurriculum), selectedImages: selectedImages)
+                            
                                 dismiss()
-                                
+                               
                             } label: {
                                 Text("세미나 등록하기")
                                     .foregroundColor(.white)

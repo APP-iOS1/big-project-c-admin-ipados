@@ -81,16 +81,14 @@ class SeminarStore : ObservableObject {
             for url in imageUrls {
                 let postData = ["id": uid, "image" : url]
 
-                Firestore.firestore().collection("Seminar").document(uid).updateData(postData as [String : Any]) { error in
-                    if let error = error {
-                        print(error)
-                        return
-                    }
-                    
+                Firestore.firestore().collection("Seminar").document(uid).updateData([
+                    "image" : FieldValue.arrayUnion([url])
+                ])
                     print("success")
-                }
-                
             }
+            Firestore.firestore().collection("Seminar").document(uid).updateData([
+                "image" : FieldValue.arrayRemove([""])
+            ])
             fetchSeminar()
         }
     }
@@ -155,7 +153,7 @@ class SeminarStore : ObservableObject {
     }
     
     // 세미나 작성 완료시 추가됨 (input Seminar 타입으로 다 넣어주시면 됩니다.)
-    func addSeminar(seminar: Seminar) {
+    func addSeminar(seminar: Seminar, selectedImages: [UIImage?]) {
             database.collection("Seminar")
             .document(seminar.id)
                 .setData(["id": seminar.id,
@@ -174,7 +172,8 @@ class SeminarStore : ObservableObject {
                          ])
 
             //FireStore Data를 READ 해오는 함수 호출
-            fetchSeminar()
+        storeImageToStorage(id: seminar.id, selectedImages: selectedImages)
+        
         }
     
     func editSeminar(seminar: Seminar) {
