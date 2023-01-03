@@ -26,8 +26,9 @@ class AttendanceStore : ObservableObject {
 //                    let id : String = document.documentID
                     let id: String = docData["id"] as? String ?? ""
                     let userNickName: String = docData["userNickName"] as? String ?? ""
+                    let uid: String = docData["uid"] as? String ?? ""
                     
-                    let attendance = Attendance(id: id, userNickname: userNickName)
+                    let attendance = Attendance(id: id, uid: uid, userNickname: userNickName)
                     
                     self.attendanceUserList.append(attendance)
                 }
@@ -38,8 +39,8 @@ class AttendanceStore : ObservableObject {
     
     func addAttendance(seminarID : String,attendance: Attendance) {
         database.collection("Seminar").document("\(seminarID)").collection("Attendance")
-            .document(attendance.id)
-                .setData(["id": attendance.id,
+            .document(attendance.uid)
+            .setData(["id": attendance.id, "uid": attendance.uid,
                           "userNickName": attendance.userNickname,
                          ])
 

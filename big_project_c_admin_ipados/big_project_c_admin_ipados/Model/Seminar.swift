@@ -43,6 +43,6 @@ struct Question : Codable, Identifiable, Hashable {
 
 struct Attendance : Codable, Identifiable, Hashable {
     var id : String
-//    var uid : String
+    var uid : String
     var userNickname : String
 }
