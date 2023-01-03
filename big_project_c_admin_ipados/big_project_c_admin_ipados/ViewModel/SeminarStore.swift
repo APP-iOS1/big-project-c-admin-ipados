@@ -15,12 +15,13 @@ class SeminarStore : ObservableObject {
     // 세미나 배열
     @Published var seminarList : [Seminar] = []
 
-    
+    @Published var seminar : Seminar
     
     let database = Firestore.firestore()
     
     init() {
         seminarList = []
+        seminar = Seminar(id: "", image: [], name: "", date: Date(), startingTime: "", endingTime: "", category: "", location: "", locationUrl: "", host: "", hostIntroduction: "", seminarDescription: "", seminarCurriculum: "")
     }
     
     

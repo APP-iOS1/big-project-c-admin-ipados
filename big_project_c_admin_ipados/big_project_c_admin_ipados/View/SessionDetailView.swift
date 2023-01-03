@@ -89,7 +89,7 @@ struct SessionDetailView: View {
                                     
                                         Button {
                                             // TODO: 내용 수정 기능 구현
-                                            clickedEditButton.toggle()
+                                            clickedEditButton = true
                                         } label: {
                                             Text("세미나 내용 수정하기")
                                                 .frame(width: 150)
@@ -99,7 +99,7 @@ struct SessionDetailView: View {
                                                 .background(Color.accentColor)
                                                 .cornerRadius(15)
                                         }
-                                        .sheet(isPresented: $clickedEditButton) {
+                                        .fullScreenCover(isPresented: $clickedEditButton) {
 //                                            EditSessionView(seminarInfo: seminarInfo, selectedContent: selectedContent)
                                             EditTestView(seminarInfo: seminarInfo, seminarID: selectedContent?.id ?? "")
                                         }

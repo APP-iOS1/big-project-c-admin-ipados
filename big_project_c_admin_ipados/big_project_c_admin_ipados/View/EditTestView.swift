@@ -12,7 +12,8 @@ struct EditTestView: View {
     var seminarID : String
     var body: some View {
         VStack {
-            Text("dd")
+            Text(seminarInfo.seminar.name)
+            Text(seminarInfo.seminar.category)
         }
         .onAppear {
             print("-----------")
