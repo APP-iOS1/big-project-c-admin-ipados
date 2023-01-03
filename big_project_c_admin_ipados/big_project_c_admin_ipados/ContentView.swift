@@ -14,7 +14,11 @@ struct ContentView: View {
     var body: some View {
         if userViewModel.currentUser != nil {
             TabView(selection: $tabSelection, content: {
-                EmptyDetailView()
+                DashBoardView(slices: [
+                    (3, .orange),
+                    (1, .gray)
+                ])
+                
                     .tabItem {
                         Label("현황", systemImage: "chart.pie.fill")
                     }
