@@ -21,7 +21,7 @@ struct SessionDetailView: View {
 
 //    @Binding var seminarList: Seminar
     
-    var seminarId: Seminar.ID?
+    @Binding var seminarId: Seminar.ID?
     @State private var clickedEditButton: Bool = false
     @State private var clickedQRButton: Bool = false
     
