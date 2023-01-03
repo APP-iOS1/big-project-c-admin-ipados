@@ -176,7 +176,7 @@ class SeminarStore : ObservableObject {
         
         }
     
-    func editSeminar(seminar: Seminar) {
+    func editSeminar(seminar: Seminar, selectedImages: [UIImage?]) {
             database.collection("Seminar")
             .document(seminar.id)
                 .updateData(["id": seminar.id,
@@ -193,10 +193,29 @@ class SeminarStore : ObservableObject {
                           "seminarDescription": seminar.seminarDescription,
                           "seminarCurriculum": seminar.seminarCurriculum,
                          ])
+        
+        
+        //FireStore Data를 READ 해오는 함수 호출
+    storeImageToStorage(id: seminar.id, selectedImages: selectedImages)
 
             //FireStore Data를 READ 해오는 함수 호출
-//            fetchSeminar()
+            fetchSeminar()
         }
+    
+    func deleteSeminar(seminar: Seminar) {
+        print(seminar.id)
+            database.collection("Seminar")
+            .document(seminar.id)
+                .delete()
+        
+        
+        //FireStore Data를 READ 해오는 함수 호출
+//    storeImageToStorage(id: seminar.id, selectedImages: selectedImages)
+
+            //FireStore Data를 READ 해오는 함수 호출
+            fetchSeminar()
+        }
+
 
     
 }

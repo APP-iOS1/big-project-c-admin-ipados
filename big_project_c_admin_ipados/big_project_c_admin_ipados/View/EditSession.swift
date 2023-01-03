@@ -7,6 +7,8 @@
 
 import SwiftUI
 import PhotosUI
+import FirebaseStorage
+
 
 struct EditSessionView: View {
     
@@ -17,6 +19,11 @@ struct EditSessionView: View {
     var seminar: Seminar
     
     @Environment(\.dismiss) private var dismiss
+    
+    //MARK: - Storage
+    @State private var isPickerShowing = false
+    @State private var selectedImage: UIImage?
+    @State var selectedImages: [UIImage?] = []
     
     // MARK: - 이미지 받아오기(PhotoURL)
     @State private var selectedItem: PhotosPickerItem? = nil
@@ -112,21 +119,66 @@ struct EditSessionView: View {
                     }
                     
                     //MARK: - 이미지 URL
-                    VStack(alignment: .leading) {
+//                    VStack(alignment: .leading) {
+//                        Text("대표 이미지")
+//                            .font(.title2)
+//                            .fontWeight(.bold)
+//
+//                        HStack(spacing: 50) {
+//                            Text("이미지 URL을 입력해주세요")
+//                                .font(.callout)
+//
+//                            TextField("URL 주소", text: $image)
+//
+//                            AsyncImage(url: URL(string: image), transaction: transaction, content: imageView)
+//                                .frame(width: 100, height: 100)
+//
+//                        }
+//                    }
+                    
+                    
+                    //MARK: - 이미지 피커
+                    VStack (alignment: .leading)  {
+                        
                         Text("대표 이미지")
                             .font(.title2)
                             .fontWeight(.bold)
-
-                        HStack(spacing: 50) {
-                            Text("이미지 URL을 입력해주세요")
-                                .font(.callout)
-
-                            TextField("URL 주소", text: $image)
-
-                            AsyncImage(url: URL(string: image), transaction: transaction, content: imageView)
-                                .frame(width: 100, height: 100)
-
+                        
+                        
+                        Button {
+                            isPickerShowing.toggle()
+                        } label: {
+                            ZStack {
+                                Image(systemName: "camera")
+                                    .zIndex(1)
+                                    .font(.largeTitle)
+                                    .foregroundColor(.accentColor)
+                                
+                                Rectangle()
+                                    .stroke(Color.accentColor, lineWidth: 1)
+                                    .frame(width: 300, height: 300)
+                            }
                         }
+                        .sheet(isPresented: $isPickerShowing) {
+                            ImagePicker(image: $selectedImage)
+                                .onDisappear {
+                                    if selectedImage != nil {
+                                        selectedImages.append(selectedImage)
+                                    }
+                                }
+                        }
+                        HStack {
+                            ScrollView(.horizontal) {
+                                ForEach(selectedImages, id: \.self) { image in
+                                    Image(uiImage: image!)
+                                        .resizable()
+                                        .frame(width: 100, height: 100)
+                                        .cornerRadius(15)
+                                }
+                            }
+                            
+                        }
+                        .padding()
                     }
                     
                     
@@ -289,7 +341,9 @@ struct EditSessionView: View {
                     // MARK: - 세미나 등록하기 버튼 추가 (데이터)
                     VStack(alignment: .trailing) {
                         Button {
-                            seminarStore.editSeminar(seminar: Seminar(id: seminar.id, image: [image], name: name, date: date, startingTime: startingTime, endingTime: endingTime, category: selectedCategory, location: location, locationUrl: locationUrl, host: host, hostIntroduction: hostIntroduce, seminarDescription: seminarDescription, seminarCurriculum: seminarCurriculum))
+                            let id = UUID().uuidString
+                            
+                            seminarStore.editSeminar(seminar: Seminar(id: seminar.id,  image: [image], name: name, date: date, startingTime: startingTime, endingTime: endingTime, category: selectedCategory, location: location, locationUrl: locationUrl, host: host, hostIntroduction: hostIntroduce, seminarDescription: seminarDescription, seminarCurriculum: seminarCurriculum), selectedImages: selectedImages)
 
 
                             
@@ -308,7 +362,6 @@ struct EditSessionView: View {
                             Color.accentColor
                         }
                         .cornerRadius(10)
-                        
                     }
                     
                     
@@ -319,7 +372,7 @@ struct EditSessionView: View {
         .padding()
         .onAppear {
             name = seminar.name
-            image = seminar.image.first ?? ""
+//            image = seminar.image.first ?? ""
             date = seminar.date
             startingTime = seminar.startingTime
             endingTime = seminar.endingTime

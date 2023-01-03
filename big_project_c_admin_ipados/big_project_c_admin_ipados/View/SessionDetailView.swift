@@ -61,6 +61,8 @@ struct SessionDetailView: View {
         "댓글입니다아아아아아아아아아아3"
     ]
     
+    @State private var isDeleteButton: Bool = false
+    
     var body: some View {
         GeometryReader { geo in
             HStack {
@@ -78,7 +80,7 @@ struct SessionDetailView: View {
                         Button {
                             clickedEditButton.toggle()
                         } label: {
-                            Text("세션 수정하기")
+                            Text("수정 하기")
                                 .padding(.vertical, 13)
                                 .padding(.trailing, 28)
                                 .fontWeight(.semibold)
@@ -115,6 +117,24 @@ struct SessionDetailView: View {
                                 .foregroundColor(Color.white)
                                 .background(Color.accentColor)
                                 .cornerRadius(15)
+                        }
+                         Spacer()
+                        Button {
+                            isDeleteButton.toggle()
+                        } label: {
+                            Text("삭제 하기")
+                                .padding(.vertical, 13)
+                                .padding(.trailing, 28)
+                                .fontWeight(.semibold)
+                                .foregroundColor(Color.accentColor)
+                                .cornerRadius(15)
+                        }
+                        .alert(isPresented: $isDeleteButton) {
+                            Alert(title: Text("삭제 하시겠습니까?"),
+                                  message: Text("삭제 후 복구 불가!"),
+                                  primaryButton: .destructive(Text("삭제"), action: {
+                                seminarStore.deleteSeminar(seminar: selectedContent ?? Seminar(id: "", image: [], name: "", date: Date(), startingTime: "", endingTime: "", category: "", location: "", locationUrl: "", host: "", hostIntroduction: "", seminarDescription: "", seminarCurriculum: ""))
+                            }), secondaryButton: .cancel(Text("취소")))
                         }
                     }
                     .frame(minHeight: 30)
@@ -308,8 +328,8 @@ struct SessionDetailView: View {
 //}
 
 
-//struct SessionDetailView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SessionDetailView()
-//    }
-//}
+struct SessionDetailView_Previews: PreviewProvider {
+    static var previews: some View {
+        SessionDetailView(seminarStore: SeminarStore())
+    }
+}

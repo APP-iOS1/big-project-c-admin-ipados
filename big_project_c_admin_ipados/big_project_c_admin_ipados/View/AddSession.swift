@@ -55,7 +55,7 @@ struct AddSessionView: View {
     
     // MARK: - location 피커(3개 장소 임의로)
     @State private var location: String = ""
-    @State private var loactionUrl: String = ""
+    @State private var locationUrl: String = ""
     
     // MARK: - host, hostIntroduction (호스트 인포 - 프로필 사진, 강사소개)
     @State private var host: String = ""
@@ -253,7 +253,7 @@ struct AddSessionView: View {
                             Text("장소 URL을 입력해주세요")
                                 .font(.callout)
                             
-                            TextField("주소", text: $loactionUrl)
+                            TextField("주소", text: $locationUrl)
                         }
                     }
                     
@@ -338,7 +338,7 @@ struct AddSessionView: View {
                             let id = UUID().uuidString
                             //                                seminar.storeImageToStorage(id: id, selectedImages: selectedImages)
                             
-                            seminarStore.addSeminar(seminar: Seminar(id: id, image: [image], name: name, date: date, startingTime: startingTime, endingTime: endingTime, category: selectedCategory, location: location, locationUrl: loactionUrl, host: host, hostIntroduction: hostIntroduce, seminarDescription: seminarDescription, seminarCurriculum: seminarCurriculum), selectedImages: selectedImages)
+                            seminarStore.addSeminar(seminar: Seminar(id: id, image: [image], name: name, date: date, startingTime: startingTime, endingTime: endingTime, category: selectedCategory, location: location, locationUrl: locationUrl, host: host, hostIntroduction: hostIntroduce, seminarDescription: seminarDescription, seminarCurriculum: seminarCurriculum), selectedImages: selectedImages)
                             
                             dismiss()
                             
@@ -356,13 +356,14 @@ struct AddSessionView: View {
                         }
                         .cornerRadius(10)
                     }
-                    .padding()
+                   
                     
                     
                 }
                 
             }
         }
+        .padding()
     }
     
     //MARK: - Async image를 나타내는 비동기 메서드
