@@ -27,6 +27,8 @@
 		7C6325C1295AF6FC00896A47 /* UserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6325BD295AF6FC00896A47 /* UserStore.swift */; };
 		7C6325C2295AF6FC00896A47 /* QuestionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6325BE295AF6FC00896A47 /* QuestionStore.swift */; };
 		7C6325C3295AF6FC00896A47 /* AttendanceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C6325BF295AF6FC00896A47 /* AttendanceStore.swift */; };
+		7C73CE382963B81400E06A59 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C73CE372963B81400E06A59 /* ImagePicker.swift */; };
+		7C73CE3B2963B8DA00E06A59 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 7C73CE3A2963B8DA00E06A59 /* FirebaseStorage */; };
 		A5039BC02963229F00707541 /* EditTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5039BBF2963229F00707541 /* EditTestView.swift */; };
 		A5AD9395295C2379008A28BE /* CameraScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AD9394295C2379008A28BE /* CameraScanner.swift */; };
 		A5AD9397295C23A0008A28BE /* CameraScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AD9396295C23A0008A28BE /* CameraScannerViewController.swift */; };
@@ -59,6 +61,7 @@
 		7C6325BD295AF6FC00896A47 /* UserStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserStore.swift; sourceTree = "<group>"; };
 		7C6325BE295AF6FC00896A47 /* QuestionStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionStore.swift; sourceTree = "<group>"; };
 		7C6325BF295AF6FC00896A47 /* AttendanceStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttendanceStore.swift; sourceTree = "<group>"; };
+		7C73CE372963B81400E06A59 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		A5039BBF2963229F00707541 /* EditTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTestView.swift; sourceTree = "<group>"; };
 		A5AD9394295C2379008A28BE /* CameraScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraScanner.swift; sourceTree = "<group>"; };
 		A5AD9396295C23A0008A28BE /* CameraScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraScannerViewController.swift; sourceTree = "<group>"; };
@@ -78,6 +81,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				03A62884295AA7D800167DB5 /* FirebaseAuth in Frameworks */,
+				7C73CE3B2963B8DA00E06A59 /* FirebaseStorage in Frameworks */,
 				03A62886295AA7D800167DB5 /* FirebaseFirestore in Frameworks */,
 				03A62888295AA7D800167DB5 /* FirebaseFirestoreSwift in Frameworks */,
 			);
@@ -91,6 +95,7 @@
 			children = (
 				03A62871295AA6AA00167DB5 /* big_project_c_admin_ipados */,
 				03A62870295AA6AA00167DB5 /* Products */,
+				7C73CE392963B8DA00E06A59 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -107,6 +112,7 @@
 			children = (
 				03A62872295AA6AA00167DB5 /* big_project_c_admin_ipadosApp.swift */,
 				03A62874295AA6AA00167DB5 /* ContentView.swift */,
+				7C73CE372963B81400E06A59 /* ImagePicker.swift */,
 				EE08C24D295AD07B008D590C /* Model */,
 				EE08C24C295AD068008D590C /* ViewModel */,
 				03A62889295AA8B100167DB5 /* View */,
@@ -144,6 +150,13 @@
 				A5039BBF2963229F00707541 /* EditTestView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		7C73CE392963B8DA00E06A59 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		EE08C24C295AD068008D590C /* ViewModel */ = {
@@ -189,6 +202,7 @@
 				03A62883295AA7D800167DB5 /* FirebaseAuth */,
 				03A62885295AA7D800167DB5 /* FirebaseFirestore */,
 				03A62887295AA7D800167DB5 /* FirebaseFirestoreSwift */,
+				7C73CE3A2963B8DA00E06A59 /* FirebaseStorage */,
 			);
 			productName = "big-project-c-admin-ipados";
 			productReference = 03A6286F295AA6AA00167DB5 /* big_project_c_admin_ipados.app */;
@@ -261,6 +275,7 @@
 				A5039BC02963229F00707541 /* EditTestView.swift in Sources */,
 				7C6325B7295AF48F00896A47 /* AddSession.swift in Sources */,
 				3FA7AAF5295BDB56002C4CB1 /* Seminar.swift in Sources */,
+				7C73CE382963B81400E06A59 /* ImagePicker.swift in Sources */,
 				7C6325C1295AF6FC00896A47 /* UserStore.swift in Sources */,
 				EE08C24B295ACCD1008D590C /* Color.swift in Sources */,
 				3FA7AAF7295BDB61002C4CB1 /* SeminarStore.swift in Sources */,
@@ -510,6 +525,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 03A62882295AA7D800167DB5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestoreSwift;
+		};
+		7C73CE3A2963B8DA00E06A59 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 03A62882295AA7D800167DB5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
