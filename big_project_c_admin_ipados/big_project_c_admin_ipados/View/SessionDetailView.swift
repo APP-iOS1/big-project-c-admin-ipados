@@ -36,28 +36,7 @@ struct SessionDetailView: View {
         }
     }
 
-    
-    let dummyQuestions: [String] = [
-        "댓글입니다아아아아아아아아아아1",
-        "댓글입니다아아아아아아아아아아2",
-        "댓글입니다아아아아아아아아아아3",
-        "댓글입니다아아아아아아아아아아4",
-        "댓글입니다아아아아아아아아아아1",
-        "댓글입니다아아아아아아아아아아2",
-        "댓글입니다아아아아아아아아아아3",
-        "댓글입니다아아아아아아아아아아1",
-        "댓글입니다아아아아아아아아아아2",
-        "댓글입니다아아아아아아아아아아3",
-        "댓글입니다아아아아아아아아아아1",
-        "댓글입니다아아아아아아아아아아2",
-        "댓글입니다아아아아아아아아아아3",
-        "댓글입니다아아아아아아아아아아1",
-        "댓글입니다아아아아아아아아아아2",
-        "댓글입니다아아아아아아아아아아3",
-        "댓글입니다아아아아아아아아아아1",
-        "댓글입니다아아아아아아아아아아2",
-        "댓글입니다아아아아아아아아아아3"
-    ]
+    @StateObject var questionStore: QuestionStore = QuestionStore()
     
     var body: some View {
         GeometryReader { geo in
@@ -134,8 +113,8 @@ struct SessionDetailView: View {
                                 .font(.largeTitle)
                                 .fontWeight(.bold)
                             
-                            List(dummyQuestions, id:\.self) { question in
-                                Text(question)
+                            List(questionStore.questionList, id:\.self) { question in
+                                Text(question.question)
                                     .padding()
                                     .listRowBackground(
                                         RoundedRectangle(cornerRadius: 10)
@@ -149,7 +128,7 @@ struct SessionDetailView: View {
                                                     trailing: 0
                                                 )
                                             )
-                                        
+
                                     )
                                     .listRowSeparator(.hidden)
                             }
@@ -181,8 +160,11 @@ struct SessionDetailView: View {
 //            print("온어피어")
 //            print("세미나 아이디", selectedContent?.id)
             isDeviceCapacity = (DataScannerViewController.isSupported && DataScannerViewController.isAvailable)
+            questionStore.fetchQuestion(seminarID: seminarId ?? "")
         }
-        
+        .onChange(of:seminarId) { newValue in
+            questionStore.fetchQuestion(seminarID: seminarId ?? "")
+        }
     }
 }
 
