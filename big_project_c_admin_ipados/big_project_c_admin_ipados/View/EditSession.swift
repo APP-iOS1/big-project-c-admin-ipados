@@ -23,7 +23,6 @@ struct EditSessionView: View {
     @State private var image: String = ""
 
 
-
     // 이미지 transaction 효과
     private let transaction: Transaction = .init(animation: .linear)
     

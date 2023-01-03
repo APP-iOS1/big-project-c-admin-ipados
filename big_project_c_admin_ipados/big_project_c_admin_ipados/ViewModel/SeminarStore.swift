@@ -153,7 +153,7 @@ class SeminarStore : ObservableObject {
     }
     
     // 세미나 작성 완료시 추가됨 (input Seminar 타입으로 다 넣어주시면 됩니다.)
-    func addSeminar(seminar: Seminar, selectedImages: [UIImage?]) {
+    func addSeminar(seminar: Seminar, selectedImages: [UIImage?], selectedHostImage: UIImage?) {
             database.collection("Seminar")
             .document(seminar.id)
                 .setData(["id": seminar.id,
@@ -173,7 +173,7 @@ class SeminarStore : ObservableObject {
 
             //FireStore Data를 READ 해오는 함수 호출
         storeImageToStorage(id: seminar.id, selectedImages: selectedImages)
-        
+        storeHostImageToStorage(id: seminar.id, selectedHostImages: selectedHostImage)
         }
     
     func editSeminar(seminar: Seminar) {
@@ -198,7 +198,60 @@ class SeminarStore : ObservableObject {
 //            fetchSeminar()
         }
 
-    
+    // selectedHostImage
+    func storeHostImageToStorage(id:String, selectedHostImages: UIImage?) {
+        //일단 랜덤값 넣음
+        let uid = id
+        let photoID = UUID().uuidString
+        let ref = Storage.storage().reference(withPath: photoID)
+            
+            guard selectedHostImages != nil else {
+                return
+            }
+
+            guard let imageData = selectedHostImages?.jpegData(compressionQuality: 0.5) else {
+                return
+            }
+            
+            ref.putData(imageData) { metadata, error in
+                if let error = error {
+                    print("\(error)")
+                    return
+                }
+                
+                ref.downloadURL() { url, error in //받아왔을때는 url추출. 스토리지 기본 함수
+                    if let error = error {
+                        print(error)
+                        return
+                    }
+                    print(url?.absoluteString ?? "망함")
+                    
+                    guard let url = url else { return }
+                    
+                    self.postHostImageToStore(imageUrl: url, uid: uid)
+                }
+            }
+        }
+        
+        func postHostImageToStore(imageUrl: URL, uid: String) {
+            
+            let uid = uid
+            
+            //날짜 순서대로 정렬하려
+            let dateFormatter: DateFormatter = {
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "YYYY-MM-dd HH:mm:ss"
+                
+                return dateFormatter
+            }()
+
+            let postData = ["id": uid, "host" : imageUrl.absoluteString]
+
+                Firestore.firestore().collection("Seminar").document(uid).updateData(postData)
+                    print("success")
+          
+            fetchSeminar()
+    }
 }
 
 //    // 세미나 추가시 필요 정보들
@@ -213,3 +266,5 @@ class SeminarStore : ObservableObject {
 //    @Published var hostIntroduction : String = ""
 //    @Published var seminarDescription : String = ""
 //    @Published var seminarCurriculum : String = ""
+
+
