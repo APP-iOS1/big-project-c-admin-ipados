@@ -7,6 +7,7 @@
 
 import SwiftUI
 import PhotosUI
+import FirebaseStorage
 
 struct AddSessionView: View {
     
@@ -19,7 +20,10 @@ struct AddSessionView: View {
     @State private var selectedItem: PhotosPickerItem? = nil
     @State private var image: String = ""
     
-    
+    //MARK: - Storage
+    @State private var isPickerShowing = false
+    @State private var selectedImage: UIImage?
+    @State var selectedImages: [UIImage?] = []
     
     // 이미지 transaction 효과
     private let transaction: Transaction = .init(animation: .linear)
@@ -104,26 +108,64 @@ struct AddSessionView: View {
                         TextField("타이틀을 입력해주세요.", text: $name)
                     }
                     
-                    
+                    //MARK: - 기존 이미지 url 방식
+//                    VStack (alignment: .leading)  {
+//                        Text("대표 이미지")
+//                            .font(.title2)
+//                            .fontWeight(.bold)
+//
+//                        HStack {
+//                            HStack{
+//                                TextField("이미지 URL을 작성해주세요.", text: $image)
+//                            }
+//
+//                            HStack {
+//                                AsyncImage(url: URL(string: image), transaction: transaction, content: imageView)
+//                                    .frame(width: 100, height: 100)
+//
+//                            }
+//                        }
+//                    }
+                    //MARK: - 이미지 피커
                     VStack (alignment: .leading)  {
                         Text("대표 이미지")
                             .font(.title2)
                             .fontWeight(.bold)
                         
-                        HStack {
-                            HStack{
-                                TextField("이미지 URL을 작성해주세요.", text: $image)
-                            }
-                            
-                            HStack {
-                                AsyncImage(url: URL(string: image), transaction: transaction, content: imageView)
-                                    .frame(width: 100, height: 100)
+                        Button {
+                            isPickerShowing.toggle()
+                        } label: {
+                            ZStack {
+                                Image(systemName: "camera")
+                                    .zIndex(1)
+                                    .font(.largeTitle)
+                                    .foregroundColor(.accentColor)
                                 
+                                Rectangle()
+                                    .stroke(Color.accentColor, lineWidth: 1)
+                                    .frame(width: 300, height: 300)
                             }
                         }
+                        .sheet(isPresented: $isPickerShowing) {
+                            ImagePicker(image: $selectedImage)
+                                .onDisappear {
+                                    if selectedImage != nil {
+                                        selectedImages.append(selectedImage)
+                                    }
+                                }
+                        }
+                        HStack {
+                            ScrollView(.horizontal) {
+                                ForEach(selectedImages, id: \.self) { image in
+                                    Image(uiImage: image!)
+                                        .resizable()
+                                        .frame(width: 100, height: 100)
+                                        .cornerRadius(15)
+                                }
+                            }
+                        }
+                        .padding()
                     }
-
-                    
                     
                     //MARK: - datePicker
                     VStack(alignment: .leading) {
@@ -285,7 +327,10 @@ struct AddSessionView: View {
                         // MARK: - 세미나 등록하기 버튼 추가 (데이터)
                         VStack(alignment: .center) {
                             Button {
-                                seminar.addSeminar(seminar: Seminar(id: UUID().uuidString, image: [image], name: name, date: date, startingTime: startingTime, endingTime: endingTime, category: selectedCategory, location: location, locationUrl: loactionUrl, host: host, hostIntroduction: hostIntroduce, seminarDescription: seminarDescription, seminarCurriculum: seminarCurriculum))
+                                let id = UUID().uuidString
+                                seminar.storeImageToStorage(id: id, selectedImages: selectedImages)
+                                
+                                seminar.addSeminar(seminar: Seminar(id: id, image: [image], name: name, date: date, startingTime: startingTime, endingTime: endingTime, category: selectedCategory, location: location, locationUrl: loactionUrl, host: host, hostIntroduction: hostIntroduce, seminarDescription: seminarDescription, seminarCurriculum: seminarCurriculum))
                                 dismiss()
                                 
                             } label: {
