@@ -7,6 +7,8 @@
 
 import SwiftUI
 import PhotosUI
+import FirebaseStorage
+
 
 struct EditSessionView: View {
     
@@ -18,9 +20,15 @@ struct EditSessionView: View {
     
     @Environment(\.dismiss) private var dismiss
     
+    //MARK: - Storage
+    @State private var isPickerShowing = false
+    @State private var selectedImage: UIImage?
+    @State var selectedImages: [UIImage?] = []
+    
     // MARK: - 이미지 받아오기(PhotoURL)
     @State private var selectedItem: PhotosPickerItem? = nil
     @State private var image: String = ""
+
 
 
     // 이미지 transaction 효과
@@ -55,11 +63,13 @@ struct EditSessionView: View {
     @State private var location: String = ""
     @State private var locationUrl: String = ""
     
-    // MARK: - host, hostIntroduction (호스트 인포 - 프로필 사진, 강사소개)
+    // MARK: - hostName, hostImaeg, hostIntroduction (호스트 인포 - 프로필 사진, 강사소개)
     @State private var hostName: String = ""
     @State private var hostImage: String = ""
-    
     @State private var hostIntroduce: String = ""
+    
+    @State private var isHostPickerShowing = false
+    @State private var selectedHostImage: UIImage?
     
     // MARK: - seminarDescription, seminarCurriculum (세미나 상세내용, 상세 커리큘럼)
     @State private var seminarDescription: String = ""
@@ -113,21 +123,66 @@ struct EditSessionView: View {
                     }
                     
                     //MARK: - 이미지 URL
-                    VStack(alignment: .leading) {
+//                    VStack(alignment: .leading) {
+//                        Text("대표 이미지")
+//                            .font(.title2)
+//                            .fontWeight(.bold)
+//
+//                        HStack(spacing: 50) {
+//                            Text("이미지 URL을 입력해주세요")
+//                                .font(.callout)
+//
+//                            TextField("URL 주소", text: $image)
+//
+//                            AsyncImage(url: URL(string: image), transaction: transaction, content: imageView)
+//                                .frame(width: 100, height: 100)
+//
+//                        }
+//                    }
+                    
+                    
+                    //MARK: - 이미지 피커
+                    VStack (alignment: .leading)  {
+                        
                         Text("대표 이미지")
                             .font(.title2)
                             .fontWeight(.bold)
-
-                        HStack(spacing: 50) {
-                            Text("이미지 URL을 입력해주세요")
-                                .font(.callout)
-
-                            TextField("URL 주소", text: $image)
-
-                            AsyncImage(url: URL(string: image), transaction: transaction, content: imageView)
-                                .frame(width: 100, height: 100)
-
+                        
+                        
+                        Button {
+                            isPickerShowing.toggle()
+                        } label: {
+                            ZStack {
+                                Image(systemName: "camera")
+                                    .zIndex(1)
+                                    .font(.largeTitle)
+                                    .foregroundColor(.accentColor)
+                                
+                                Rectangle()
+                                    .stroke(Color.accentColor, lineWidth: 1)
+                                    .frame(width: 300, height: 300)
+                            }
                         }
+                        .sheet(isPresented: $isPickerShowing) {
+                            ImagePicker(image: $selectedImage)
+                                .onDisappear {
+                                    if selectedImage != nil {
+                                        selectedImages.append(selectedImage)
+                                    }
+                                }
+                        }
+                        HStack {
+                            ScrollView(.horizontal) {
+                                ForEach(selectedImages, id: \.self) { image in
+                                    Image(uiImage: image!)
+                                        .resizable()
+                                        .frame(width: 100, height: 100)
+                                        .cornerRadius(15)
+                                }
+                            }
+                            
+                        }
+                        .padding()
                     }
                     
                     
@@ -220,6 +275,14 @@ struct EditSessionView: View {
                             .fontWeight(.bold)
                         
                         HStack(spacing: 50) {
+                            Text("강사이름을 입력해주세요")
+                                .font(.callout)
+                            
+                            TextField("성함 및 닉네임", text: $hostName)
+            
+                        }
+                        
+                        HStack(spacing: 50) {
                             Text("프로필 이미지 URL을 입력해주세요")
                                 .font(.callout)
                             
@@ -290,14 +353,16 @@ struct EditSessionView: View {
                     // MARK: - 세미나 등록하기 버튼 추가 (데이터)
                     VStack(alignment: .trailing) {
                         Button {
-                            seminarStore.editSeminar(seminar: Seminar(id: seminar.id, image: [image], name: name, date: date, startingTime: startingTime, endingTime: endingTime, category: selectedCategory, location: location, locationUrl: locationUrl, hostName: hostName, hostImage: hostImage, hostIntroduction: hostIntroduce, seminarDescription: seminarDescription, seminarCurriculum: seminarCurriculum))
+                            let id = UUID().uuidString
+                            
+                            seminarStore.editSeminar(seminar: Seminar(id: seminar.id,  image: [image], name: name, date: date, startingTime: startingTime, endingTime: endingTime, category: selectedCategory, location: location, locationUrl: locationUrl, hostName: hostName, hostImage: hostImage, hostIntroduction: hostIntroduce, seminarDescription: seminarDescription, seminarCurriculum: seminarCurriculum), selectedImages: selectedImages, selectedHostImage: selectedImage)
 
 
                             
                             dismiss()
                             
                         } label: {
-                            Text("세미나 등록하기")
+                            Text("세미나 수정하기")
                                 .foregroundColor(.white)
                                 .padding()
                             // 등록하기
@@ -309,7 +374,6 @@ struct EditSessionView: View {
                             Color.accentColor
                         }
                         .cornerRadius(10)
-                        
                     }
                     
                     
@@ -320,7 +384,6 @@ struct EditSessionView: View {
         .padding()
         .onAppear {
             name = seminar.name
-            image = seminar.image.first ?? ""
             date = seminar.date
             startingTime = seminar.startingTime
             endingTime = seminar.endingTime
@@ -365,12 +428,3 @@ struct EditSessionView: View {
     
 }
 
-
-
-
-//
-//struct EditSessionView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        EditSessionView(seminarStore: SeminarStore(), seminar: Seminar(id: <#T##String#>, image: <#T##[String]#>, name: <#T##String#>, date: <#T##Date#>, startingTime: <#T##String#>, endingTime: <#T##String#>, category: <#T##String#>, location: <#T##String#>, locationUrl: <#T##String#>, host: <#T##String#>, hostIntroduction: <#T##String#>, seminarDescription: <#T##String#>, seminarCurriculum: <#T##String#>))
-//    }
-//}

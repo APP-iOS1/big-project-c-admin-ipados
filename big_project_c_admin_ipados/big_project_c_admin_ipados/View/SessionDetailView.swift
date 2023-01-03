@@ -23,6 +23,9 @@ struct SessionDetailView: View {
     @State private var clickedEditButton: Bool = false
     @State private var clickedQRButton: Bool = false
     
+    //MARK: - 게시글 삭제를 위한 Alert 띄우기 Flag 추가
+    @State private var isDeleteButton: Bool = false
+    
     var selectedContent: Seminar? {
         get {
             for sample in seminarStore.seminarList {
@@ -40,42 +43,65 @@ struct SessionDetailView: View {
                     
                     HStack {
                         VStack(alignment: .leading) {
+                            // MARK: - 세미나 티이틀
                             Text(selectedContent?.name ?? "")
                                 .font(.title)
                                 .fontWeight(.bold)
+                            
                             HStack {
-                                HStack {
-                                    Image(systemName: "calendar")
-                                    Text(selectedContent?.createdDate ?? "")
-                                        .font(.subheadline)
-                                        .padding(.trailing, 5)
-                                    Image(systemName: "mappin.and.ellipse")
-                                    Text(selectedContent?.location ?? "")
-                                        .font(.subheadline)
+                                 // MARK: - 날짜, 위치
+                                VStack(alignment: .leading) {
+                                    HStack {
+                                        Image(systemName: "calendar")
+                                        Text(selectedContent?.createdDate ?? "")
+                                            .font(.subheadline)
+                                            .padding(.trailing, 5)
+                                        Image(systemName: "mappin.and.ellipse")
+                                        Text(selectedContent?.location ?? "")
+                                            .font(.subheadline)
+                                        
+                                    }
+                                    HStack {
+                                        // MARK: - 날짜, 위치
+                                        Button {
+                                            clickedEditButton.toggle()
+                                        } label: {
+                                            Text("수정 하기")
+                                                .padding(.vertical, 13)
+                                                .padding(.trailing, 28)
+                                                .fontWeight(.bold)
+                                                .foregroundColor(Color.accentColor)
+                                                .cornerRadius(15)
+                                        }
+                                        .sheet(isPresented: $clickedEditButton) {
+                                            EditSessionView(seminarStore: seminarStore, seminar: selectedContent ?? Seminar(id: "", image: [], name: "", date: Date(), startingTime: "", endingTime: "", category: "", location: "", locationUrl: "", hostName: "", hostImage : "", hostIntroduction: "", seminarDescription: "", seminarCurriculum: ""))
+                                        }
+                                        
+                                        
+                                        Button {
+                                            isDeleteButton.toggle()
+                                        } label: {
+                                            Text("삭제 하기")
+                                                .padding(.vertical, 13)
+                                                .padding(.trailing, 28)
+                                                .fontWeight(.bold)
+                                                .foregroundColor(Color.accentColor)
+                                                .cornerRadius(15)
+                                        }
+                                        .alert(isPresented: $isDeleteButton) {
+                                            Alert(title: Text("삭제 하시겠습니까?"),
+                                                  message: Text("삭제 후 복구 불가!"),
+                                                  primaryButton: .destructive(Text("삭제"), action: {
+                                                seminarStore.deleteSeminar(seminar: selectedContent ?? Seminar(id: "", image: [], name: "", date: Date(), startingTime: "", endingTime: "", category: "", location: "", locationUrl: "", hostName: "", hostImage : "", hostIntroduction: "", seminarDescription: "", seminarCurriculum: ""))
+                                            }), secondaryButton: .cancel(Text("취소")))
+                                        }
+                                    }
                                 }
                                 
                                 Spacer()
                                 
+                                // MARK: - QR 코드 버튼
                                 HStack {
-                                    
-                                    Button {
-                                        // TODO: 내용 수정 기능 구현
-                                        clickedEditButton = true
-                                    } label: {
-                                        Text("세미나 내용 수정하기")
-                                            .frame(width: 150)
-                                            .padding(12)
-                                            .fontWeight(.bold)
-                                            .foregroundColor(Color.white)
-                                            .background(Color.accentColor)
-                                            .cornerRadius(15)
-                                    }
-                                    .fullScreenCover(isPresented: $clickedEditButton) {
-                                        //                                            EditSessionView(seminarInfo: seminarInfo, selectedContent: selectedContent)
-                                        EditTestView(seminarStore: seminarStore, seminarID: selectedContent?.id ?? "")
-                                    }
-                                    
-                                    
                                     Button {
                                         // TODO: QR코드 연결
                                         if isDeviceCapacity {
@@ -85,7 +111,7 @@ struct SessionDetailView: View {
                                         }
                                         
                                     } label: {
-                                        Text("QR코드")
+                                        Text("QR 출석체크")
                                             .frame(width: 150)
                                             .padding(12)
                                             .fontWeight(.bold)
@@ -147,12 +173,12 @@ struct SessionDetailView: View {
                                 questionStore.fetchQuestion(seminarID: seminarId ?? "")
                             }
                             
-
+                            
                         }
                         
                         .frame(minHeight: 50)
                         
-
+                        
                         // MARK: -View : 오른쪽 사이드 유저 리스트
                         SessionDetailUserList(selectedContent: selectedContent)
                             .frame(width: geo.size.width/4.5)

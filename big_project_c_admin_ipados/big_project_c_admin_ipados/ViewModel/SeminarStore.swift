@@ -156,51 +156,54 @@ class SeminarStore : ObservableObject {
     
     // 세미나 작성 완료시 추가됨 (input Seminar 타입으로 다 넣어주시면 됩니다.)
     func addSeminar(seminar: Seminar, selectedImages: [UIImage?], selectedHostImage: UIImage?) {
-            database.collection("Seminar")
+        database.collection("Seminar")
             .document(seminar.id)
-                .setData(["id": seminar.id,
-                          "image": seminar.image,
-                          "name": seminar.name,
-                          "date": seminar.date,
-                          "startingTime": seminar.startingTime,
-                          "endingTime": seminar.endingTime,
-                          "category": seminar.category,
-                          "location": seminar.location,
-                          "locationUrl": seminar.locationUrl,
-                          "hostName": seminar.hostName,
-                          "hostImage": seminar.hostImage,
-                          "hostIntroduction": seminar.hostIntroduction,
-                          "seminarDescription": seminar.seminarDescription,
-                          "seminarCurriculum": seminar.seminarCurriculum,
-                         ])
-
-            //FireStore Data를 READ 해오는 함수 호출
+            .setData(["id": seminar.id,
+                      "image": seminar.image,
+                      "name": seminar.name,
+                      "date": seminar.date,
+                      "startingTime": seminar.startingTime,
+                      "endingTime": seminar.endingTime,
+                      "category": seminar.category,
+                      "location": seminar.location,
+                      "locationUrl": seminar.locationUrl,
+                      "hostName": seminar.hostName,
+                      "hostImage": seminar.hostImage,
+                      "hostIntroduction": seminar.hostIntroduction,
+                      "seminarDescription": seminar.seminarDescription,
+                      "seminarCurriculum": seminar.seminarCurriculum,
+                     ])
+        
+        // MARK: -selectedHostImageStore, storeHostImageToStorege 값 할당
         storeImageToStorage(id: seminar.id, selectedImages: selectedImages)
         storeHostImageToStorage(id: seminar.id, selectedHostImages: selectedHostImage)
-        }
+        fetchSeminar()
+    }
     
-    func editSeminar(seminar: Seminar) {
-            database.collection("Seminar")
+    func editSeminar(seminar: Seminar, selectedImages: [UIImage?], selectedHostImage: UIImage?) {
+        database.collection("Seminar")
             .document(seminar.id)
-                .updateData(["id": seminar.id,
-                          "image": seminar.image,
-                          "name": seminar.name,
-                          "date": seminar.date,
-                          "startingTime": seminar.startingTime,
-                          "endingTime": seminar.endingTime,
-                          "category": seminar.category,
-                          "location": seminar.location,
-                          "locationUrl": seminar.locationUrl,
-                             "hostName": seminar.hostName,
-                             "hostImage": seminar.hostImage,
-                          "hostIntroduction": seminar.hostIntroduction,
-                          "seminarDescription": seminar.seminarDescription,
-                          "seminarCurriculum": seminar.seminarCurriculum,
-                         ])
-
-            //FireStore Data를 READ 해오는 함수 호출
-//            fetchSeminar()
-        }
+            .updateData(["id": seminar.id,
+                         "image": seminar.image,
+                         "name": seminar.name,
+                         "date": seminar.date,
+                         "startingTime": seminar.startingTime,
+                         "endingTime": seminar.endingTime,
+                         "category": seminar.category,
+                         "location": seminar.location,
+                         "locationUrl": seminar.locationUrl,
+                         "hostName": seminar.hostName,
+                         "hostImage": seminar.hostImage,
+                         "hostIntroduction": seminar.hostIntroduction,
+                         "seminarDescription": seminar.seminarDescription,
+                         "seminarCurriculum": seminar.seminarCurriculum,
+                        ])
+        
+        // MARK: -selectedHostImageStore, storeHostImageToStorege 값 할당
+        storeImageToStorage(id: seminar.id, selectedImages: selectedImages)
+        storeHostImageToStorage(id: seminar.id, selectedHostImages: selectedHostImage)
+        fetchSeminar()
+    }
 
     // selectedHostImage
     func storeHostImageToStorage(id:String, selectedHostImages: UIImage?) {
@@ -236,6 +239,8 @@ class SeminarStore : ObservableObject {
                 }
             }
         }
+    
+    
         
         func postHostImageToStore(imageUrl: URL, uid: String) {
             
@@ -256,6 +261,22 @@ class SeminarStore : ObservableObject {
           
             fetchSeminar()
     }
+    
+    
+    // MARK: - 세미나 게시물 삭제하기
+    func deleteSeminar(seminar: Seminar) {
+        print(seminar.id)
+            database.collection("Seminar")
+            .document(seminar.id)
+                .delete()
+        
+        
+        //FireStore Data를 READ 해오는 함수 호출
+//    storeImageToStorage(id: seminar.id, selectedImages: selectedImages)
+
+            //FireStore Data를 READ 해오는 함수 호출
+            fetchSeminar()
+        }
 }
 
 //    // 세미나 추가시 필요 정보들

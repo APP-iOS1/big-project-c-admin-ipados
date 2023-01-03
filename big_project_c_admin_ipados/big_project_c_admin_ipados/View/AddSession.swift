@@ -282,18 +282,6 @@ struct AddSessionView: View {
                     }
                     
                     
-                    //                        //이미지 피커로 수정
-                    //                        HStack(spacing: 50) {
-                    //                            Text("프로필 이미지 URL을 입력해주세요")
-                    //                                .font(.callout)
-                    //
-                    //                            TextField("URL 주소", text: $host)
-                    //
-                    //                            AsyncImage(url: URL(string: host), transaction: transaction, content: imageView)
-                    //                                .frame(width: 100, height: 100)
-                    //
-                    //                        }
-                    
                     VStack(alignment: .leading) {
                         
                         Text("소개글을 입력해주세요")
