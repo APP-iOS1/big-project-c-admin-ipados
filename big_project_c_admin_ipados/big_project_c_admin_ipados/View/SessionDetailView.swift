@@ -92,6 +92,7 @@ struct SessionDetailView: View {
                                         } else {
                                             self.showDeviceNotCapacityAlert = true
                                         }
+                                        
                                     } label: {
                                         Text("QR코드")
                                             .frame(width: 150)
