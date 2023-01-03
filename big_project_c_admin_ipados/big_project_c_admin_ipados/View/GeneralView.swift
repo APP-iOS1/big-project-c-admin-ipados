@@ -56,13 +56,12 @@ struct GeneralView: View {
                 } else {
                 Text("카테고리를 선택해주세요")
                 }
-            }
-        
+            }        
 //        .sheet(isPresented: $isShowingAddSessionView) {
 //            AddSessionView(seminar: SeminarStore())
 //        }
         .fullScreenCover(isPresented: $isShowingAddSessionView) {
-            AddSessionView(seminar: seminarInfo)
+            AddSessionView(seminarStore: seminarInfo)
         }
     }
 }

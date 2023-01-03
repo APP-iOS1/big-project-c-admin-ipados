@@ -12,23 +12,20 @@ struct SessionDetailView: View {
     @State private var showCameraScannerView = false
     @State private var isDeviceCapacity = false
     @State private var showDeviceNotCapacityAlert = false
-//    @State private var scanIdResult : String = ""
-//    @State private var scanUserUidResult : String = ""
-//    @State private var scanUserNickNameResult : String = ""
-    @ObservedObject var seminarInfo: SeminarStore
+    
+    @ObservedObject var seminarStore: SeminarStore
     @EnvironmentObject var attendanceStore : AttendanceStore
     @StateObject var questionStore: QuestionStore = QuestionStore()
 //    @ObservedObject var questionInfo: QuestionStore
 
-//    @Binding var seminarList: Seminar
-    
+//    @Binding var seminarList: Seminar    
     @Binding var seminarId: Seminar.ID?
     @State private var clickedEditButton: Bool = false
     @State private var clickedQRButton: Bool = false
     
     var selectedContent: Seminar? {
         get {
-            for sample in seminarInfo.seminarList {
+            for sample in seminarStore.seminarList {
                 if sample.id == seminarId {
                     return sample
                 }
@@ -36,17 +33,11 @@ struct SessionDetailView: View {
             return nil
         }
     }
-
-   
-    
     var body: some View {
         GeometryReader { geo in
-            ZStack {
-                if selectedContent == nil {
-                    Image("LoginLogo")
-                        .position(x: geo.frame(in: .local).midX, y: geo.frame(in: .local).midY)
-                }
-                else {
+            HStack {
+                VStack(alignment: .leading) {
+                    
                     HStack {
                         VStack(alignment: .leading) {
                             Text(selectedContent?.name ?? "")
@@ -158,26 +149,109 @@ struct SessionDetailView: View {
                             
 
                             Spacer()
+                        Text(selectedContent?.name ?? "강의 제목")
+                            .font(.title)
+                            .fontWeight(.bold)
+                        
+                        Spacer()
+                        
+                        //  MARK: -View : 수정 버튼
+                        // TODO: EditSession 연결
+                        Button {
+                            clickedEditButton.toggle()
+                        } label: {
+                            Text("세션 수정하기")
+                                .padding(.vertical, 13)
+                                .padding(.trailing, 28)
+                                .fontWeight(.semibold)
+                                .foregroundColor(Color.accentColor)
+                                .cornerRadius(15)
                         }
-                        .padding(.leading, 40)
+                        .sheet(isPresented: $clickedEditButton) {
+                            EditSessionView(seminarStore: seminarStore, seminar: selectedContent ?? Seminar(id: "", image: [], name: "", date: Date(), startingTime: "", endingTime: "", category: "", location: "", locationUrl: "", hostName: "", hostImage: "", hostIntroduction: "", seminarDescription: "", seminarCurriculum: ""))                        }
                         
-                        
-                        // MARK: -View : 오른쪽 사이드 유저 리스트
-        //                SessionDetailUserList(seminarID: seminarId)
-                        SessionDetailUserList(selectedContent: selectedContent)
-                            .frame(width: geo.size.width/4)
-                            .padding(.trailing, 20)
                     }
-                }
-            }
-            .sheet(isPresented: $showCameraScannerView) {
-                CameraScanner(startScanning: $showCameraScannerView, seminarID: selectedContent?.id ?? "")
+                    
+                    .frame(minHeight: 50)
+                    
+                    
+                    HStack {
+                        Image(systemName: "calendar")
+                        Text(selectedContent?.createdDate ?? "2023-01-01")
+                            .font(.subheadline)
+                            .padding(.trailing, 15)
+                        Image(systemName: "mappin.and.ellipse")
+                        Text(selectedContent?.location ?? "멋쟁이사자처럼 광화문 오피스")
+                            .font(.subheadline)
+                        
+                        Spacer()
+                        
+                        Button {
+                            clickedQRButton.toggle()
+                        } label: {
+                            Text("QR 출석 체크")
+                                .padding(.vertical, 13)
+                                .padding(.horizontal, 30)
+                                .fontWeight(.bold)
+                                .foregroundColor(Color.white)
+                                .background(Color.accentColor)
+                                .cornerRadius(15)
                         }
-            .alert("스캐너 사용불가", isPresented: $showDeviceNotCapacityAlert, actions: {})
+                    }
+                    .frame(minHeight: 30)
+                    
+                    Divider()
+                        .padding(.vertical, 20)
+                    
+                    
+                    // MARK: -View : Q&A 리스트 관리
+                    // TODO: Question 데이터 연결 (댓글 내용, 시간대 띄워주기)
+                    Text("받은 Q&A")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                    
+                    List(dummyQuestions, id:\.self) { question in
+                        Text(question)
+                            .padding()
+                            .listRowBackground(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .fill(Color.secondary.opacity(0.15))
+                                    .foregroundColor(.white)
+                                    .padding(
+                                        EdgeInsets(
+                                            top: 10,
+                                            leading: 10,
+                                            bottom: 10,
+                                            trailing: 10
+                                        )
+                                    )
+                                
+                            )
+                            .listRowSeparator(.hidden)
+                    }
+                    .scrollContentBackground(.hidden)
+                    .listStyle(PlainListStyle())
+                    .padding(.leading, -13)
+                    
+                    
+                    
+                    Spacer()
+                }
+                .padding(.leading, 40)
+                .padding(.trailing, 10)
+                
+                
+                // MARK: -View : 오른쪽 사이드 유저 리스트
+                SessionDetailUserList(selectedContent: selectedContent)
+                    .frame(width: geo.size.width/4.5)
+                    .padding(.trailing, 20)
+            }
+        }
+        .sheet(isPresented: $showCameraScannerView) {
+            CameraScanner(startScanning: $showCameraScannerView, seminarID: selectedContent?.id ?? "")
+                .alert("스캐너 사용불가", isPresented: $showDeviceNotCapacityAlert, actions: {})
         }
         .onAppear {
-//            print("온어피어")
-//            print("세미나 아이디", selectedContent?.id)
             isDeviceCapacity = (DataScannerViewController.isSupported && DataScannerViewController.isAvailable)
             
             questionStore.fetchQuestion(seminarID: seminarId ?? "")
@@ -186,12 +260,13 @@ struct SessionDetailView: View {
             questionStore.fetchQuestion(seminarID: newValue ?? "")
             
                     }
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
 
-//struct SessionDetailView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SessionDetailView()
-//    }
-//}
+struct SessionDetailView_Previews: PreviewProvider {
+    static var previews: some View {
+        SessionDetailView(seminarStore: SeminarStore())
+    }
+}
