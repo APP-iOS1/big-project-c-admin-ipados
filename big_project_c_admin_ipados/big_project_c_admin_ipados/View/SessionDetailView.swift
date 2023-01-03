@@ -12,14 +12,16 @@ struct SessionDetailView: View {
     @State private var showCameraScannerView = false
     @State private var isDeviceCapacity = false
     @State private var showDeviceNotCapacityAlert = false
-    //    @State private var scanIdResult : String = ""
-    //    @State private var scanUserUidResult : String = ""
-    //    @State private var scanUserNickNameResult : String = ""
-    @ObservedObject var seminarInfo: SeminarStore
+
+//    @State private var scanIdResult : String = ""
+//    @State private var scanUserUidResult : String = ""
+//    @State private var scanUserNickNameResult : String = ""
+    @ObservedObject var seminarStore: SeminarStore
     @EnvironmentObject var attendanceStore : AttendanceStore
-    //    @ObservedObject var questionInfo: QuestionStore
-    
-    //    @Binding var seminarList: Seminar
+//    @ObservedObject var questionInfo: QuestionStore
+
+//    @Binding var seminarList: Seminar
+
     
     var seminarId: Seminar.ID?
     @State private var clickedEditButton: Bool = false
@@ -27,7 +29,7 @@ struct SessionDetailView: View {
     
     var selectedContent: Seminar? {
         get {
-            for sample in seminarInfo.seminarList {
+            for sample in seminarStore.seminarList {
                 if sample.id == seminarId {
                     return sample
                 }
@@ -83,8 +85,14 @@ struct SessionDetailView: View {
                                 .foregroundColor(Color.accentColor)
                                 .cornerRadius(15)
                         }
+                         .sheet(isPresented: $clickedEditButton) {
+                           EditSessionView(seminarStore: seminarStore, seminar: selectedContent ?? Seminar(id: "", image: [], name: "", date: Date(), startingTime: "", endingTime: "", category: "", location: "", locationUrl: "", host: "", hostIntroduction: "", seminarDescription: "", seminarCurriculum: ""))
+                          }
+                        
                     }
+       
                     .frame(minHeight: 50)
+                    
                     
                     HStack {
                         Image(systemName: "calendar")
