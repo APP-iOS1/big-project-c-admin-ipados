@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct Seminar : Codable, Identifiable, Equatable {
     var id : String // 자동 생성
@@ -17,7 +18,8 @@ struct Seminar : Codable, Identifiable, Equatable {
     var category : String
     var location : String
     var locationUrl : String
-    var host : String
+    var hostName :String
+    var hostImage: String
     var hostIntroduction : String
     var seminarDescription : String
     var seminarCurriculum : String
