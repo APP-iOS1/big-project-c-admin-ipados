@@ -52,7 +52,7 @@ struct GeneralView: View {
         }
         detail: {
             if let selectedCategoryId {
-                SessionDetailView(seminarInfo: seminarInfo, seminarId: $selectedCategoryId)
+                SessionDetailView(seminarStore: seminarInfo, seminarId: $selectedCategoryId)
                 } else {
                 Text("카테고리를 선택해주세요")
                 }
