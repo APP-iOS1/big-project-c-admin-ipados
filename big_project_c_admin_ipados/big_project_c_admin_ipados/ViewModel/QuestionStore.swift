@@ -39,10 +39,14 @@ class QuestionStore : ObservableObject {
                 print("Error fetching documents : \(error!)")
                 return }
             querySnapshot?.documentChanges.forEach{ diff in
-                print(seminarID, "확인~~")
+                
                 if (diff.type == .added) {
                     print("question added")
+                    print(seminarID, "세미나 ID")
+                    print(diff.document.documentID, ": document ID")
+                   
                     self.fetchQuestion(seminarID: seminarID)
+                    
                 }
                 if (diff.type == .modified) {
                     print(documents)

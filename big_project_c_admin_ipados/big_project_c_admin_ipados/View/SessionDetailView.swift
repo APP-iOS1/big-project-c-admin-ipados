@@ -17,6 +17,7 @@ struct SessionDetailView: View {
 //    @State private var scanUserNickNameResult : String = ""
     @ObservedObject var seminarInfo: SeminarStore
     @EnvironmentObject var attendanceStore : AttendanceStore
+    @StateObject var questionStore: QuestionStore = QuestionStore()
 //    @ObservedObject var questionInfo: QuestionStore
 
 //    @Binding var seminarList: Seminar
@@ -36,7 +37,7 @@ struct SessionDetailView: View {
         }
     }
 
-    @StateObject var questionStore: QuestionStore = QuestionStore()
+   
     
     var body: some View {
         GeometryReader { geo in
@@ -109,9 +110,24 @@ struct SessionDetailView: View {
                             
 
                             // MARK: -View : Q&A 리스트 관리
-                            Text("받은 Q&A")
-                                .font(.largeTitle)
-                                .fontWeight(.bold)
+                            HStack {
+                                Text("받은 Q&A")
+                                    .font(.largeTitle)
+                                    .fontWeight(.bold)
+                                Spacer()
+                                Button {
+                                    questionStore.fetchQuestion(seminarID: seminarId ?? "")
+                                } label: {
+                                    Image(systemName: "arrow.clockwise")
+                                        .foregroundColor(.black)
+                                        .padding(.trailing, 20)
+                                        .font(.title3)
+                                        
+                                }
+
+                            }
+                        
+                            
                             
                             List(questionStore.questionList, id:\.self) { question in
                                 Text(question.question)
@@ -135,9 +151,9 @@ struct SessionDetailView: View {
                             .scrollContentBackground(.hidden)
                             .listStyle(InsetGroupedListStyle())
                             .padding(.leading, -13)
-//                            .refreshable {
-//                                questionStore.fetchQuestion(seminarID: seminarId ?? "")
-//                            }
+                            .refreshable {
+                                questionStore.fetchQuestion(seminarID: seminarId ?? "")
+                            }
                             
 
                             Spacer()
@@ -163,14 +179,12 @@ struct SessionDetailView: View {
 //            print("세미나 아이디", selectedContent?.id)
             isDeviceCapacity = (DataScannerViewController.isSupported && DataScannerViewController.isAvailable)
             
-            questionStore.listenQuestion(seminarID: seminarId ?? "")
+            questionStore.fetchQuestion(seminarID: seminarId ?? "")
         }
         .onChange(of:seminarId) { newValue in
-            print("onchange: \(seminarId)")
-            questionStore.questionList = []
-           // questionStore.fetchQuestion(seminarID: seminarId ?? "")
-            questionStore.listenQuestion(seminarID: seminarId ?? "")
-        }
+            questionStore.fetchQuestion(seminarID: newValue ?? "")
+            
+                    }
     }
 }
 
