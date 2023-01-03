@@ -31,6 +31,7 @@ class AttendanceStore : ObservableObject {
                     let attendance = Attendance(id: id, uid: uid, userNickname: userNickName)
                     
                     self.attendanceUserList.append(attendance)
+                    print("\(self.attendanceUserList)")
                 }
             }
         }

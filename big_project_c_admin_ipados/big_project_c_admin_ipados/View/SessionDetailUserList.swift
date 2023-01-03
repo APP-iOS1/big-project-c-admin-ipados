@@ -20,7 +20,7 @@ struct SessionDetailUserList: View {
             Text("참석한 사자들 (\(attendanceStore.attendanceUserList.count))")
                 .font(.title2)
                 .fontWeight(.bold)
-            List(attendanceStore.attendanceUserList) { username in
+            List(attendanceStore.attendanceUserList, id: \.self) { username in
                 Text(username.userNickname)
             }
             .listStyle(.plain)
