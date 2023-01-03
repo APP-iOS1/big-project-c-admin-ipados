@@ -125,7 +125,7 @@ class SeminarStore : ObservableObject {
                          ])
 
             //FireStore Data를 READ 해오는 함수 호출
-            fetchSeminar()
+//            fetchSeminar()
         }
 
     

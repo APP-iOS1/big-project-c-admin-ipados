@@ -15,11 +15,12 @@ struct SessionDetailView: View {
 //    @State private var scanIdResult : String = ""
 //    @State private var scanUserUidResult : String = ""
 //    @State private var scanUserNickNameResult : String = ""
-    @ObservedObject var seminarInfo: SeminarStore
+    @ObservedObject var seminarStore: SeminarStore
     @EnvironmentObject var attendanceStore : AttendanceStore
 //    @ObservedObject var questionInfo: QuestionStore
 
 //    @Binding var seminarList: Seminar
+
     
     var seminarId: Seminar.ID?
     @State private var clickedEditButton: Bool = false
@@ -27,7 +28,7 @@ struct SessionDetailView: View {
     
     var selectedContent: Seminar? {
         get {
-            for sample in seminarInfo.seminarList {
+            for sample in seminarStore.seminarList {
                 if sample.id == seminarId {
                     return sample
                 }
@@ -89,7 +90,7 @@ struct SessionDetailView: View {
                                     
                                         Button {
                                             // TODO: 내용 수정 기능 구현
-                                            clickedEditButton = true
+                                            clickedEditButton.toggle()
                                         } label: {
                                             Text("세미나 내용 수정하기")
                                                 .frame(width: 150)
@@ -99,9 +100,10 @@ struct SessionDetailView: View {
                                                 .background(Color.accentColor)
                                                 .cornerRadius(15)
                                         }
-                                        .fullScreenCover(isPresented: $clickedEditButton) {
-//                                            EditSessionView(seminarInfo: seminarInfo, selectedContent: selectedContent)
-                                            EditTestView(seminarInfo: seminarInfo, seminarID: selectedContent?.id ?? "")
+                                        .sheet(isPresented: $clickedEditButton) {
+//                                            EditSessionView(seminarStore: SeminarStore(), seminar: selectedContent)//
+//                                            EditTestView(seminarStore: seminarInfo, seminarID: selectedContent?.id ?? "")
+                                            EditSessionView(seminarStore: seminarStore, seminar: selectedContent ?? Seminar(id: "", image: [], name: "", date: Date(), startingTime: "", endingTime: "", category: "", location: "", locationUrl: "", host: "", hostIntroduction: "", seminarDescription: "", seminarCurriculum: ""))
                                         }
                                     
                                     
