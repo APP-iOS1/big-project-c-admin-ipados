@@ -135,7 +135,9 @@ struct SessionDetailView: View {
                             .scrollContentBackground(.hidden)
                             .listStyle(InsetGroupedListStyle())
                             .padding(.leading, -13)
-                            
+//                            .refreshable {
+//                                questionStore.fetchQuestion(seminarID: seminarId ?? "")
+//                            }
                             
 
                             Spacer()
@@ -160,10 +162,14 @@ struct SessionDetailView: View {
 //            print("온어피어")
 //            print("세미나 아이디", selectedContent?.id)
             isDeviceCapacity = (DataScannerViewController.isSupported && DataScannerViewController.isAvailable)
-            questionStore.fetchQuestion(seminarID: seminarId ?? "")
+            
+            questionStore.listenQuestion(seminarID: seminarId ?? "")
         }
         .onChange(of:seminarId) { newValue in
-            questionStore.fetchQuestion(seminarID: seminarId ?? "")
+            print("onchange: \(seminarId)")
+            questionStore.questionList = []
+           // questionStore.fetchQuestion(seminarID: seminarId ?? "")
+            questionStore.listenQuestion(seminarID: seminarId ?? "")
         }
     }
 }
