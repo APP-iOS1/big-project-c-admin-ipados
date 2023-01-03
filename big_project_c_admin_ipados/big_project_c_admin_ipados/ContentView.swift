@@ -17,7 +17,7 @@ struct ContentView: View {
                 DashBoardView(slices: [
                     (3, .orange),
                     (1, .gray)
-                ], seminar: Seminar(id: "", image: ["https://techit.education/img/techit_ogImage.png"], name: "세미나 테스트 1", date: Date(), startingTime: "", endingTime: "", category: "앱 스쿨", location: "광화문", locationUrl: "", host: "", hostIntroduction: "", seminarDescription: "", seminarCurriculum: ""))
+                ])
                 
                     .tabItem {
                         Label("현황", systemImage: "chart.pie.fill")
