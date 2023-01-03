@@ -57,8 +57,9 @@ struct AddSessionView: View {
     @State private var location: String = ""
     @State private var locationUrl: String = ""
     
-    // MARK: - host, hostIntroduction (호스트 인포 - 프로필 사진, 강사소개)
-    @State private var host: String = ""
+    // MARK: - hostName, hostImaeg, hostIntroduction (호스트 인포 - 프로필 사진, 강사소개)
+    @State private var hostName: String = ""
+    @State private var hostImage: String = ""
     @State private var hostIntroduce: String = ""
     
     // MARK: - seminarDescription, seminarCurriculum (세미나 상세내용, 상세 커리큘럼)
@@ -265,15 +266,27 @@ struct AddSessionView: View {
                             .fontWeight(.bold)
                         
                         HStack(spacing: 50) {
+                            Text("강사이름을 입력해주세요")
+                                .font(.callout)
+                            
+                            TextField("성함 및 닉네임", text: $hostName)
+            
+                        }
+                        
+                        HStack(spacing: 50) {
                             Text("프로필 이미지 URL을 입력해주세요")
                                 .font(.callout)
                             
-                            TextField("URL 주소", text: $host)
+                            TextField("URL 주소", text: $hostImage)
                             
-                            AsyncImage(url: URL(string: host), transaction: transaction, content: imageView)
+                            AsyncImage(url: URL(string: hostImage), transaction: transaction, content: imageView)
                                 .frame(width: 100, height: 100)
                             
                         }
+                        
+                        
+                        
+                        // TODO: - HostName Stack 만들기
                         
                         VStack(alignment: .leading) {
                             
@@ -338,7 +351,7 @@ struct AddSessionView: View {
                             let id = UUID().uuidString
                             //                                seminar.storeImageToStorage(id: id, selectedImages: selectedImages)
                             
-                            seminarStore.addSeminar(seminar: Seminar(id: id, image: [image], name: name, date: date, startingTime: startingTime, endingTime: endingTime, category: selectedCategory, location: location, locationUrl: locationUrl, host: host, hostIntroduction: hostIntroduce, seminarDescription: seminarDescription, seminarCurriculum: seminarCurriculum), selectedImages: selectedImages)
+                            seminarStore.addSeminar(seminar: Seminar(id: id, image: [image], name: name, date: date, startingTime: startingTime, endingTime: endingTime, category: selectedCategory, location: location, locationUrl: locationUrl, hostName: hostName, hostImage: hostImage, hostIntroduction: hostIntroduce, seminarDescription: seminarDescription, seminarCurriculum: seminarCurriculum), selectedImages: selectedImages)
                             
                             dismiss()
                             
@@ -402,11 +415,4 @@ struct AddSessionView_Previews: PreviewProvider {
         AddSessionView(seminarStore: SeminarStore())
     }
 }
-
-
-//                    TextField("날짜", text: $sessionSchedule)
-//                    DatePicker("날짜", selection: $sessionSchedule,
-//                               displayedComponents: .date)
-//                    DatePicker("시간", selection: $sessionSchedule,
-//                               displayedComponents: .hourAndMinute)
 

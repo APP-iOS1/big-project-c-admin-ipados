@@ -63,8 +63,9 @@ struct EditSessionView: View {
     @State private var location: String = ""
     @State private var locationUrl: String = ""
     
-    // MARK: - host, hostIntroduction (호스트 인포 - 프로필 사진, 강사소개)
-    @State private var host: String = ""
+    // MARK: - hostName, hostImaeg, hostIntroduction (호스트 인포 - 프로필 사진, 강사소개)
+    @State private var hostName: String = ""
+    @State private var hostImage: String = ""
     @State private var hostIntroduce: String = ""
     
     // MARK: - seminarDescription, seminarCurriculum (세미나 상세내용, 상세 커리큘럼)
@@ -271,12 +272,20 @@ struct EditSessionView: View {
                             .fontWeight(.bold)
                         
                         HStack(spacing: 50) {
+                            Text("강사이름을 입력해주세요")
+                                .font(.callout)
+                            
+                            TextField("성함 및 닉네임", text: $hostName)
+            
+                        }
+                        
+                        HStack(spacing: 50) {
                             Text("프로필 이미지 URL을 입력해주세요")
                                 .font(.callout)
                             
-                            TextField("URL 주소", text: $host)
+                            TextField("URL 주소", text: $hostImage)
                             
-                            AsyncImage(url: URL(string: host), transaction: transaction, content: imageView)
+                            AsyncImage(url: URL(string: hostImage), transaction: transaction, content: imageView)
                                 .frame(width: 100, height: 100)
                             
                         }
@@ -343,14 +352,14 @@ struct EditSessionView: View {
                         Button {
                             let id = UUID().uuidString
                             
-                            seminarStore.editSeminar(seminar: Seminar(id: seminar.id,  image: [image], name: name, date: date, startingTime: startingTime, endingTime: endingTime, category: selectedCategory, location: location, locationUrl: locationUrl, host: host, hostIntroduction: hostIntroduce, seminarDescription: seminarDescription, seminarCurriculum: seminarCurriculum), selectedImages: selectedImages)
+                            seminarStore.editSeminar(seminar: Seminar(id: seminar.id,  image: [image], name: name, date: date, startingTime: startingTime, endingTime: endingTime, category: selectedCategory, location: location, locationUrl: locationUrl, hostName: hostName, hostImage: hostImage, hostIntroduction: hostIntroduce, seminarDescription: seminarDescription, seminarCurriculum: seminarCurriculum), selectedImages: selectedImages)
 
 
                             
                             dismiss()
                             
                         } label: {
-                            Text("세미나 등록하기")
+                            Text("세미나 수정하기")
                                 .foregroundColor(.white)
                                 .padding()
                             // 등록하기
@@ -379,7 +388,8 @@ struct EditSessionView: View {
             selectedCategory = seminar.category
             location = seminar.location
             locationUrl = seminar.locationUrl
-            host = seminar.host
+            hostName = seminar.hostName
+            hostImage = seminar.hostImage
             hostIntroduce = seminar.hostIntroduction
             seminarDescription = seminar.seminarDescription
             seminarCurriculum = seminar.seminarCurriculum
@@ -416,12 +426,3 @@ struct EditSessionView: View {
     
 }
 
-
-
-
-//
-//struct EditSessionView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        EditSessionView(seminarStore: SeminarStore(), seminar: Seminar(id: <#T##String#>, image: <#T##[String]#>, name: <#T##String#>, date: <#T##Date#>, startingTime: <#T##String#>, endingTime: <#T##String#>, category: <#T##String#>, location: <#T##String#>, locationUrl: <#T##String#>, host: <#T##String#>, hostIntroduction: <#T##String#>, seminarDescription: <#T##String#>, seminarCurriculum: <#T##String#>))
-//    }
-//}

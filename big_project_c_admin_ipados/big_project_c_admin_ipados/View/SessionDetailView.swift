@@ -88,7 +88,7 @@ struct SessionDetailView: View {
                                 .cornerRadius(15)
                         }
                         .sheet(isPresented: $clickedEditButton) {
-                            EditSessionView(seminarStore: seminarStore, seminar: selectedContent ?? Seminar(id: "", image: [], name: "", date: Date(), startingTime: "", endingTime: "", category: "", location: "", locationUrl: "", host: "", hostIntroduction: "", seminarDescription: "", seminarCurriculum: ""))
+                            EditSessionView(seminarStore: seminarStore, seminar: selectedContent ?? Seminar(id: "", image: [], name: "", date: Date(), startingTime: "", endingTime: "", category: "", location: "", locationUrl: "", hostName: "", hostImage : "", hostIntroduction: "", seminarDescription: "", seminarCurriculum: ""))
                         }
                         
                     }
@@ -133,7 +133,7 @@ struct SessionDetailView: View {
                             Alert(title: Text("삭제 하시겠습니까?"),
                                   message: Text("삭제 후 복구 불가!"),
                                   primaryButton: .destructive(Text("삭제"), action: {
-                                seminarStore.deleteSeminar(seminar: selectedContent ?? Seminar(id: "", image: [], name: "", date: Date(), startingTime: "", endingTime: "", category: "", location: "", locationUrl: "", host: "", hostIntroduction: "", seminarDescription: "", seminarCurriculum: ""))
+                                seminarStore.deleteSeminar(seminar: selectedContent ?? Seminar(id: "", image: [], name: "", date: Date(), startingTime: "", endingTime: "", category: "", location: "", locationUrl: "", hostName: "", hostImage : "", hostIntroduction: "", seminarDescription: "", seminarCurriculum: ""))
                             }), secondaryButton: .cancel(Text("취소")))
                         }
                     }
