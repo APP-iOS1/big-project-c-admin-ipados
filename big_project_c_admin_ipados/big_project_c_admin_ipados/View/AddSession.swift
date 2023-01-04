@@ -76,7 +76,7 @@ struct AddSessionView: View {
         VStack(alignment: .leading) {
             ScrollView(showsIndicators: false) {
                 
-                VStack(alignment: .leading, spacing: 80) {
+                VStack(alignment: .leading, spacing: 60) {
                     
                     // MARK: - 세미나 기본정보 제목 및 닫기(Dismiss) 버튼
                     VStack(alignment: .leading) {
@@ -279,11 +279,20 @@ struct AddSessionView: View {
                             
                         }
                         
+                        HStack(spacing: 50) {
+                            Text("성함 및 닉네임")
+                                .font(.body)
+                                .fontWeight(.semibold)
+                            
+                            TextField("강사 이름을 입력해주세요", text: $hostName)
+                                .padding()
+                                .textFieldStyle(.plain)
+                        }
                     }
+                    .padding(.bottom, -70)
                     
                     
                     VStack(alignment: .leading) {
-                        
                         Text("소개글을 입력해주세요")
                             .font(.callout)
                             .foregroundColor(Color.gray)
@@ -291,8 +300,8 @@ struct AddSessionView: View {
                             .padding()
                             .background(Color(.secondarySystemBackground))
                             .frame(height: 150)
-                        
                     }
+                    .padding(.vertical, 20)
                 }
                 
                 
@@ -312,8 +321,8 @@ struct AddSessionView: View {
                             .background(Color(.secondarySystemBackground))
                             .frame(height: 300)
                     }
-                    
                 }
+                .padding(.vertical, 20)
                 
                 
                 // MARK: - 상세 커리큘럼
@@ -321,7 +330,7 @@ struct AddSessionView: View {
                     Text("상세 커리큘럼")
                         .font(.title2)
                         .fontWeight(.bold)
-                    
+                    Spacer()
                     VStack(alignment: .leading) {
                         Text("세부 커리큘럼을 입력해주세요")
                             .font(.callout)
@@ -331,10 +340,9 @@ struct AddSessionView: View {
                             .padding()
                             .background(Color(.secondarySystemBackground))
                             .frame(height: 300)
-                        
-                        
                     }
                 }
+                .padding(.vertical, 20)
                 
                 
                 
@@ -368,7 +376,7 @@ struct AddSessionView: View {
         }
         .padding(20)
     }
-        
+    
 }
 
 //MARK: - Async image를 나타내는 비동기 메서드

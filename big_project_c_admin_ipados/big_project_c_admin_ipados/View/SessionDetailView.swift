@@ -40,29 +40,30 @@ struct SessionDetailView: View {
         GeometryReader { geo in
             HStack {
                 VStack(alignment: .leading) {
-                    
                     HStack {
                         VStack(alignment: .leading) {
-                            // MARK: - 세미나 티이틀
-                            Text(selectedContent?.name ?? "")
+                            // MARK: - 세미나 타이틀
+                            Text(selectedContent?.name ?? "-")
                                 .font(.title)
                                 .fontWeight(.bold)
+         
+
                             
                             HStack {
                                  // MARK: - 날짜, 위치
                                 VStack(alignment: .leading) {
                                     HStack {
                                         Image(systemName: "calendar")
-                                        Text(selectedContent?.createdDate ?? "")
+                                        Text(selectedContent?.createdDate ?? "-")
                                             .font(.subheadline)
                                             .padding(.trailing, 5)
                                         Image(systemName: "mappin.and.ellipse")
-                                        Text(selectedContent?.location ?? "")
+                                        Text(selectedContent?.location ?? "-")
                                             .font(.subheadline)
                                         
                                     }
                                     HStack {
-                                        // MARK: - 날짜, 위치
+                                        // MARK: - 수정, 삭제버튼
                                         Button {
                                             clickedEditButton.toggle()
                                         } label: {
@@ -97,6 +98,7 @@ struct SessionDetailView: View {
                                         }
                                     }
                                 }
+
                                 
                                 Spacer()
                                 
@@ -167,7 +169,7 @@ struct SessionDetailView: View {
                                     .listRowSeparator(.hidden)
                             }
                             .scrollContentBackground(.hidden)
-                            .listStyle(InsetGroupedListStyle())
+                            .listStyle(InsetListStyle())
                             .padding(.leading, -13)
                             .refreshable {
                                 questionStore.fetchQuestion(seminarID: seminarId ?? "")
@@ -182,6 +184,7 @@ struct SessionDetailView: View {
                         // MARK: -View : 오른쪽 사이드 유저 리스트
                         SessionDetailUserList(selectedContent: selectedContent)
                             .frame(width: geo.size.width/4.5)
+                            .padding(.leading, 20)
                             .padding(.trailing, 20)
                     }
                     .padding(.leading, 40)

@@ -32,6 +32,9 @@ struct GeneralView: View {
             .onAppear {
                 seminarInfo.fetchSeminar()
             }
+            .refreshable {
+                seminarInfo.fetchSeminar()
+            }
             .navigationTitle("세미나 목록")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
