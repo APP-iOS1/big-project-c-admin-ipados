@@ -6,8 +6,9 @@
 //
 
 import Foundation
+import SwiftUI
 
-struct Seminar : Codable, Identifiable {
+struct Seminar : Codable, Identifiable, Equatable, Hashable {
     var id : String // 자동 생성
     var image : [String] // 이미지 배열
     var name : String
@@ -17,7 +18,8 @@ struct Seminar : Codable, Identifiable {
     var category : String
     var location : String
     var locationUrl : String
-    var host : String
+    var hostName :String
+    var hostImage: String
     var hostIntroduction : String
     var seminarDescription : String
     var seminarCurriculum : String
@@ -26,7 +28,7 @@ struct Seminar : Codable, Identifiable {
             let dateFormatter = DateFormatter()
             dateFormatter.locale = Locale(identifier: "ko-kr")
             dateFormatter.timeZone = TimeZone(abbreviation: "KST")
-            dateFormatter.dateFormat = "yy-MM-dd"
+            dateFormatter.dateFormat = "yy년 MM월 dd일"
 
             let dateCreatedAt = date
 
@@ -34,13 +36,13 @@ struct Seminar : Codable, Identifiable {
         }
 }
 
-struct Question : Codable, Identifiable {
+struct Question : Codable, Identifiable, Hashable {
     var id : String
     var question : String
 }
 
-struct Attendance : Codable, Identifiable {
+struct Attendance : Codable, Identifiable, Hashable {
     var id : String
-    var userUid : String
+    var uid : String
     var userNickname : String
 }

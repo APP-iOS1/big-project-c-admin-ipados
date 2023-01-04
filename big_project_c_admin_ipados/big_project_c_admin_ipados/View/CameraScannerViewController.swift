@@ -10,11 +10,10 @@ import SwiftUI
 import UIKit
 import VisionKit
 struct CameraScannerViewController: UIViewControllerRepresentable {
-    
     @Binding var startScanning: Bool
-//    @Binding var scanResult: String
-        @Binding var scanUserResult: String
-        @Binding var scanEmailResult: String
+    @Binding var scanIdResult : String
+    @Binding var scanUserNickNameResult : String
+    @Binding var scanUid : String
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
     }
@@ -49,19 +48,19 @@ struct CameraScannerViewController: UIViewControllerRepresentable {
         func dataScanner(_ dataScanner: DataScannerViewController, didTapOn item: RecognizedItem) {
             switch item {
             case .barcode(let barcode):
-                let details = barcode.payloadStringValue?.components(separatedBy: "\n") ?? ["알 수 없는 유저", "알 수 없는 이메일"]
-                guard details.count == 2 else { return }
-                parent.scanUserResult = details[0]
-                print(details[0])
-                parent.scanEmailResult = details[1]
+                let details = barcode.payloadStringValue?.components(separatedBy: "\n") ?? ["id", "userNickname", "userUid"]
+                parent.scanIdResult = details[0] //id
+                parent.scanUserNickNameResult = details[1]
+                parent.scanUid = details[2]
                 print("barcode: \(barcode.payloadStringValue ?? "알 수 없음")")
                     dataScanner.stopScanning()
                     dataScanner.dismiss(animated: true)
+
                 
-//                parent.scanResult = barcode.payloadStringValue ?? "알 수 없음"
             default:
                 break
             }
         }
     }
 }
+

@@ -17,7 +17,7 @@ class UserStore : ObservableObject {
     @Published var userList : [User] = []
     @Published var isLogin = false
     
-    
+    var user: User?
     // 로그인 상태 확인
     @Published var currentUser: Firebase.User?
     let database = Firestore.firestore()
@@ -47,7 +47,7 @@ class UserStore : ObservableObject {
                 for document in snapshot.documents {
                     let docData = document.data()
                     let id : String = document.documentID
-                    let nickname: String = docData["nickname"] as? String ?? ""
+                    let nickname: String = docData["nickName"] as? String ?? ""
                     let email: String = docData["email"] as? String ?? ""
                     let goSemId: [String] = docData["goSemId"] as? [String] ?? []
                     let isAdmin: Bool = docData["isAdmin"] as? Bool ?? false
@@ -76,6 +76,7 @@ class UserStore : ObservableObject {
             else {
                 //성공
                 completion(200)
+
                 self.currentUser = result?.user
             }
 //            if let error = error {

@@ -9,37 +9,35 @@ import SwiftUI
 
 struct SessionDetailUserList: View {
 //    @ObservedObject var seminarInfo: SeminarStore
-    
-    let dummyUser: [String] = [
-        "또리",
-        "쿠니",
-        "예니",
-        "휘휘",
-        "노직",
-        "허미니",
-        "소미니",
-        "후니",
-        "억지니",
-        "영이",
-        "뚜리",
-        "하노이베트남왕세자"
-    ]
+//    @Binding var seminarID : String
+//    var seminarID : Seminar.ID?
+    var selectedContent : Seminar?
+    @EnvironmentObject var attendanceStore : AttendanceStore
+
     
     var body: some View {
         VStack {
-            Text("참석한 사자들 (\(dummyUser.count))")
+            Text("참석한 사자들 (\(attendanceStore.attendanceUserList.count))")
                 .font(.title2)
                 .fontWeight(.bold)
-            List(dummyUser, id: \.self) { username in
-                Text(username)
+            List(attendanceStore.attendanceUserList, id: \.self) { username in
+                Text(username.userNickname)
             }
             .listStyle(.plain)
         }
+        .onChange(of: selectedContent) { newValue in
+            if let selectedContent = newValue {
+                print("호출~~")
+                attendanceStore.fetchAttendance(seminarID: selectedContent.id)
+            }
+        }
+
+        
     }
 }
 
-struct SessionDetailUserList_Previews: PreviewProvider {
-    static var previews: some View {
-        SessionDetailUserList()
-    }
-}
+//struct SessionDetailUserList_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SessionDetailUserList()
+//    }
+//}

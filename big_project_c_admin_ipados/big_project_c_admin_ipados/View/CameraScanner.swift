@@ -10,19 +10,18 @@ import SwiftUI
 
 struct CameraScanner: View {
     @Binding var startScanning: Bool
-    @Binding var scanUserResult: String
-    @Binding var scanEmailResult: String {
-        didSet {
-            print(scanEmailResult)
-            if scanEmailResult != "알 수 없는 유저" {
-                self.presentationMode.wrappedValue.dismiss()
-            }
-        }
-    }
+
+    @State var scanIdResult : String = ""
+    @State var scanUserNickname : String = ""
+    @State var scanUid : String = ""
+//    @Binding var seminarID : String
+    var seminarID : String
     @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var attendanceStore : AttendanceStore
     var body: some View {
         NavigationView {
-            CameraScannerViewController(startScanning: $startScanning, scanUserResult: $scanUserResult, scanEmailResult: $scanEmailResult)
+
+            CameraScannerViewController(startScanning: $startScanning, scanIdResult: $scanIdResult, scanUserNickNameResult: $scanUserNickname, scanUid: $scanUid)
                 .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {
                         Button {
@@ -33,12 +32,22 @@ struct CameraScanner: View {
                     }
                 }
                 .interactiveDismissDisabled(true)
+                .onAppear {
+                    print("herhehrehrehrherhehrherhehrehr")
+                    print(seminarID, "이거")
+                }
+                .onDisappear {
+                    print(seminarID)
+                    if scanIdResult != "" && scanUserNickname != "" {
+                        attendanceStore.addAttendance(seminarID: seminarID, attendance: Attendance(id: scanIdResult, uid: scanUid, userNickname: scanUserNickname))
+                    }
+                }
         }
     }
 }
 
-struct CameraScanner_Previews: PreviewProvider {
-    static var previews: some View {
-        CameraScanner(startScanning: .constant(true), scanUserResult: .constant(""), scanEmailResult: .constant(""))
-    }
-}
+//struct CameraScanner_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CameraScanner(startScanning: .constant(true), scanIdResult: .constant(""), scanUserUidResult: .constant(""), scanUserNickname: .constant(""), semibarID: <#Binding<String>#>)
+//    }
+//}
