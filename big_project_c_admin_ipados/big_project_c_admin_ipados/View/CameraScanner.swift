@@ -13,6 +13,7 @@ struct CameraScanner: View {
 
     @State var scanIdResult : String = ""
     @State var scanUserNickname : String = ""
+    @State var scanUid : String = ""
 //    @Binding var seminarID : String
     var seminarID : String
     @Environment(\.presentationMode) var presentationMode
@@ -20,7 +21,7 @@ struct CameraScanner: View {
     var body: some View {
         NavigationView {
 
-            CameraScannerViewController(startScanning: $startScanning, scanIdResult: $scanIdResult, scanUserNickNameResult: $scanUserNickname)
+            CameraScannerViewController(startScanning: $startScanning, scanIdResult: $scanIdResult, scanUserNickNameResult: $scanUserNickname, scanUid: $scanUid)
                 .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {
                         Button {
@@ -38,7 +39,7 @@ struct CameraScanner: View {
                 .onDisappear {
                     print(seminarID)
                     if scanIdResult != "" && scanUserNickname != "" {
-                        attendanceStore.addAttendance(seminarID: seminarID, attendance: Attendance(id: scanIdResult, userNickname: scanUserNickname))
+                        attendanceStore.addAttendance(seminarID: seminarID, attendance: Attendance(id: scanIdResult, uid: scanUid, userNickname: scanUserNickname))
                     }
                 }
         }

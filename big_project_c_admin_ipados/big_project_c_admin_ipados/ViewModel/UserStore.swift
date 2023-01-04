@@ -47,7 +47,7 @@ class UserStore : ObservableObject {
                 for document in snapshot.documents {
                     let docData = document.data()
                     let id : String = document.documentID
-                    let nickname: String = docData["nickname"] as? String ?? ""
+                    let nickname: String = docData["nickName"] as? String ?? ""
                     let email: String = docData["email"] as? String ?? ""
                     let goSemId: [String] = docData["goSemId"] as? [String] ?? []
                     let isAdmin: Bool = docData["isAdmin"] as? Bool ?? false
