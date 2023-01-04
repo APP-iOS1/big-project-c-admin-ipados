@@ -57,7 +57,10 @@ struct GeneralView: View {
             if let selectedCategoryId {
                 SessionDetailView(seminarStore: seminarInfo, seminarId: $selectedCategoryId)
                 } else {
-                Text("카테고리를 선택해주세요")
+                    VStack {
+                        Image("LoginLogo")
+                        Text("카테고리를 선택해주세요")
+                    }
                 }
             }        
 //        .sheet(isPresented: $isShowingAddSessionView) {
