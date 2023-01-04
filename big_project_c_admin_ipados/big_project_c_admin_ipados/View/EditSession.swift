@@ -28,20 +28,20 @@ struct EditSessionView: View {
     // MARK: - 이미지 받아오기(PhotoURL)
     @State private var selectedItem: PhotosPickerItem? = nil
     @State private var image: String = ""
-
-
-
+    
+    
+    
     // 이미지 transaction 효과
     private let transaction: Transaction = .init(animation: .linear)
     
-//    MARK: - Name (타이틀)
+    //    MARK: - Name (타이틀)
     @State private var name: String = ""
     
-//     MARK: - date, startTime, endingTime (Date 피커)
+    //     MARK: - date, startTime, endingTime (Date 피커)
     @State private var date: Date = Date()
     @State private var startingTime: String = ""
     @State private var endingTime: String = ""
-
+    
     
     var dateFormatter : DateFormatter {
         let formatter = DateFormatter()
@@ -74,7 +74,7 @@ struct EditSessionView: View {
     // MARK: - seminarDescription, seminarCurriculum (세미나 상세내용, 상세 커리큘럼)
     @State private var seminarDescription: String = ""
     @State private var seminarCurriculum: String = ""
-
+    
     
     
     
@@ -123,22 +123,22 @@ struct EditSessionView: View {
                     }
                     
                     //MARK: - 이미지 URL
-//                    VStack(alignment: .leading) {
-//                        Text("대표 이미지")
-//                            .font(.title2)
-//                            .fontWeight(.bold)
-//
-//                        HStack(spacing: 50) {
-//                            Text("이미지 URL을 입력해주세요")
-//                                .font(.callout)
-//
-//                            TextField("URL 주소", text: $image)
-//
-//                            AsyncImage(url: URL(string: image), transaction: transaction, content: imageView)
-//                                .frame(width: 100, height: 100)
-//
-//                        }
-//                    }
+                    //                    VStack(alignment: .leading) {
+                    //                        Text("대표 이미지")
+                    //                            .font(.title2)
+                    //                            .fontWeight(.bold)
+                    //
+                    //                        HStack(spacing: 50) {
+                    //                            Text("이미지 URL을 입력해주세요")
+                    //                                .font(.callout)
+                    //
+                    //                            TextField("URL 주소", text: $image)
+                    //
+                    //                            AsyncImage(url: URL(string: image), transaction: transaction, content: imageView)
+                    //                                .frame(width: 100, height: 100)
+                    //
+                    //                        }
+                    //                    }
                     
                     
                     //MARK: - 이미지 피커
@@ -227,16 +227,16 @@ struct EditSessionView: View {
                     
                     //MARK: - categoryPicker
                     VStack(alignment: .leading) {
-
-                            Text("유형")
-                                .font(.title2)
-                                .fontWeight(.bold)
-
-
+                        
+                        Text("유형")
+                            .font(.title2)
+                            .fontWeight(.bold)
+                        
+                        
                         HStack(spacing: 50) {
                             Text("세미나 유형을 선택해주세요")
                                 .font(.callout)
-
+                            
                             Picker("세미나 유형을 선택해주세요", selection: $selectedCategory) {
                                 ForEach(category, id: \.self) {
                                     Text($0)
@@ -244,15 +244,15 @@ struct EditSessionView: View {
                             }
                         }
                     }
-
+                    
                     
                     // MARK: - Place
                     VStack(alignment: .leading) {
                         
-                            Text("장소")
-                                .font(.title2)
-                                .fontWeight(.bold)
-                     
+                        Text("장소")
+                            .font(.title2)
+                            .fontWeight(.bold)
+                        
                         
                         HStack(spacing: 50) {
                             Text("장소를 입력해주세요")
@@ -274,37 +274,50 @@ struct EditSessionView: View {
                             .font(.title2)
                             .fontWeight(.bold)
                         
-                        HStack(spacing: 50) {
-                            Text("강사이름을 입력해주세요")
-                                .font(.callout)
+                        HStack {
+                            Button {
+                                isHostPickerShowing.toggle()
+                            } label: {
+                                ZStack {
+                                    if selectedHostImage == nil {
+                                        Image(systemName: "camera")
+                                            .zIndex(1)
+                                            .font(.largeTitle)
+                                            .foregroundColor(.accentColor)
+                                        
+                                        Circle()
+                                            .stroke(Color.accentColor, lineWidth: 1)
+                                            .frame(width: 100, height: 100)
+                                    } else {
+                                        Image(uiImage: selectedHostImage!)
+                                            .resizable()
+                                            .frame(width: 100, height: 100)
+                                            .cornerRadius(50)
+                                    }
+                                }
+                            }
+                            .padding(.trailing, 7)
+                            .sheet(isPresented: $isHostPickerShowing) {
+                                ImagePicker(image: $selectedHostImage)
+                            }
                             
-                            TextField("성함 및 닉네임", text: $hostName)
-            
                         }
                         
-                        HStack(spacing: 50) {
-                            Text("프로필 이미지 URL을 입력해주세요")
-                                .font(.callout)
-                            
-                            TextField("URL 주소", text: $hostImage)
-                            
-                            AsyncImage(url: URL(string: hostImage), transaction: transaction, content: imageView)
-                                .frame(width: 100, height: 100)
-                            
-                        }
-                        
-                        VStack(alignment: .leading) {
-                            
-                            Text("소개글을 입력해주세요")
-                                .font(.callout)
-                                .foregroundColor(Color.gray)
-                            TextEditor(text: $hostIntroduce)
-                                .padding()
-                                .background(Color(.secondarySystemBackground))
-                                .frame(height: 150)
-                            
-                        }
                     }
+                    
+                    
+                    VStack(alignment: .leading) {
+                        
+                        Text("소개글을 입력해주세요")
+                            .font(.callout)
+                            .foregroundColor(Color.gray)
+                        TextEditor(text: $hostIntroduce)
+                            .padding()
+                            .background(Color(.secondarySystemBackground))
+                            .frame(height: 150)
+                        
+                    }
+                }
                     
                     
                     
@@ -356,8 +369,8 @@ struct EditSessionView: View {
                             let id = UUID().uuidString
                             
                             seminarStore.editSeminar(seminar: Seminar(id: seminar.id,  image: [image], name: name, date: date, startingTime: startingTime, endingTime: endingTime, category: selectedCategory, location: location, locationUrl: locationUrl, hostName: hostName, hostImage: hostImage, hostIntroduction: hostIntroduce, seminarDescription: seminarDescription, seminarCurriculum: seminarCurriculum), selectedImages: selectedImages, selectedHostImage: selectedImage)
-
-
+                            
+                            
                             
                             dismiss()
                             
@@ -378,9 +391,9 @@ struct EditSessionView: View {
                     
                     
                 }
-            
+                
             }
-        }
+        
         .padding()
         .onAppear {
             name = seminar.name
@@ -397,6 +410,7 @@ struct EditSessionView: View {
             seminarCurriculum = seminar.seminarCurriculum
         }
     }
+}
     
     //MARK: - Async image를 나타내는 비동기 메서드
     @ViewBuilder
@@ -426,5 +440,4 @@ struct EditSessionView: View {
         }
     }
     
-}
 

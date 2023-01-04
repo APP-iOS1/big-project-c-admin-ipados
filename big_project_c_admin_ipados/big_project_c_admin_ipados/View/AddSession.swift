@@ -368,7 +368,7 @@ struct AddSessionView: View {
         }
         .padding(20)
     }
-        
+    
 }
 
 //MARK: - Async image를 나타내는 비동기 메서드

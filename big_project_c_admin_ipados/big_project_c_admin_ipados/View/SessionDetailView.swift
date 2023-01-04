@@ -167,7 +167,7 @@ struct SessionDetailView: View {
                                     .listRowSeparator(.hidden)
                             }
                             .scrollContentBackground(.hidden)
-                            .listStyle(InsetGroupedListStyle())
+                            .listStyle(InsetListStyle())
                             .padding(.leading, -13)
                             .refreshable {
                                 questionStore.fetchQuestion(seminarID: seminarId ?? "")
