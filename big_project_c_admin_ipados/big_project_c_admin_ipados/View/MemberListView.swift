@@ -36,19 +36,14 @@ struct MemberListView: View {
                     .fontWeight(.bold)
                 ) {
                     
-                    SearchBar(text: $searchInput)
-                        .padding(.bottom, 30)
-                    
                     GeometryReader { geometry in
                         HStack {
                             Text("닉네임")
-                                .frame(width: geometry.size.width * 0.20)
+                                .frame(width: geometry.size.width * 0.25)
                             Text("이메일")
-                                .frame(width: geometry.size.width * 0.20)
+                                .frame(width: geometry.size.width * 0.25)
                             Text("신청한 세미나")
-                                .frame(width: geometry.size.width * 0.39)
-                            Text("참석여부")
-                                .frame(width: geometry.size.width * 0.20)
+                                .frame(width: geometry.size.width * 0.49)
                         }
                         .font(.title2)
                         .frame(maxHeight: .infinity)

@@ -28,7 +28,7 @@ struct Seminar : Codable, Identifiable, Equatable {
             let dateFormatter = DateFormatter()
             dateFormatter.locale = Locale(identifier: "ko-kr")
             dateFormatter.timeZone = TimeZone(abbreviation: "KST")
-            dateFormatter.dateFormat = "yy-MM-dd"
+            dateFormatter.dateFormat = "yy년 MM월 dd일"
 
             let dateCreatedAt = date
 
