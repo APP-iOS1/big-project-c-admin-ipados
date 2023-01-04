@@ -14,6 +14,7 @@ import Firebase
 class AttendanceStore : ObservableObject {
     // 참석자 배열
     @Published var attendanceUserList : [Attendance] = []
+    @Published var dashboardAttendanceUserList : [Int] = []
         
     let database = Firestore.firestore()
     
@@ -38,6 +39,7 @@ class AttendanceStore : ObservableObject {
        
     }
     
+    
     func addAttendance(seminarID : String,attendance: Attendance) {
         database.collection("Seminar").document("\(seminarID)").collection("Attendance")
             .document(attendance.uid)
@@ -49,4 +51,20 @@ class AttendanceStore : ObservableObject {
         fetchAttendance(seminarID: seminarID)
         }
     
+    func fetchAttendanceUserList(seminarIDList : [String]) {
+            self.dashboardAttendanceUserList = []
+            for seminarID in seminarIDList {
+                database.collection("Seminar").document("\(seminarID)").collection("Attendance")
+                    .getDocuments { (snapshot, error) in
+                        if let snapshot {
+                            var userList = 0
+                            for _ in snapshot.documents {
+                                userList += 1
+                            }
+                            self.dashboardAttendanceUserList.append(userList)
+                        }
+                    }
+            }
+        }
 }
+

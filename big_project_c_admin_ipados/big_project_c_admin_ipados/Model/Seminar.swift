@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct Seminar : Codable, Identifiable, Equatable {
+struct Seminar : Codable, Identifiable, Equatable, Hashable {
     var id : String // 자동 생성
     var image : [String] // 이미지 배열
     var name : String

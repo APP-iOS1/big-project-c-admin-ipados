@@ -277,6 +277,38 @@ class SeminarStore : ObservableObject {
             //FireStore Data를 READ 해오는 함수 호출
             fetchSeminar()
         }
+    
+    func fetchSeminarIDList(completion : @escaping ([String]) -> ()) {
+            database.collection("Seminar")
+                .order(by: "date", descending: false)
+                .getDocuments { (snapshot, error) in
+                    if let snapshot {
+                        var seminarIdList : [String] = []
+                        for document in snapshot.documents {
+                            let docData = document.data()
+                            let id : String = document.documentID
+                            let image: [String] = docData["image"] as? [String] ?? []
+                            let name: String = docData["name"] as? String ?? ""
+                            let date: Date = docData["date"] as? Date ?? Date()
+                            let startingTime: String = docData["startingTime"] as? String ?? ""
+                            let endingTime: String = docData["endingTime"] as? String ?? ""
+                            let category: String = docData["category"] as? String ?? ""
+                            let location: String = docData["location"] as? String ?? ""
+                            let locationUrl: String = docData["locationUrl"] as? String ?? ""
+                            let hostName: String = docData["hostName"] as? String ?? ""
+                            let hostImage: String = docData["hostImage"] as? String ?? ""
+                            let hostIntroduction: String = docData["hostIntroduction"] as? String ?? ""
+                            let seminarDescription: String = docData["seminarDescription"] as? String ?? ""
+                            let seminarCurriculum: String = docData["seminarCurriculum"] as? String ?? ""
+                            
+                            let seminar = Seminar(id: id, image: image, name: name, date: date, startingTime: startingTime, endingTime: endingTime, category: category, location: location, locationUrl: locationUrl, hostName: hostName, hostImage: hostImage, hostIntroduction: hostIntroduction, seminarDescription: seminarDescription, seminarCurriculum: seminarCurriculum)
+                            
+                            seminarIdList.append(seminar.id)
+                        }
+                        completion(seminarIdList)
+                    }
+                }
+        }
 }
 
 //    // 세미나 추가시 필요 정보들
