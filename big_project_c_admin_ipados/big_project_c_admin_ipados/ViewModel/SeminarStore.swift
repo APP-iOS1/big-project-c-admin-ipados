@@ -102,7 +102,9 @@ class SeminarStore : ObservableObject {
                     let id : String = docData["id"] as? String ?? ""
                     let image: [String] = docData["image"] as? [String] ?? []
                     let name: String = docData["name"] as? String ?? ""
-                    let date: Date = docData["date"] as? Date ?? Date()
+//                    let date: Date = docData["date"] as? Date ?? Date()
+                let createdAtTimeStamp: Timestamp = docData["date"] as? Timestamp ?? Timestamp()
+                let date: Date = createdAtTimeStamp.dateValue()
                     let startingTime: String = docData["startingTime"] as? String ?? ""
                     let endingTime: String = docData["endingTime"] as? String ?? ""
                     let category: String = docData["category"] as? String ?? ""
@@ -132,7 +134,9 @@ class SeminarStore : ObservableObject {
                     let id : String = document.documentID
                     let image: [String] = docData["image"] as? [String] ?? []
                     let name: String = docData["name"] as? String ?? ""
-                    let date: Date = docData["date"] as? Date ?? Date()
+//                    let date: Date = docData["date"] as? Date ?? Date()
+                    let createdAtTimeStamp: Timestamp = docData["date"] as? Timestamp ?? Timestamp()
+                    let date: Date = createdAtTimeStamp.dateValue()
                     let startingTime: String = docData["startingTime"] as? String ?? ""
                     let endingTime: String = docData["endingTime"] as? String ?? ""
                     let category: String = docData["category"] as? String ?? ""
@@ -161,7 +165,7 @@ class SeminarStore : ObservableObject {
             .setData(["id": seminar.id,
                       "image": seminar.image,
                       "name": seminar.name,
-                      "date": seminar.date,
+                      "date": seminar.createdDate,
                       "startingTime": seminar.startingTime,
                       "endingTime": seminar.endingTime,
                       "category": seminar.category,
@@ -265,11 +269,17 @@ class SeminarStore : ObservableObject {
     
     // MARK: - 세미나 게시물 삭제하기
     func deleteSeminar(seminar: Seminar) {
-        print(seminar.id)
             database.collection("Seminar")
             .document(seminar.id)
                 .delete()
-        
+        //TODO: 스토리지 이미지도 삭제!(접근하는 경로 찾기 어려움...)
+//        let ref = Storage.storage().reference().child("\(seminar.image.filter { !"https://firebasestorage.googleapis.com:443/v0/b/likelionprojectcdev.appspot.com/o/".contains($0) &&  !"?alt=media&token=4a5865a9-69af-44b0-bd48-d7b0783f772b".contains($0)})")
+//
+//        ref.delete { error in
+//            if let error {
+//                print(error)
+//            }
+//        }
         
         //FireStore Data를 READ 해오는 함수 호출
 //    storeImageToStorage(id: seminar.id, selectedImages: selectedImages)
