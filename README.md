@@ -21,7 +21,7 @@
 회원 탭 : 사용자는 앱을 통해 세미나를 신청한 인원을 관리할 수 있습니다.
 ```
 
-## 주요 기능 
+## 구현 동작
 <img src="https://user-images.githubusercontent.com/114602459/210508389-c682634b-88be-495f-afc1-ea2bf3f890b2.png" width="600">
 <img src="https://user-images.githubusercontent.com/114602459/210509207-63cbbd8b-18b7-4985-9c1e-a3542aeab6ad.mov" width="600">
 
