@@ -102,7 +102,8 @@ class SeminarStore : ObservableObject {
                     let id : String = docData["id"] as? String ?? ""
                     let image: [String] = docData["image"] as? [String] ?? []
                     let name: String = docData["name"] as? String ?? ""
-                    let date: Date = docData["date"] as? Date ?? Date()
+                    let createdAtTimeStamp: Timestamp = docData["date"] as? Timestamp ?? Timestamp()
+                    let date: Date = createdAtTimeStamp.dateValue()
                     let startingTime: String = docData["startingTime"] as? String ?? ""
                     let endingTime: String = docData["endingTime"] as? String ?? ""
                     let category: String = docData["category"] as? String ?? ""
@@ -132,7 +133,8 @@ class SeminarStore : ObservableObject {
                     let id : String = document.documentID
                     let image: [String] = docData["image"] as? [String] ?? []
                     let name: String = docData["name"] as? String ?? ""
-                    let date: Date = docData["date"] as? Date ?? Date()
+                    let createdAtTimeStamp: Timestamp = docData["date"] as? Timestamp ?? Timestamp()
+                    let date: Date = createdAtTimeStamp.dateValue()
                     let startingTime: String = docData["startingTime"] as? String ?? ""
                     let endingTime: String = docData["endingTime"] as? String ?? ""
                     let category: String = docData["category"] as? String ?? ""
