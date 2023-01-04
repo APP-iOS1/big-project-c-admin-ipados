@@ -26,13 +26,13 @@ struct MemberListRow: View {
                     VStack {
                         Text(user.nickname)
                     }
-                    .frame(width: geometry.size.width * 0.20)
+                    .frame(width: geometry.size.width * 0.25)
                     
                     VStack {
                         Text(user.email)
                     }
                     //                    .frame(minWidth: 0, maxWidth: .infinity)
-                    .frame(width: geometry.size.width * 0.20)
+                    .frame(width: geometry.size.width * 0.25)
                     
                     VStack {
                         if !matchingId(user: user, seminarStore: seminarStore).isEmpty {
@@ -45,16 +45,8 @@ struct MemberListRow: View {
                             Text("")
                         }
                     }
-                    .frame(width: geometry.size.width * 0.39)
+                    .frame(width: geometry.size.width * 0.49)
                     
-                    VStack {
-                        if user.isAdmin {
-                            Text("YES")
-                        } else {
-                            Text("NO")
-                        }
-                    }
-                    .frame(width: geometry.size.width * 0.20)
                 }
                 .frame(maxHeight: .infinity)
                 .onAppear {
