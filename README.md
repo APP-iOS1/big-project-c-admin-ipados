@@ -12,8 +12,9 @@
 ```
 실행이 필요할 시 elinholic95icloud.com 또는 (재혁님 이메일 추가로 적어주세요!)을 통해 파일을 요청해주세요.
 GoogleService-Info.plist
-
-번들 아이디 셋팅은 아래와 같이 요청드립니다.
+```
+```
+위 파일 없이 간단한 앱 설치만 필요하시다면 번들 아이디 셋팅은 아래와 같이 요청드립니다.
 com.codelion.big-project-c-admin-ipados-JS
 ```
 
