@@ -7,6 +7,16 @@
 멋사에서 열릴 세미나를 등록하는 멋사의 직원
 ```
 
+
+## 앱 설치 및 실행 가이드
+```
+실행이 필요할 시 elinholic95icloud.com 또는 (재혁님 이메일 추가로 적어주세요!)을 통해 파일을 요청해주세요.
+com.codelion.big-project-c-admin-ipados-JS
+
+번들 아이디 셋팅은 아래와 같이 요청드립니다.
+com.codelion.big-project-c-admin-ipados-JS
+```
+
 ## 개발환경
 ```
 - iPad Pro(12.9-inches)에서 최적화됨
