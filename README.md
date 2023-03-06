@@ -10,7 +10,7 @@
 
 ## 앱 설치 및 실행 가이드
 ```
-실행이 필요할 시 elinholic95icloud.com 또는 (재혁님 이메일 추가로 적어주세요!)을 통해 파일을 요청해주세요.
+실행이 필요할 시 elinholic95icloud.com 또는 onthelots@naver.com을 통해 파일을 요청해주세요.
 GoogleService-Info.plist
 ```
 ```
@@ -52,6 +52,13 @@ com.codelion.big-project-c-admin-ipados-JS
 - [style] 코드 포맷팅, 세미콜론 누락 (코드 변경 없음)
 ```
 
+
+## 라이센스 & 라이브러리
+
+```
+- 테킷팅(Tech!Ting) is available under the MIT license. See the LICENSE file for more info.
+- SDWebImage(https://github.com/SDWebImage/SDWebImage)
+```
 
 ## 참여자
 | 📎박성민 [팀장]<br/>[@teddy5518](https://github.com/teddy5518)<br/> | 📎박정선<br/> [@JSPark0099](https://github.com/JSPark0099)<br/> | 📎황예리<br/>[@hwangyeri](https://github.com/hwangyeri)<br/> | 📎류창휘<br/> [@ryuchanghwi](https://github.com/ryuchanghwi)<br/> | 📎테킷팅<br/> [](https://github.com)<br/> |
